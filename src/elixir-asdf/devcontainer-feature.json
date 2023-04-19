@@ -6,7 +6,6 @@
   "description": "Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.",
   "options": {
     "asdfVersion": {
-      // https://github.com/asdf-vm/asdf/tags
       "default": "0.11.3",
       "description": "Select the version of ASDF to use for installing Erlang and Elixir.",
       "proposals": [
@@ -15,7 +14,6 @@
       "type": "string"
     },
     "erlangVersion": {
-      // https://github.com/erlang/otp/tags
       "default": "25.3",
       "description": "Select the version of Erlang to install.",
       "proposals": [
@@ -24,9 +22,6 @@
       "type": "string"
     },
     "elixirVersion": {
-      // https://github.com/elixir-lang/elixir/tags
-      // Compatibility between Erlang and Elixir versions:
-      // https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
       "default": "1.14.4-otp-25",
       "description": "Select the version of Elixir to install.",
       "proposals": [

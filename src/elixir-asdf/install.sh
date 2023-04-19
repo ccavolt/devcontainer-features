@@ -2,10 +2,13 @@
 
 set -e
 
+# https://github.com/asdf-vm/asdf/tags
 ASDF=$ASDFVERSION
-                  
+# https://github.com/erlang/otp/tags           
 ERLANG=$ERLANGVERSION
-
+# https://github.com/elixir-lang/elixir/tags
+# Compatibility between Erlang and Elixir versions:
+# https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
 ELIXIR=$ELIXIRVERSION
 
 # Update packages
