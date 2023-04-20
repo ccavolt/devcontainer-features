@@ -11,6 +11,7 @@ export DEBIAN_FRONTEND=noninteractive
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
 # export LANGUAGE=en_US.UTF-8
+UPDATE_RC="${UPDATE_RC:-"true"}"
 
 # https://github.com/asdf-vm/asdf/tags
 export ASDF=${ASDFVERSION}
@@ -20,6 +21,19 @@ export ERLANG=${ERLANGVERSION}
 # Compatibility between Erlang and Elixir versions:
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
 export ELIXIR=${ELIXIRVERSION}
+
+updaterc() {
+    if [ "${UPDATE_RC}" = "true" ]; then
+        echo "Updating /etc/bash.bashrc and /etc/zsh/zshrc..."
+        if [[ "$(cat /etc/bash.bashrc)" != *"$1"* ]]; then
+            echo -e "$1" >> /etc/bash.bashrc
+        fi
+        if [ -f "/etc/zsh/zshrc" ] && [[ "$(cat /etc/zsh/zshrc)" != *"$1"* ]]; then
+            echo -e "$1" >> /etc/zsh/zshrc
+        fi
+    fi
+}
+
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -62,6 +76,13 @@ ${MIXPATH} local.hex --force
 ${MIXPATH} local.rebar --force
 # Install Phoenix Framework Application Generator
 ${MIXPATH} archive.install hex phx_new --force
+
+
+cat /etc/bash.bashrc
+# cat /etc/zsh/zshrc
+updaterc $PATH
+cat /etc/bash.bashrc
+# cat /etc/zsh/zshrc
 
 echo $PATH
 echo 'Done!'
