@@ -1,0 +1,12 @@
+{
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"elixir-asdf": {
+        "asdfVersion": "0.11.3", 
+        "erlangVersion": "25.3", 
+        "elixirVersion": "1.14.4-otp-25"
+      }
+		}
+	}
+}
