@@ -14,13 +14,13 @@ export DEBIAN_FRONTEND=noninteractive
 UPDATE_RC="${UPDATE_RC:-"true"}"
 
 # https://github.com/asdf-vm/asdf/tags
-export ASDF=${ASDFVERSION}
+export ASDF=$ASDFVERSION
 # https://github.com/erlang/otp/tags           
-export ERLANG=${ERLANGVERSION}
+export ERLANG=$ERLANGVERSION
 # https://github.com/elixir-lang/elixir/tags
 # Compatibility between Erlang and Elixir versions:
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
-export ELIXIR=${ELIXIRVERSION}
+export ELIXIR=$ELIXIRVERSION
 
 updaterc() {
     if [ "${UPDATE_RC}" = "true" ]; then
@@ -34,7 +34,6 @@ updaterc() {
     fi
 }
 
-
 # Update packages
 apt-get update && apt-get upgrade -y
 
@@ -42,16 +41,16 @@ apt-get update && apt-get upgrade -y
 export ASDFPATH=${HOME}/.asdf/bin/asdf
 apt-get install curl git -y
 git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf --branch v${ASDF}
-# Ensure ASDF is up to date
-${ASDFPATH} update
 # Add ASDF to PATH
 export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"
+# Ensure ASDF is up to date
+${ASDFPATH} update
 
 # Install Erlang & Elixir ASDF plugins
 asdf plugin-add erlang
-${ASDFPATH} plugin-add elixir
+asdf plugin-add elixir
 # Ensure ASDF plugins are up to date
-${ASDFPATH} plugin-update --all
+asdf plugin-update --all
 # To build Erlang documentation
 export KERL_BUILD_DOCS=yes
 # ASDF Erlang Prereqs
@@ -60,22 +59,22 @@ apt-get -y install build-essential autoconf m4 libncurses5-dev \
    libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop \
    libxml2-utils libncurses-dev openjdk-11-jdk
 # Install Erlang from ASDF and set global version
-${ASDFPATH} install erlang ${ERLANG}
-${ASDFPATH} global erlang ${ERLANG}
+asdf install erlang $ERLANG
+asdf global erlang $ERLANG
 # ASDF Elixir Prereqs
 apt-get install unzip -y
 # Install Elixir from ASDF and set global version
-${ASDFPATH} install elixir ${ELIXIR}
-${ASDFPATH} global elixir ${ELIXIR}
+asdf install elixir $ELIXIR
+asdf global elixir $ELIXIR
 # Install filesystem watcher for live reloading to work
 apt-get install inotify-tools -y
 # Install Hex Package Manager
 export MIXPATH=${HOME}/.asdf/installs/elixir/${ELIXIR}/bin/mix
-${MIXPATH} local.hex --force
+$MIXPATH local.hex --force
 # Install rebar3 to build Erlang dependencies
-${MIXPATH} local.rebar --force
+$MIXPATH local.rebar --force
 # Install Phoenix Framework Application Generator
-${MIXPATH} archive.install hex phx_new --force
+$MIXPATH archive.install hex phx_new --force
 
 
 cat /etc/bash.bashrc
