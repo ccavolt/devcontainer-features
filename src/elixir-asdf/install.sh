@@ -8,10 +8,10 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 export DEBIAN_FRONTEND=noninteractive
+update-locale LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
 # export LANGUAGE=en_US.UTF-8
-UPDATE_RC="${UPDATE_RC:-"true"}"
 
 # https://github.com/asdf-vm/asdf/tags
 export ASDF=$ASDFVERSION
@@ -22,18 +22,6 @@ export ERLANG=$ERLANGVERSION
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
 export ELIXIR=$ELIXIRVERSION
 
-updaterc() {
-    if [ "${UPDATE_RC}" = "true" ]; then
-        echo "Updating /etc/bash.bashrc and /etc/zsh/zshrc..."
-        if [[ "$(cat /etc/bash.bashrc)" != *"$1"* ]]; then
-            echo -e "$1" >> /etc/bash.bashrc
-        fi
-        if [ -f "/etc/zsh/zshrc" ] && [[ "$(cat /etc/zsh/zshrc)" != *"$1"* ]]; then
-            echo -e "$1" >> /etc/zsh/zshrc
-        fi
-    fi
-}
-
 # Update packages
 apt-get update && apt-get upgrade -y
 
@@ -43,8 +31,9 @@ apt-get install curl git -y
 git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf --branch v${ASDF}
 # Add ASDF to PATH
 export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"
+echo 'export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"' >> ${HOME}/.profile
 # Ensure ASDF is up to date
-${ASDFPATH} update
+asdf update
 
 # Install Erlang & Elixir ASDF plugins
 asdf plugin-add erlang
@@ -69,19 +58,12 @@ asdf global elixir $ELIXIR
 # Install filesystem watcher for live reloading to work
 apt-get install inotify-tools -y
 # Install Hex Package Manager
-export MIXPATH=${HOME}/.asdf/installs/elixir/${ELIXIR}/bin/mix
-$MIXPATH local.hex --force
+# export MIXPATH=${HOME}/.asdf/installs/elixir/${ELIXIR}/bin/mix
+# echo 'export MIXPATH=${HOME}/.asdf/installs/elixir/${ELIXIR}/bin/mix' >> ${HOME}/.profile
+mix local.hex --force
 # Install rebar3 to build Erlang dependencies
-$MIXPATH local.rebar --force
+mix local.rebar --force
 # Install Phoenix Framework Application Generator
-$MIXPATH archive.install hex phx_new --force
+mix archive.install hex phx_new --force
 
-
-cat /etc/bash.bashrc
-# cat /etc/zsh/zshrc
-updaterc $PATH
-cat /etc/bash.bashrc
-# cat /etc/zsh/zshrc
-
-echo $PATH
 echo 'Done!'
