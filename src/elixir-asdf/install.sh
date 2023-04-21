@@ -10,13 +10,17 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # https://github.com/asdf-vm/asdf/tags
-export ASDF=$ASDFVERSION
+ASDF="0.11.3"
+if [ $ASDFVERSION != "latest" ]
+then
+    ASDF="${ASDFVERSION:-"0.11.1"}"
+fi
 # https://github.com/erlang/otp/tags           
-export ERLANG=$ERLANGVERSION
+ERLANG="${ERLANGVERSION:-"latest"}"
 # https://github.com/elixir-lang/elixir/tags
 # Compatibility between Erlang and Elixir versions:
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
-export ELIXIR=$ELIXIRVERSION
+ELIXIR="${ELIXIRVERSION:-"latest"}"
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -34,8 +38,11 @@ git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf --branch v${ASDF}
 # Add ASDF to PATH
 export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"
 echo 'export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"' >> ${HOME}/.profile
-# Ensure ASDF is up to date
-asdf update
+# Ensure ASDF is up to date (if version isn't specified)
+if [ $ASDF == "0.11.1" ]
+then
+    asdf update
+fi
 
 # Install Erlang & Elixir ASDF plugins
 asdf plugin-add erlang
