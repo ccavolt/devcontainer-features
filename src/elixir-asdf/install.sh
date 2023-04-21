@@ -8,10 +8,6 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 export DEBIAN_FRONTEND=noninteractive
-update-locale LANG=en_US.UTF-8
-# export LC_ALL=en_US.UTF-8
-# export LANG=en_US.UTF-8
-# export LANGUAGE=en_US.UTF-8
 
 # https://github.com/asdf-vm/asdf/tags
 export ASDF=$ASDFVERSION
@@ -24,6 +20,12 @@ export ELIXIR=$ELIXIRVERSION
 
 # Update packages
 apt-get update && apt-get upgrade -y
+
+# Set locale for elixir
+apt-get install -y locales
+locale-gen en_US.UTF-8
+export LANG=en_US.UTF-8
+echo 'export LANG=en_US.UTF-8' >> ${HOME}/.profile
 
 # Install ASDF
 export ASDFPATH=${HOME}/.asdf/bin/asdf
