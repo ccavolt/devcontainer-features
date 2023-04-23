@@ -14,9 +14,13 @@
     }
   },
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts"
+		},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/common-utils:1": {},
     "ghcr.io/lukewiwa/features/shellcheck:0": {}
   },
-  "postCreateCommand": "/bin/bash -ex ./.devcontainer/setup.sh > postCreateCommand.log"
+  "postCreateCommand": "/bin/bash -ex ./.devcontainer/postCreateCommand.sh > postCreateCommand.log"
 }
