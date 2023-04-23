@@ -1,10 +1,10 @@
 {
-	"latest": {
+	"test": {
 		"image": "ubuntu:jammy",
 		"features": {
 			"elixir-asdf": {
-        "asdfVersion": "latest", 
-        "erlangVersion": "latest", 
+        "asdfVersion": "latest",
+        "erlangVersion": "latest",
         "elixirVersion": "latest"
       }
 		}
@@ -13,8 +13,8 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"elixir-asdf": {
-        "asdfVersion": "0.11.2", 
-        "erlangVersion": "25.2", 
+        "asdfVersion": "0.11.2",
+        "erlangVersion": "25.2",
         "elixirVersion": "1.14.3-otp-25"
       }
 		}
