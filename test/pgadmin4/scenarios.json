@@ -1,0 +1,18 @@
+{
+	"latest": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"pgAdmin4": {
+        "pgAdmin4Version": "latest"
+      }
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"pgAdmin4": {
+        "pgAdmin4Version": "6.21"
+      }
+		}
+	}
+}

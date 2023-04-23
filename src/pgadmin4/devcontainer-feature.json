@@ -1,0 +1,18 @@
+{
+  "id": "pgadmin4",
+  "version": "0.0.1",
+  "name": "pgAdmin4",
+  "documentationURL": "https://github.com/ccavolt/devcontainers-features/tree/main/src/pgadmin4",
+  "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
+  "options": {
+    "version": {
+      "default": "latest",
+      "description": "Select the version of pgAdmni4 to install.",
+      "proposals": [
+        "latest",
+        "7.0"
+      ],
+      "type": "string"
+    }
+  }
+}
