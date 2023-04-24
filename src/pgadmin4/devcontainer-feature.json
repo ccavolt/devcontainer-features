@@ -7,7 +7,7 @@
   "options": {
     "version": {
       "default": "latest",
-      "description": "Select the version of pgAdmni4 to install.",
+      "description": "Select the version of pgAdmin4 to install.",
       "proposals": [
         "latest",
         "7.0"
