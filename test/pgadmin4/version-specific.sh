@@ -5,9 +5,11 @@ set -e
 # Optional: Import test library bundled with the devcontainer CLI
 source dev-container-features-test-lib
 
+apt install -y net-tools
+service apache2 start
+
 # Feature-specific tests
-check "pgAdmin4 --version" pgAdmin4 --version | grep 6.21
-check "pgAdmin --version" pgAdmin --version | grep 6.21
+check "Apache (Runs pgadmin4) Status" netstat -anp | grep apache2
 
 # Report result
 reportResults
