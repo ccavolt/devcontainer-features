@@ -3,6 +3,7 @@
 set -e
 
 # Optional: Import test library bundled with the devcontainer CLI
+# shellcheck source=/dev/null
 source dev-container-features-test-lib
 
 apt install -y net-tools
