@@ -13,8 +13,10 @@ PGADMIN_VERSION="${VERSION:-"latest"}"
 export PGADMIN_SETUP_EMAIL="${PGADMINSETUPEMAIL:-"john@smith.dev"}"
 export PGADMIN_SETUP_PASSWORD="${PGADMINSETUPPASSWORD:-"asdfasdf"}"
 
-# Install pgAdmin 4
+# Update packages
 apt-get update && apt-get upgrade -y
+
+# Install prereqs
 apt-get install -y curl gpg lsb-release apt-utils
 # Install the public key for the repository (if not done previously):
 curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
@@ -29,7 +31,8 @@ else
     apt-get install -y pgadmin4-server pgadmin4-web
 fi
 # Add local python binaries to path
-export PATH=$PATH:${HOME}/.local/bin
+export PATH="${PATH}:${HOME}/.local/bin"
+echo "export PATH=${PATH}:${HOME}/.local/bin" >> "${HOME}/.profile"
 # # Install venv
 apt-get install -y python3-venv
 # Add pgAdmin config
