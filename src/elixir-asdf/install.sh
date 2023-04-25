@@ -27,9 +27,15 @@ apt-get update && apt-get upgrade -y
 
 # Set locale for elixir
 apt-get install -y locales
-locale-gen en_US.UTF-8
-export LANG=en_US.UTF-8
-echo 'export LANG=en_US.UTF-8' >> "${HOME}/.profile"
+locale-gen "${LOCALE}"
+export LANG="${LOCALE}"
+echo "export LANG=${LOCALE}" >> "${HOME}/.profile"
+
+# Setup default mix commands
+if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]
+then
+    cp .default-mix-commands "${HOME}"
+fi
 
 # Install ASDF
 export ASDFPATH=${HOME}/.asdf/bin/asdf

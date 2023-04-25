@@ -5,8 +5,9 @@
 			"elixir-asdf": {
         "asdfVersion": "latest",
         "erlangVersion": "latest",
-        "elixirVersion": "latest"
-      }
+        "elixirVersion": "latest",
+				"defaultMixCommands": "no"
+			}
 		}
 	},
 	"version-specific": {
@@ -15,7 +16,9 @@
 			"elixir-asdf": {
         "asdfVersion": "0.11.2",
         "erlangVersion": "25.2",
-        "elixirVersion": "1.14.3-otp-25"
+        "elixirVersion": "1.14.3-otp-25",
+				"locale": "en_US.UTF-8",
+				"defaultMixCommands": "yes"
       }
 		}
 	}

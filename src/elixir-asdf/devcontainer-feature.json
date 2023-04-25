@@ -31,6 +31,24 @@
         "1.14.4-otp-25"
       ],
       "type": "string"
+    },
+    "locale": {
+      "default": "en_US.UTF-8",
+      "description": "Select the locale you want to use.",
+      "proposals": [
+        "en_US.UTF-8"
+      ],
+      "type": "string"
+    },
+    "defaultMixCommands": {
+      "default": "no",
+      "description": "Installs hex, rebar, and phx_new by default.",
+      "proposals": [
+        "no",
+        "yes"
+
+      ],
+      "type": "string"
     }
   }
 }

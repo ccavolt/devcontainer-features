@@ -12,7 +12,8 @@ check "erlang" erl -eval '{ok, Version} = file:read_file(filename:join([code:roo
 check "elixir" elixir --version | grep 1.14.3
 check "path" echo "${PATH}"
 check "profile" cat "${HOME}/.profile"
-check "locale" locale
+check "locale" locale | grep en_US.UTF-8
+check "hex --version" hex --version
 
 # Report result
 reportResults
