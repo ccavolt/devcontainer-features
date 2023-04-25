@@ -1,0 +1,18 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"postgres": {
+        "version": "latest"
+      }
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"postgres": {
+        "version": "14"
+      }
+		}
+	}
+}

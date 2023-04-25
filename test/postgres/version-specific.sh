@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Optional: Import test library bundled with the devcontainer CLI
+# shellcheck source=/dev/null
+source dev-container-features-test-lib
+
+# Start Postgres
+sudo service postgresql start
+
+# Feature-specific tests
+check "PostgreSQL Version" postgres -V | grep 14
+
+# Report result
+reportResults
