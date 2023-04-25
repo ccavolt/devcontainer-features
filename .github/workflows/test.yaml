@@ -15,6 +15,7 @@ jobs:
         features:
           - elixir-asdf
           - pgadmin4
+          - postgres
     steps:
       - uses: actions/checkout@v3
 
