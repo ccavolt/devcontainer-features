@@ -21,6 +21,8 @@ Elixir is a functional, concurrent, general-purpose programming language that ru
 | locale | Select the locale you want to use. | string | en_US.UTF-8 |
 | defaultMixCommands | Installs hex, rebar, and phx_new by default. | string | no |
 
+
+
 ---
 
 _Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/ccavolt/devcontainer-features/blob/main/src/elixir-asdf/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
