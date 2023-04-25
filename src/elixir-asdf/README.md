@@ -3,11 +3,11 @@
 
 Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.
 
-## Example DevContainer Usage
+## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/ccavolt/devcontainers-features/elixir-asdf:1": {}
+    "ghcr.io/ccavolt/devcontainer-features/elixir-asdf:0": {}
 }
 ```
 
@@ -15,7 +15,12 @@ Elixir is a functional, concurrent, general-purpose programming language that ru
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| asdfVersion | Select the version of ASDF to install. | string | latest |
+| asdfVersion | Select the version of ASDF to use for installing Erlang and Elixir. | string | latest |
 | erlangVersion | Select the version of Erlang to install. | string | latest |
 | elixirVersion | Select the version of Elixir to install. | string | latest |
 
+
+
+---
+
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/ccavolt/devcontainer-features/blob/main/src/elixir-asdf/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
