@@ -35,7 +35,7 @@ locale-gen "${LOCALE}"
 export LANG="${LOCALE}"
 echo "export LANG=${LOCALE}" >> "${HOME}/.profile"
 
-# Setup default mix commands
+# Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]
 then
     cp .default-mix-commands "${HOME}"
