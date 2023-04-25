@@ -10,10 +10,11 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # https://github.com/asdf-vm/asdf/tags
-ASDF="0.11.3"
-if [ "${ASDFVERSION}" != "latest" ]
+if [ "${ASDFVERSION}" == "latest" ]
 then
-    ASDF="${ASDFVERSION:-"0.11.1"}"
+    ASDF="0.11.3"
+else
+    ASDF="${ASDFVERSION}"
 fi
 # https://github.com/erlang/otp/tags
 ERLANG="${ERLANGVERSION:-"latest"}"
@@ -45,7 +46,7 @@ git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch "v${ASDF}
 export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"
 echo "export PATH=${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}" >> "${HOME}/.profile"
 # Ensure ASDF is up to date (if version isn't specified)
-if [ "${ASDF}" == "0.11.1" ]
+if [ "${ASDFVERSION}" == "latest" ]
 then
     asdf update
 fi
