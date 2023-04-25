@@ -1,13 +1,13 @@
 
-# postgres (postgres)
+# PostgreSQL (postgres)
 
-pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
+PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/ccavolt/devcontainer-features/pgadmin4:0": {}
+    "ghcr.io/ccavolt/devcontainer-features/postgres:0": {}
 }
 ```
 
@@ -15,12 +15,11 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Select the version of pgAdmin4 to install. | string | latest |
-| pgadminSetupEmail | Email/username for pgAdmin web interface. | string | john@smith.dev |
-| pgadminSetupPassword | Password for pgAdmin web interface. Must be at least 6 characters. | string | asdfasdf |
+| version | Select the version of PostgreSQL to install. Must be an integer. | string | latest |
+| postgresPassword | Password for postgres account. | string | postgres |
 
 
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/ccavolt/devcontainer-features/blob/main/src/pgadmin4/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/ccavolt/devcontainer-features/blob/main/src/postgres/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
