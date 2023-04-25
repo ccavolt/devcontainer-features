@@ -13,7 +13,7 @@ check "elixir" elixir --version | grep 1.14.3
 check "path" echo "${PATH}"
 check "profile" cat "${HOME}/.profile"
 check "locale" locale | grep en_US.UTF-8
-check "hex --version" hex --version
+check "hex --version" mix hex.info
 
 # Report result
 reportResults
