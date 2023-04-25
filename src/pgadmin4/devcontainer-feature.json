@@ -13,6 +13,22 @@
         "7.0"
       ],
       "type": "string"
+    },
+    "pgadminSetupEmail": {
+      "default": "john@smith.dev",
+      "description": "Email/username for pgAdmin web interface.",
+      "proposals": [
+        "john@smith.dev"
+      ],
+      "type": "string"
+    },
+    "pgadminSetupPassword": {
+      "default": "asdfasdf",
+      "description": "Password for pgAdmin web interface. Must be at least 6 characters.",
+      "proposals": [
+        "whateveryouwant"
+      ],
+      "type": "string"
     }
   }
 }
