@@ -18,7 +18,7 @@ Elixir is a functional, concurrent, general-purpose programming language that ru
 | asdfVersion | Select the version of ASDF to use for installing Erlang and Elixir. | string | latest |
 | erlangVersion | Select the version of Erlang to install. | string | latest |
 | elixirVersion | Select the version of Elixir to install. | string | latest |
-| locale | Select the locale you want to use. | string | en_US.UTF-8 |
+| locale | Select the locale you want to use. Setting locale prevents Elixir warnings | string | en_US.UTF-8 |
 | defaultMixCommands | Installs hex, rebar, and phx_new by default. | string | no |
 
 
