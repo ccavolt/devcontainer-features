@@ -7,7 +7,7 @@ set -e
 source dev-container-features-test-lib
 
 # Start Postgres
-sudo service postgresql start
+service postgresql start
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 14

@@ -9,7 +9,8 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-export POSTGRES="${VERSION:-"latest"}"
+# PostgreSQL version
+export POSTGRES=${VERSION:-"15"}
 # Adds password accessible by psql
 export PGPASSWORD="${POSTGRESPASSWORD:-"postgres"}"
 
@@ -17,18 +18,15 @@ export PGPASSWORD="${POSTGRESPASSWORD:-"postgres"}"
 apt-get update && apt-get upgrade -y
 
 # Install Postgres Prereqs
-apt-get install -y wget
+apt-get install -y wget gnupg lsb-release
 # Create repo configuration
 sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 # Import the repository signing key
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+# Update apt because of newly imported repo
+apt-get update
 # Install Postgres and Postgres Contrib package which includes pg_stat_statements
-if [ "${POSTGRES}" == "latest" ]
-then
-    apt-get install -y postgresql postgresql-contrib
-else
-    apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
-fi
+apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
 # Add Postgres binaries to PATH
 export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin
 echo "export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin" >> "${HOME}/.profile"
@@ -37,7 +35,9 @@ export PGDATA=/var/lib/postgresql/${POSTGRES}/main
 echo "export PGDATA=/var/lib/postgresql/${POSTGRES}/main" >> "${HOME}/.profile"
 # Enable data checksums
 pg_checksums --enable
-# Change password
-service postgresql start && sudo -u postgres psql -c "alter user postgres PASSWORD 'postgres';"
+# Start postgres service
+service postgresql start
+# Give postgres user a password to be able to connect to pgAdmin4
+su postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
 
 echo 'Done!'

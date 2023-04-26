@@ -3,8 +3,8 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"postgres": {
-        "version": "latest"
-      }
+				"postgresPassword": "asdfasdf"
+			}
 		}
 	},
 	"version-specific": {
