@@ -26,14 +26,17 @@ ELIXIR="${ELIXIRVERSION:-"latest"}"
 # To build Erlang documentation
 export KERL_BUILD_DOCS=yes
 
+# Set Locale
+LCL="${LOCALE:-"en_US.UTF-8"}"
+
 # Update packages
 apt-get update && apt-get upgrade -y
 
 # Set locale for elixir
 apt-get install -y locales
-locale-gen "${LOCALE}"
-export LANG="${LOCALE}"
-echo "export LANG=${LOCALE}" >> "${HOME}/.profile"
+locale-gen "${LCL}"
+export LANG="${LCL}"
+echo "export LANG=${LCL}" >> "${HOME}/.profile"
 
 # Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]
