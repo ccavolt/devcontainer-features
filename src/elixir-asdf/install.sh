@@ -22,9 +22,6 @@ ERLANG="${ERLANGVERSION:-"latest"}"
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
 ELIXIR="${ELIXIRVERSION:-"latest"}"
 
-# To build Erlang documentation
-export KERL_BUILD_DOCS=yes
-
 # Set Locale
 LCL="${LOCALE:-"en_US.UTF-8"}"
 
@@ -52,7 +49,9 @@ fi
 apt-get install -y curl git
 mkdir -p /opt/asdf
 export ASDF_DIR=/opt/asdf
+export ASDF_DATA_DIR=/opt/asdf
 echo "export ASDF_DIR=/opt/asdf" >> $EAPROFILE
+echo "export ASDF_DATA_DIR=/opt/asdf" >> $EAPROFILE
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
 export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
@@ -77,6 +76,10 @@ apt-get install -y build-essential autoconf m4 libncurses5-dev \
 # Install Erlang from ASDF and set global version
 asdf install erlang "${ERLANG}"
 asdf global erlang "${ERLANG}"
+
+asdf current
+asdf where erlang
+erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), "OTP_VERSION"])), io:fwrite(Version), halt().' -noshell
 
 # ASDF Elixir Prereqs
 apt-get install -y unzip
