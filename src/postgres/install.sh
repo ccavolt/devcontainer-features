@@ -30,7 +30,6 @@ apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
 # Create PGPROFILE
 export PGPROFILE=/etc/profile.d/postgres.sh
 touch $PGPROFILE
-echo "PGPROFILE=/etc/profile.d/postgres.sh" >> /etc/environment
 # Add Postgres binaries to PATH
 export PATH=$PATH:/usr/lib/postgresql/${POSTGRES}/bin
 echo "export PATH=$PATH:/usr/lib/postgresql/${POSTGRES}/bin" >> $PGPROFILE

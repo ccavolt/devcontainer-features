@@ -31,7 +31,6 @@ apt-get update && apt-get upgrade -y
 # Create EAPROFILE
 export EAPROFILE=/etc/profile.d/elixir.sh
 touch $EAPROFILE
-echo "EAPROFILE=/etc/profile.d/elixir.sh" >> /etc/environment
 
 # Set locale for elixir
 apt-get install -y locales
