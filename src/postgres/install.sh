@@ -28,11 +28,11 @@ apt-get update
 # Install Postgres and Postgres Contrib package which includes pg_stat_statements
 apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
 # Create PGPROFILE
-export DCFEATURES=/etc/profile.d/dcfeatures
+export DCFEATURES=/etc/profile.d/dcfeatures.sh
 touch $DCFEATURES
 # Add Postgres binaries to PATH
 export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin
-echo "export PATH=\"${PATH}:/usr/lib/postgresql/${POSTGRES}/bin\"" >> $DCFEATURES
+echo "export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin" >> $DCFEATURES
 # Default PGDATA directory from apt install
 export PGDATA=/var/lib/postgresql/${POSTGRES}/main
 echo "export PGDATA=/var/lib/postgresql/${POSTGRES}/main" >> $DCFEATURES

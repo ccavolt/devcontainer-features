@@ -29,7 +29,7 @@ LCL="${LOCALE:-"en_US.UTF-8"}"
 apt-get update && apt-get upgrade -y
 
 # Create EAPROFILE
-export DCFEATURES=/etc/profile.d/dcfeatures
+export DCFEATURES=/etc/profile.d/dcfeatures.sh
 touch $DCFEATURES
 
 # Set locale for elixir
@@ -51,7 +51,7 @@ echo "export ASDF_DATA_DIR=/opt/asdf" >> $DCFEATURES
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
 export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin
-echo "export PATH=\"${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin\"" >> $DCFEATURES
+echo "export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin" >> $DCFEATURES
 echo ". ${ASDF_DIR}/asdf.sh" >> $DCFEATURES
 # Ensure ASDF is up to date (if version isn't specified)
 if [ "${ASDFVERSION}" == "latest" ]; then
