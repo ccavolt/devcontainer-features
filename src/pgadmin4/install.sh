@@ -30,9 +30,6 @@ then
 else
     apt-get install -y pgadmin4-server pgadmin4-web
 fi
-# Add local python binaries to path
-export PATH="${PATH}:${HOME}/.local/bin"
-echo "export PATH=${PATH}:${HOME}/.local/bin" >> "${HOME}/.profile"
 # # Install venv
 apt-get install -y python3-venv
 # Add pgAdmin config
@@ -41,5 +38,7 @@ cp config_local.py /usr/pgadmin4/web
 /usr/pgadmin4/bin/setup-web.sh --yes
 # Add local postgres server config to pgAdmin
 cp pgadmin-server.json /usr/pgadmin4/web
+# Activate venv and run setup.py
 sh -c ". /usr/pgadmin4/venv/bin/activate && exec python3 /usr/pgadmin4/web/setup.py --load-servers /usr/pgadmin4/web/pgadmin-server.json --replace --user $PGADMIN_SETUP_EMAIL"
+
 echo 'Done!'
