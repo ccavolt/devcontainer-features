@@ -11,7 +11,6 @@ check "asdf" asdf --version
 check "erlang" erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), "OTP_VERSION"])), io:fwrite(Version), halt().' -noshell
 check "elixir" elixir --version
 check "path" echo "${PATH}"
-check "profile" cat "${HOME}/.profile"
 check "locale" locale
 check "/etc/environment" cat /etc/environment | grep EAPROFILE
 check "EAPROFILE File" cat /etc/profile.d/elixir.sh | grep LANG
