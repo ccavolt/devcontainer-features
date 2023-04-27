@@ -25,6 +25,9 @@ ELIXIR="${ELIXIRVERSION:-"latest"}"
 # Set Locale
 LCL="${LOCALE:-"en_US.UTF-8"}"
 
+# Set Username
+USRNME="${USERNAME:-"root"}"
+
 # Update packages
 apt-get update && apt-get upgrade -y
 
@@ -89,6 +92,11 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix local.rebar --force
     # Install Phoenix Framework Application Generator
     mix archive.install hex phx_new --force
+fi
+
+# Copy ASDF .tool-versions to user directory
+if [ "${USRNME}" != "root" ]; then
+    cp /root/.tool-versions "/home/${USRNME}/.tool-versions"
 fi
 
 echo 'Done!'
