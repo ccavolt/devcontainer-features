@@ -1,6 +1,6 @@
 {
   "id": "pgadmin4",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "name": "pgAdmin4",
   "documentationURL": "https://github.com/ccavolt/devcontainers-features/tree/main/src/pgadmin4",
   "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
@@ -14,7 +14,7 @@
       ],
       "type": "string"
     },
-    "pgadminSetupEmail": {
+    "email": {
       "default": "john@smith.dev",
       "description": "Email/username for pgAdmin web interface.",
       "proposals": [
@@ -22,7 +22,7 @@
       ],
       "type": "string"
     },
-    "pgadminSetupPassword": {
+    "password": {
       "default": "asdfasdf",
       "description": "Password for pgAdmin web interface. Must be at least 6 characters.",
       "proposals": [

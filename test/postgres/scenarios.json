@@ -3,7 +3,7 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"postgres": {
-				"postgresPassword": "asdfasdf"
+				"password": "asdfasdf"
 			}
 		}
 	},

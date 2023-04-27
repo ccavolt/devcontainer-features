@@ -19,7 +19,7 @@
         "elixirVersion": "1.14.3-otp-25",
 				"locale": "en_US.UTF-8",
 				"defaultMixCommands": "yes",
-				"username": "vscode"
+				"user": "vscode"
       }
 		}
 	}

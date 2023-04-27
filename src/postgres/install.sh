@@ -10,9 +10,9 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # PostgreSQL version
-export POSTGRES=${VERSION:-"15"}
+export POSTGRES_VERSION=${VERSION:-"15"}
 # Adds password accessible by psql
-export PGPASSWORD="${POSTGRESPASSWORD:-"postgres"}"
+export POSTGRES_PASSWORD="${PASSWORD:-"postgres"}"
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -26,21 +26,21 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 # Update apt because of newly imported repo
 apt-get update
 # Install Postgres and Postgres Contrib package which includes pg_stat_statements
-apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
+apt-get install -y "postgresql-${POSTGRES_VERSION}" "postgresql-contrib-${POSTGRES_VERSION}"
 # Create Postgres Script
-export POSTGRES=/etc/profile.d/postgres.sh
-touch $POSTGRES
+export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
+touch $POSTGRES_SCRIPT
 # Add Postgres binaries to PATH
-export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin
-echo 'export PATH=$PATH:/usr/lib/postgresql/'"${POSTGRES}"'/bin' >> $POSTGRES
+export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES_VERSION}/bin
+echo 'export PATH=$PATH:/usr/lib/postgresql/'"${POSTGRES_VERSION}"'/bin' >> $POSTGRES_SCRIPT
 # Default PGDATA directory from apt install
-export PGDATA=/var/lib/postgresql/${POSTGRES}/main
-echo 'export PGDATA=/var/lib/postgresql/'"${POSTGRES}"'/main' >> $POSTGRES
+export PGDATA=/var/lib/postgresql/${POSTGRES_VERSION}/main
+echo 'export PGDATA=/var/lib/postgresql/'"${POSTGRES_VERSION}"'/main' >> $POSTGRES_SCRIPT
 # Enable data checksums
 pg_checksums --enable
 # Start postgres service
 service postgresql start
 # Give postgres user a password to be able to connect to pgAdmin4
-su postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
+su postgres --command "psql --echo-all -v pgpass=${POSTGRES_PASSWORD} --file=init.sql"
 
 echo 'Done!'

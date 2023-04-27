@@ -10,8 +10,8 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 PGADMIN_VERSION="${VERSION:-"latest"}"
-export PGADMIN_SETUP_EMAIL="${PGADMINSETUPEMAIL:-"john@smith.dev"}"
-export PGADMIN_SETUP_PASSWORD="${PGADMINSETUPPASSWORD:-"asdfasdf"}"
+export PGADMIN_SETUP_EMAIL="${EMAIL:-"john@smith.dev"}"
+export PGADMIN_SETUP_PASSWORD="${PASSWORD:-"asdfasdf"}"
 
 # Update packages
 apt-get update && apt-get upgrade -y
