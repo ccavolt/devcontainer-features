@@ -43,6 +43,11 @@ locale-gen "${LCL}"
 export LANG="${LCL}"
 echo "export LANG=${LCL}" >> $EAPROFILE
 
+# Setup default mix commands (They are run after adding new Elixir version)
+if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
+    cp .default-mix-commands "${HOME}"
+fi
+
 # Install ASDF
 apt-get install -y curl git
 mkdir -p /opt/asdf
@@ -80,15 +85,5 @@ asdf install elixir "${ELIXIR}"
 asdf global elixir "${ELIXIR}"
 # Install filesystem watcher for live reloading to work
 apt-get install -y inotify-tools
-
-# Setup default mix commands (They are run after adding new Elixir version)
-if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
-    # Install Hex Package Manager
-    mix local.hex --force
-    # Install rebar3 to build Erlang dependencies
-    mix local.rebar --force
-    # Install Phoenix Framework Application Generator
-    mix archive.install hex phx_new --force
-fi
 
 echo 'Done!'
