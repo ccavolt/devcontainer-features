@@ -11,7 +11,7 @@ service postgresql start
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 15
-check "Dev Container Features File" cat /etc/profile.d/dcfeatures.sh
+check "Postgres Profile" cat /etc/profile.d/pgprofile.sh
 
 # Report result
 reportResults

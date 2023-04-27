@@ -10,9 +10,9 @@ source dev-container-features-test-lib
 check "asdf" asdf --version
 check "erlang" erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), "OTP_VERSION"])), io:fwrite(Version), halt().' -noshell
 check "elixir" elixir --version
-check "path" echo "${PATH}"
+check "path" echo $PATH
 check "locale" locale
-check "Dev Container Features File" cat /etc/profile.d/dcfeatures.sh | grep LANG
+check "Elixir Profile" cat /etc/profile.d/elxprofile.sh | grep LANG
 
 # Report result
 reportResults
