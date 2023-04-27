@@ -26,8 +26,7 @@ ELIXIR="${ELIXIRVERSION:-"latest"}"
 LCL="${LOCALE:-"en_US.UTF-8"}"
 
 # Update packages
-# apt-get update && apt-get upgrade -y
-apt-get update
+apt-get update && apt-get upgrade -y
 
 # Create EAPROFILE
 export EAPROFILE=/etc/profile.d/elixir.sh
@@ -40,18 +39,16 @@ locale-gen "${LCL}"
 export LANG="${LCL}"
 echo "export LANG=${LCL}" >> $EAPROFILE
 
-# Setup default mix commands (They are run after adding new Elixir version)
-if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
-    cp .default-mix-commands "${HOME}"
-fi
-
 # Install ASDF
 apt-get install -y curl git
 mkdir -p /opt/asdf
+# Where ASDF will be installed
 export ASDF_DIR=/opt/asdf
-export ASDF_DATA_DIR=/opt/asdf
 echo "export ASDF_DIR=/opt/asdf" >> $EAPROFILE
+# Where ASDF will store plugins, versions, etc
+export ASDF_DATA_DIR=/opt/asdf
 echo "export ASDF_DATA_DIR=/opt/asdf" >> $EAPROFILE
+# Clone ASDF repo
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
 export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
@@ -77,10 +74,6 @@ apt-get install -y build-essential autoconf m4 libncurses5-dev \
 asdf install erlang "${ERLANG}"
 asdf global erlang "${ERLANG}"
 
-asdf current
-asdf where erlang
-erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), "OTP_VERSION"])), io:fwrite(Version), halt().' -noshell
-
 # ASDF Elixir Prereqs
 apt-get install -y unzip
 # Install Elixir from ASDF and set global version
@@ -88,5 +81,15 @@ asdf install elixir "${ELIXIR}"
 asdf global elixir "${ELIXIR}"
 # Install filesystem watcher for live reloading to work
 apt-get install -y inotify-tools
+
+# Setup default mix commands (They are run after adding new Elixir version)
+if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
+    # Install Hex Package Manager
+    mix local.hex --force
+    # Install rebar3 to build Erlang dependencies
+    mix local.rebar --force
+    # Install Phoenix Framework Application Generator
+    mix archive.install hex phx_new --force
+fi
 
 echo 'Done!'
