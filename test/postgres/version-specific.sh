@@ -11,7 +11,7 @@ service postgresql start
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 14
-check "Postgres Profile" cat /etc/profile.d/pgprofile.sh | grep PGDATA
+check "Postgres Script" cat /etc/profile.d/postgres.sh | grep PGDATA
 
 # Report result
 reportResults

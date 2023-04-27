@@ -13,7 +13,7 @@ check "elixir" elixir --version | grep 1.14.3
 check "path" echo "${PATH}"
 check "locale" locale | grep en_US.UTF-8
 check "hex" mix hex.info
-check "Elixir Profile" cat /etc/profile.d/elxprofile.sh | grep LANG
+check "Elixir ASDF Script" cat /etc/profile.d/elixir-asdf.sh | grep LANG
 
 # Report result
 reportResults
