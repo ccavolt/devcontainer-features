@@ -12,7 +12,7 @@ check "erlang" erl -eval '{ok, Version} = file:read_file(filename:join([code:roo
 check "elixir" elixir --version
 check "path" echo "${PATH}"
 check "locale" locale
-check "EAPROFILE File" cat /etc/profile.d/elixir.sh | grep LANG
+check "Dev Container Features File" cat /etc/profile.d/dcfeatures.sh | grep LANG
 
 # Report result
 reportResults

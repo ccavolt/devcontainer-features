@@ -29,30 +29,30 @@ LCL="${LOCALE:-"en_US.UTF-8"}"
 apt-get update && apt-get upgrade -y
 
 # Create EAPROFILE
-export EAPROFILE=/etc/profile.d/elixir.sh
-touch $EAPROFILE
+export DCFEATURES=/etc/profile.d/dcfeatures
+touch $DCFEATURES
 
 # Set locale for elixir
 apt-get install -y locales
 locale-gen "${LCL}"
 export LANG="${LCL}"
-echo "export LANG=${LCL}" >> $EAPROFILE
+echo "export LANG=${LCL}" >> $DCFEATURES
 
 # Install ASDF
 apt-get install -y curl git
 mkdir -p /opt/asdf
 # Where ASDF will be installed
 export ASDF_DIR=/opt/asdf
-echo "export ASDF_DIR=/opt/asdf" >> $EAPROFILE
+echo "export ASDF_DIR=/opt/asdf" >> $DCFEATURES
 # Where ASDF will store plugins, versions, etc
 export ASDF_DATA_DIR=/opt/asdf
-echo "export ASDF_DATA_DIR=/opt/asdf" >> $EAPROFILE
+echo "export ASDF_DATA_DIR=/opt/asdf" >> $DCFEATURES
 # Clone ASDF repo
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
-export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
-echo "export PATH=\"${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin\"" >> $EAPROFILE
-echo ". ${ASDF_DIR}/asdf.sh" >> $EAPROFILE
+export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin
+echo "export PATH=\"${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin\"" >> $DCFEATURES
+echo ". ${ASDF_DIR}/asdf.sh" >> $DCFEATURES
 # Ensure ASDF is up to date (if version isn't specified)
 if [ "${ASDFVERSION}" == "latest" ]; then
     asdf update

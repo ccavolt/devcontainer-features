@@ -28,14 +28,14 @@ apt-get update
 # Install Postgres and Postgres Contrib package which includes pg_stat_statements
 apt-get install -y "postgresql-${POSTGRES}" "postgresql-contrib-${POSTGRES}"
 # Create PGPROFILE
-export PGPROFILE=/etc/profile.d/postgres.sh
-touch $PGPROFILE
+export DCFEATURES=/etc/profile.d/dcfeatures
+touch $DCFEATURES
 # Add Postgres binaries to PATH
-export PATH=$PATH:/usr/lib/postgresql/${POSTGRES}/bin
-echo "export PATH=\"${PATH}:/usr/lib/postgresql/${POSTGRES}/bin\"" >> $PGPROFILE
+export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES}/bin
+echo "export PATH=\"${PATH}:/usr/lib/postgresql/${POSTGRES}/bin\"" >> $DCFEATURES
 # Default PGDATA directory from apt install
 export PGDATA=/var/lib/postgresql/${POSTGRES}/main
-echo "export PGDATA=/var/lib/postgresql/${POSTGRES}/main" >> $PGPROFILE
+echo "export PGDATA=/var/lib/postgresql/${POSTGRES}/main" >> $DCFEATURES
 # Enable data checksums
 pg_checksums --enable
 # Start postgres service
