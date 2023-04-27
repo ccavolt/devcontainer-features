@@ -24,11 +24,10 @@ curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | gpg --dearmo
 sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt-get update'
 # Install pgAdmin
 # Have to specify installing server version (not just web) so install won't fail
-if [ "$PGADMIN_VERSION" != "latest" ]
-then
-    apt-get install -y pgadmin4-server="${PGADMIN_VERSION}" pgadmin4-web="${PGADMIN_VERSION}"
-else
+if [ "$PGADMIN_VERSION" == "latest" ]; then
     apt-get install -y pgadmin4-server pgadmin4-web
+else
+    apt-get install -y pgadmin4-server="${PGADMIN_VERSION}" pgadmin4-web="${PGADMIN_VERSION}"
 fi
 # # Install venv
 apt-get install -y python3-venv

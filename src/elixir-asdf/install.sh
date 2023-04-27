@@ -10,8 +10,7 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # https://github.com/asdf-vm/asdf/tags
-if [ "${ASDFVERSION}" == "latest" ]
-then
+if [ "${ASDFVERSION}" == "latest" ]; then
     ASDF="0.11.3"
 else
     ASDF="${ASDFVERSION}"
