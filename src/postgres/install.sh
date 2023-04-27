@@ -32,7 +32,7 @@ export PGPROFILE=/etc/profile.d/postgres.sh
 touch $PGPROFILE
 # Add Postgres binaries to PATH
 export PATH=$PATH:/usr/lib/postgresql/${POSTGRES}/bin
-echo "export PATH=$PATH:/usr/lib/postgresql/${POSTGRES}/bin" >> $PGPROFILE
+echo "export PATH=\"${PATH}:/usr/lib/postgresql/${POSTGRES}/bin\"" >> $PGPROFILE
 # Default PGDATA directory from apt install
 export PGDATA=/var/lib/postgresql/${POSTGRES}/main
 echo "export PGDATA=/var/lib/postgresql/${POSTGRES}/main" >> $PGPROFILE

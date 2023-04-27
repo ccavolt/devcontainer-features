@@ -51,8 +51,8 @@ echo "export ASDF_DATA_DIR=/opt/asdf" >> $EAPROFILE
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
 export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
-echo "export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH" >> $EAPROFILE
-echo ". $ASDF_DIR/asdf.sh" >> $EAPROFILE
+echo "export PATH=\"${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin\"" >> $EAPROFILE
+echo ". ${ASDF_DIR}/asdf.sh" >> $EAPROFILE
 # Ensure ASDF is up to date (if version isn't specified)
 if [ "${ASDFVERSION}" == "latest" ]; then
     asdf update
