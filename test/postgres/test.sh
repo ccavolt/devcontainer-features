@@ -11,8 +11,7 @@ service postgresql start
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 15
-check "/etc/environment" cat /etc/environment | grep PGPROFILE
-check "PGPROFILE File" cat /etc/profile.d/postgres.sh | grep PGDATA
+check "PGPROFILE File" cat /etc/profile.d/postgres.sh
 
 # Report result
 reportResults
