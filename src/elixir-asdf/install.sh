@@ -30,29 +30,32 @@ export KERL_BUILD_DOCS=yes
 LCL="${LOCALE:-"en_US.UTF-8"}"
 
 # Update packages
-apt-get update && apt-get upgrade -y
+# apt-get update && apt-get upgrade -y
+apt-get update
+
+# Create EAPROFILE
+export EAPROFILE=/etc/profile.d/elixir.sh
+touch $EAPROFILE
+echo "EAPROFILE=/etc/profile.d/elixir.sh" >> /etc/environment
 
 # Set locale for elixir
 apt-get install -y locales
 locale-gen "${LCL}"
 export LANG="${LCL}"
-echo "export LANG=${LCL}" >> "${HOME}/.profile"
-
-# Setup default mix commands (They are run after adding new Elixir version)
-if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]
-then
-    cp .default-mix-commands "${HOME}"
-fi
+echo "export LANG=${LCL}" >> $EAPROFILE
 
 # Install ASDF
 apt-get install -y curl git
-git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch "v${ASDF}"
+mkdir -p /opt/asdf
+export ASDF_DIR=/opt/asdf
+echo "export ASDF_DIR=/opt/asdf" >> $EAPROFILE
+git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF}"
 # Add ASDF to PATH
-export PATH="${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}"
-echo "export PATH=${HOME}/.asdf/shims:${HOME}/.asdf/bin:${PATH}" >> "${HOME}/.profile"
+export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH
+echo "export PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH" >> $EAPROFILE
+echo ". $ASDF_DIR/asdf.sh" >> $EAPROFILE
 # Ensure ASDF is up to date (if version isn't specified)
-if [ "${ASDFVERSION}" == "latest" ]
-then
+if [ "${ASDFVERSION}" == "latest" ]; then
     asdf update
 fi
 
@@ -78,5 +81,15 @@ asdf install elixir "${ELIXIR}"
 asdf global elixir "${ELIXIR}"
 # Install filesystem watcher for live reloading to work
 apt-get install -y inotify-tools
+
+# Setup default mix commands (They are run after adding new Elixir version)
+if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
+    # Install Hex Package Manager
+    mix local.hex --force
+    # Install rebar3 to build Erlang dependencies
+    mix local.rebar --force
+    # Install Phoenix Framework Application Generator
+    mix archive.install hex phx_new --force
+fi
 
 echo 'Done!'

@@ -14,6 +14,8 @@ check "path" echo "${PATH}"
 check "profile" cat "${HOME}/.profile"
 check "locale" locale | grep en_US.UTF-8
 check "hex" mix hex.info
+check "/etc/environment" cat /etc/environment | grep EAPROFILE
+check "EAPROFILE File" cat /etc/profile.d/elixir.sh | grep LANG
 
 # Report result
 reportResults
