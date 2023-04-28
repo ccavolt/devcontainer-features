@@ -96,6 +96,7 @@ fi
 
 # Copy ASDF .tool-versions to user directory
 if [ "${USERNAME}" != "root" ]; then
+    mkdir -p "/home/${USERNAME}"
     cp /root/.tool-versions "/home/${USERNAME}/.tool-versions"
 fi
 
