@@ -12,14 +12,15 @@ export DEBIAN_FRONTEND=noninteractive
 # PostgreSQL version
 export POSTGRES_VERSION=${VERSION:-"15"}
 # Adds password accessible by psql
-export POSTGRES_PASSWORD="${PASSWORD:-"postgres"}"
+# Variable has to be called PGPASSWORD for psql to use it
+export PGPASSWORD="${PASSWORD:-"postgres"}"
 
 # Create Postgres Script
 export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
 touch $POSTGRES_SCRIPT
 
 # Add Postgres password to script
-echo "export POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> $POSTGRES_SCRIPT
+echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -45,6 +46,6 @@ pg_checksums --enable
 # Start postgres service
 service postgresql start
 # Give postgres user a password to be able to connect to pgAdmin4
-su postgres --command "psql --echo-all -v pgpass=${POSTGRES_PASSWORD} --file=init.sql"
+su postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
 
 echo 'Done!'

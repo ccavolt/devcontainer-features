@@ -11,7 +11,8 @@ service postgresql start
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 14
-check "Postgres Script" cat /etc/profile.d/postgres.sh | grep PGDATA
+check "PGDATA Exists" cat /etc/profile.d/postgres.sh | grep PGDATA
+check "PGPASSWORD Exists" cat /etc/profile.d/postgres.sh | grep PGPASSWORD
 
 # Report result
 reportResults
