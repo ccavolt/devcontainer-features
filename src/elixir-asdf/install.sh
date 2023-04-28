@@ -22,6 +22,9 @@ ERLANG_VERSION="${ERLANGVERSION:-"latest"}"
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
 ELIXIR_VERSION="${ELIXIRVERSION:-"latest"}"
 
+# Build Erlang Docs
+export KERL_BUILD_DOCS=yes
+
 # Set Locale
 LCL="${LOCALE:-"en_US.UTF-8"}"
 
