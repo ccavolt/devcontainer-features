@@ -101,6 +101,10 @@ fi
 if [ "${USERNAME}" != "root" ]; then
     mkdir -p "/home/${USERNAME}"
     cp /root/.tool-versions "/home/${USERNAME}/.tool-versions"
+    chmod 777 -R "/home/${USERNAME}/.tool-versions"
 fi
+
+# Change permissions for ASDF installs
+chmod 777 -R /opt/asdf/installs
 
 echo 'Done!'
