@@ -97,14 +97,15 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix archive.install hex phx_new --force
 fi
 
-# Copy ASDF .tool-versions to user directory
+# Copy ASDF .tool-versions to user directory (if specified and not root) and make it accessible to everyone
 if [ "${USERNAME}" != "root" ]; then
     mkdir -p "/home/${USERNAME}"
-    cp /root/.tool-versions "/home/${USERNAME}/.tool-versions"
-    chmod 777 -R "/home/${USERNAME}/.tool-versions"
+    cp "/root/.tool-versions" "/home/${USERNAME}/.tool-versions"
+    chmod 777 "/home/${USERNAME}/.tool-versions"
+    # Add write permissions (they already had read/execute) for everyone for ASDF-installed tools
+    # Example use case: ElixirLS builds dialyzer in /opt/asdf/installs directory
+    # Using 777 rather than changing ownership from root because I don't know if user's user exists yet
+    chmod 777 -R /opt/asdf/installs
 fi
-
-# Change permissions for ASDF installs
-chmod 777 -R /opt/asdf/installs
 
 echo 'Done!'

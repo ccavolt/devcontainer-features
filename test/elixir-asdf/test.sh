@@ -13,7 +13,8 @@ check "elixir" elixir --version
 check "path" echo $PATH
 check "locale" locale
 check "Elixir ASDF Script" cat /etc/profile.d/elixir-asdf.sh | grep LANG
-check "check for toolversions" cat /root/.tool-versions
+check "check for toolversions file" cat /root/.tool-versions
+check "ASDF installs dir permissions" ls -la /opt/asdf/installs
 
 # Report result
 reportResults
