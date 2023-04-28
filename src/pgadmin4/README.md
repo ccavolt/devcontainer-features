@@ -16,8 +16,8 @@ pgAdmin is the most popular and feature rich Open Source administration and deve
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select the version of pgAdmin4 to install. | string | latest |
-| pgadminSetupEmail | Email/username for pgAdmin web interface. | string | john@smith.dev |
-| pgadminSetupPassword | Password for pgAdmin web interface. Must be at least 6 characters. | string | asdfasdf |
+| email | Email/username for pgAdmin web interface. | string | john@smith.dev |
+| password | Password for pgAdmin web interface. Must be at least 6 characters. | string | asdfasdf |
 
 
 

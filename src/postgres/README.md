@@ -16,7 +16,7 @@ PostgreSQL is a powerful, open source object-relational database system with ove
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select the version of PostgreSQL to install. Must be an integer. | string | 15 |
-| postgresPassword | Password for postgres account. | string | postgres |
+| password | Password for postgres account. | string | postgres |
 
 
 
