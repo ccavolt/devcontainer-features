@@ -14,6 +14,13 @@ export POSTGRES_VERSION=${VERSION:-"15"}
 # Adds password accessible by psql
 export POSTGRES_PASSWORD="${PASSWORD:-"postgres"}"
 
+# Create Postgres Script
+export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
+touch $POSTGRES_SCRIPT
+
+# Add Postgres password to script
+echo "export POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> $POSTGRES_SCRIPT
+
 # Update packages
 apt-get update && apt-get upgrade -y
 
@@ -27,9 +34,6 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 apt-get update
 # Install Postgres and Postgres Contrib package which includes pg_stat_statements
 apt-get install -y "postgresql-${POSTGRES_VERSION}" "postgresql-contrib-${POSTGRES_VERSION}"
-# Create Postgres Script
-export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
-touch $POSTGRES_SCRIPT
 # Add Postgres binaries to PATH
 export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES_VERSION}/bin
 echo 'export PATH=$PATH:/usr/lib/postgresql/'"${POSTGRES_VERSION}"'/bin' >> $POSTGRES_SCRIPT
