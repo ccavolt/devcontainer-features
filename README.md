@@ -1,3 +1,3 @@
 # devcontainer-features
 
-Not at all ready for external use
+Somewhat ready for external use. Use at your own risk!
