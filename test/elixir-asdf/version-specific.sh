@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euxo pipefail
 
 # Optional: Import test library bundled with the devcontainer CLI
 # shellcheck source=/dev/null
