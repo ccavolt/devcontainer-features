@@ -22,5 +22,5 @@
     "ghcr.io/devcontainers/features/common-utils:1": {},
     "ghcr.io/lukewiwa/features/shellcheck:0": {}
   },
-  "postCreateCommand": "/bin/bash -ex ./.devcontainer/postCreateCommand.sh > postCreateCommand.log"
+  "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh > postCreateCommand.log"
 }

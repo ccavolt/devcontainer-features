@@ -1,5 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+set -euxo pipefail
+
+# Update NPM
+npm install -g npm@latest
+
+# Install devcontainer cli
 npm install -g @devcontainers/cli
 
 # this will add hover annotations in shell script files, assuming mads-hartmann.bash-ide-vscod is installed
