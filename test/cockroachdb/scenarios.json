@@ -1,0 +1,16 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"cockroachdb": {}
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"cockroachdb": {
+        "version": "22.1.19"
+      }
+		}
+	}
+}
