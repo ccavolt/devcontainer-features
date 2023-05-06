@@ -16,6 +16,7 @@ jobs:
           - elixir-asdf
           - pgadmin4
           - postgres
+          - cockroachdb
     steps:
       - uses: actions/checkout@v3
 
