@@ -1,0 +1,16 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"flyctl": {}
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"flyctl": {
+        "version": "0.1.26"
+      }
+		}
+	}
+}
