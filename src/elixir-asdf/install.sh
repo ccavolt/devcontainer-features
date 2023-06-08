@@ -2,34 +2,48 @@
 
 set -euxo pipefail
 
+# Ensure script is running as root
 if [ "$(id -u)" -ne 0 ]; then
     echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
     exit 1
 fi
 
+# Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
-
-# https://github.com/asdf-vm/asdf/tags
-if [ "${ASDFVERSION}" == "latest" ]; then
-    ASDF_VERSION="0.11.3"
-else
-    ASDF_VERSION="${ASDFVERSION}"
-fi
+# Git Repo URL
+export REPO="https://github.com/asdf-vm/asdf.git"
 # https://github.com/erlang/otp/tags
-ERLANG_VERSION="${ERLANGVERSION:-"latest"}"
+export ERLANG_VERSION="${ERLANGVERSION:-"latest"}"
 # https://github.com/elixir-lang/elixir/tags
 # Compatibility between Erlang and Elixir versions:
 # https://hexdocs.pm/elixir/1.14.4/compatibility-and-deprecations.html
-ELIXIR_VERSION="${ELIXIRVERSION:-"latest"}"
-
+export ELIXIR_VERSION="${ELIXIRVERSION:-"latest"}"
 # Build Erlang Docs
 export KERL_BUILD_DOCS=yes
-
 # Set Locale
-LCL="${LOCALE:-"en_US.UTF-8"}"
-
+export LCL="${LOCALE:-"en_US.UTF-8"}"
 # Set Username
-USERNAME="${USER:-"root"}"
+export USERNAME="${USER:-"root"}"
+
+# Update packages
+apt-get update && apt-get upgrade -y
+
+# Install git to determine latest version if necessary
+apt-get install -y git
+
+# https://github.com/asdf-vm/asdf/tags
+# ASDF version to install
+if [ -z "$ASDFVERSION" ] || [ "$ASDFVERSION" == "latest" ]
+then
+    ASDF_VERSION=$(git -c 'versionsort.suffix=-' \
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' \
+        | tail --lines=1 \
+        | cut --delimiter='/' --fields=3 \
+        | sed 's/[^0-9]*//')
+    export ASDF_VERSION
+else
+    export ASDF_VERSION=$ASDFVERSION
+fi
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -57,12 +71,9 @@ echo "export ASDF_DATA_DIR=/opt/asdf" >> $ELIXIR_ASDF_SCRIPT
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF_VERSION}"
 # Add ASDF to PATH
 export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin
+# Ensure path isn't expanded, hence single quotes
 echo 'export PATH=$PATH:'"${ASDF_DIR}/shims:${ASDF_DIR}"'/bin' >> $ELIXIR_ASDF_SCRIPT
 echo ". ${ASDF_DIR}/asdf.sh" >> $ELIXIR_ASDF_SCRIPT
-# Ensure ASDF is up to date (if version isn't specified)
-if [ "${ASDFVERSION}" == "latest" ]; then
-    asdf update
-fi
 
 # Install Erlang & Elixir ASDF plugins
 asdf plugin-add erlang
