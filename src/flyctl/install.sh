@@ -7,21 +7,35 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+# Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
-
-# https://github.com/superfly/flyctl/tags
-# flyctl version
-export FLYCTL_VERSION=${VERSION:-"0.1.27"}
-
-# Create download directory
+# Git Repo URL
+export REPO="https://github.com/superfly/flyctl.git"
+# Download directory
 export DOWNLOADDIR=$HOME/downloads
-mkdir $DOWNLOADDIR
 
 # Update packages
 apt-get update && apt-get upgrade -y
 
-# Install CockroachDB dependencies
-apt-get install -y wget
+# Install git to determine latest version if necessary
+apt-get install -y git
+
+# https://github.com/superfly/flyctl/tags
+# flyctl version to install
+if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
+then
+    FLYCTL_VERSION=$(git -c 'versionsort.suffix=-' \
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' \
+        | tail --lines=1 \
+        | cut --delimiter='/' --fields=3 \
+        | sed 's/[^0-9]*//')
+    export FLYCTL_VERSION
+else
+    export FLYCTL_VERSION=$VERSION
+fi
+
+# Create download directory
+mkdir "$DOWNLOADDIR"
 
 # Determine platform
 if [ "$(uname)" = "Linux" ]; then
@@ -45,8 +59,11 @@ else
     exit 1
 fi
 
+# Install wget to download flyctl
+apt-get install -y wget
+
 # Download flyctl and unzip
-cd $DOWNLOADDIR
+cd "$DOWNLOADDIR"
 wget "https://github.com/superfly/flyctl/releases/download/v${FLYCTL_VERSION}/flyctl_${FLYCTL_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 tar -xf "flyctl_${FLYCTL_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 # Move flyctl Binary

@@ -32,14 +32,16 @@ then
         | sed 's/[^0-9]*//')
     export CRDB_VERSION
 else
-    export CRDB_VERSION=${VERSION}
+    export CRDB_VERSION=$VERSION
 fi
 
 # Create download directory
 mkdir "$DOWNLOADDIR"
 
 # Install CockroachDB dependencies
-apt-get install -y curl libc6 libncurses6 tzdata
+apt-get install -y libc6 libncurses6 tzdata
+# Install curl to download CockroachDB
+apt-get install -y curl
 # Download CockroachDB and unzip
 cd "$DOWNLOADDIR"
 curl https://binaries.cockroachdb.com/cockroach-v"${CRDB_VERSION}".linux-amd64.tgz | tar -xzv
