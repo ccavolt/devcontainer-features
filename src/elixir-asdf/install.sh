@@ -72,6 +72,7 @@ git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF_VERSIO
 # Add ASDF to PATH
 export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin
 # Ensure path isn't expanded, hence single quotes
+# shellcheck disable=SC2016
 echo 'export PATH=$PATH:'"${ASDF_DIR}/shims:${ASDF_DIR}"'/bin' >> $ELIXIR_ASDF_SCRIPT
 echo ". ${ASDF_DIR}/asdf.sh" >> $ELIXIR_ASDF_SCRIPT
 

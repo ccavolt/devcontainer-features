@@ -37,6 +37,8 @@ apt-get update
 apt-get install -y "postgresql-${POSTGRES_VERSION}" "postgresql-contrib-${POSTGRES_VERSION}"
 # Add Postgres binaries to PATH
 export PATH=${PATH}:/usr/lib/postgresql/${POSTGRES_VERSION}/bin
+# Ensure path isn't expanded, hence single quotes
+# shellcheck disable=SC2016
 echo 'export PATH=$PATH:/usr/lib/postgresql/'"${POSTGRES_VERSION}"'/bin' >> $POSTGRES_SCRIPT
 # Default PGDATA directory from apt install
 export PGDATA=/var/lib/postgresql/${POSTGRES_VERSION}/main
