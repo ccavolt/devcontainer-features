@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "CockroachDB Version" cockroach version | grep "22.1.19"
+check "CockroachDB Version" cockroach version | grep "22.2.10"
 
 # Report result
 reportResults

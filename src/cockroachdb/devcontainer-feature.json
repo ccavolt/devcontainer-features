@@ -1,16 +1,16 @@
 {
   "id": "cockroachdb",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "name": "CockroachDB",
   "documentationURL": "https://github.com/ccavolt/devcontainers-features/tree/main/src/crdb",
   "description": "Scale fast. Survive disaster. Thrive everywhere.",
   "options": {
     "version": {
-      "default": "22.2.8",
+      "default": "latest",
       "description": "Enter the version of CockroachDB to install",
       "proposals": [
-        "22.2.8",
-        "22.1.19"
+        "latest",
+        "23.1.2"
       ],
       "type": "string"
     }

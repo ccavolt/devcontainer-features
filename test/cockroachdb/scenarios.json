@@ -9,7 +9,7 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"cockroachdb": {
-        "version": "22.1.19"
+        "version": "22.2.10"
       }
 		}
 	}
