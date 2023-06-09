@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Start Postgres
-service postgresql start
+su --login postgres --command "pg_ctl -D $PGDATA start"
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V
