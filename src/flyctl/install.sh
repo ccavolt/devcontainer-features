@@ -36,7 +36,7 @@ else
 fi
 
 # Create download directory
-mkdir "$DOWNLOADDIR"
+mkdir -p "$DOWNLOADDIR"
 
 # Determine platform
 if [ "$(uname)" = "Linux" ]; then

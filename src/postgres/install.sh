@@ -47,7 +47,7 @@ else
 fi
 
 # Create download directory
-mkdir "$DOWNLOADDIR"
+mkdir -p "$DOWNLOADDIR"
 
 # Install wget to download postgres source code
 apt-get install -y wget

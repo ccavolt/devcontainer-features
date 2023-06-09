@@ -36,7 +36,7 @@ else
 fi
 
 # Create download directory
-mkdir "$DOWNLOADDIR"
+mkdir -p "$DOWNLOADDIR"
 
 # Install CockroachDB dependencies
 apt-get install -y libc6 libncurses6 tzdata
