@@ -29,10 +29,8 @@ export WORKDIR
 # Postgres Base Directory
 export PGDIR="/opt/postgres"
 mkdir -p "$PGDIR"
-echo 'export PGDIR='"$PGDIR" >> $POSTGRES_SCRIPT
 # Postgres Bin Directory
 export PGBIN="$PGDIR/bin"
-echo 'export PGBIN='"$PGBIN" >> $POSTGRES_SCRIPT
 # Postgres Data Directory
 export PGDATA="$PGDIR/data"
 echo 'export PGDATA='"$PGDATA" >> $POSTGRES_SCRIPT
@@ -77,7 +75,7 @@ apt-get install -y build-essential libreadline-dev \
     zlib1g-dev flex bison libxml2-dev libxslt-dev \
     libssl-dev libxml2-utils xsltproc ccache
 cd "postgresql-${POSTGRES_VERSION}"
-./configure --prefix="$PGDIR" --with-openssl
+./configure --prefix="$PGDIR"
 make world
 make install-world
 adduser postgres
@@ -88,18 +86,13 @@ su --login postgres --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
 su --login postgres --command "$PGBIN/createdb test"
 su --login postgres --command "$PGBIN/psql test"
 
-# Give postgres user a password to be able to connect to pgAdmin4
-cp "$WORKDIR/init.sql" /home/postgres
-su --login postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
-
-# Copy service file to sysinit
-cp "$WORKDIR/postgresql" /etc/init.d
-update-rc.d postgresql defaults
-
 # Enable data checksums (Postgres needs to be stopped first)
 su --login postgres --command "pg_ctl -D $PGDATA stop"
 pg_checksums --enable
-# Restart using service instead of direct command
-service postgresql start
+su --login postgres --command "pg_ctl -D $PGDATA start"
+
+# Give postgres user a password to be able to connect to pgAdmin4
+cp "$WORKDIR/init.sql" /home/postgres
+su --login postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
 
 echo 'Done!'
