@@ -39,6 +39,9 @@ export PATH=$PATH:$PGBIN
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
 echo 'export PATH=$PATH:'"$PGBIN" >> $POSTGRES_SCRIPT
+# Set Username
+export PGUSER="${USER:-"postgres"}"
+echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -78,21 +81,21 @@ cd "postgresql-${POSTGRES_VERSION}"
 ./configure --prefix="$PGDIR"
 make world
 make install-world
-adduser postgres
+adduser "$PGUSER"
 mkdir -p "$PGDATA"
-chown postgres "$PGDATA"
-su --login postgres --command "$PGBIN/initdb -D $PGDATA"
-su --login postgres --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
-su --login postgres --command "$PGBIN/createdb test"
-su --login postgres --command "$PGBIN/psql test"
+chown "$PGUSER" "$PGDATA"
+su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA"
+su --login "$PGUSER" --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
+su --login "$PGUSER" --command "$PGBIN/createdb test"
+su --login "$PGUSER" --command "$PGBIN/psql test"
 
 # Enable data checksums (Postgres needs to be stopped first)
-su --login postgres --command "pg_ctl -D $PGDATA stop"
+su --login "$PGUSER" --command "pg_ctl -D $PGDATA stop"
 pg_checksums --enable
-su --login postgres --command "pg_ctl -D $PGDATA start"
+su --login "$PGUSER" --command "pg_ctl -D $PGDATA start"
 
-# Give postgres user a password to be able to connect to pgAdmin4
-cp "$WORKDIR/init.sql" /home/postgres
-su --login postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
+# Give db user a password to be able to connect to pgAdmin4
+cp "$WORKDIR/init.sql" "/home/$PGUSER"
+su --login "$PGUSER" --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
 
 echo 'Done!'
