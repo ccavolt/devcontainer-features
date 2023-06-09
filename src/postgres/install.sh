@@ -14,15 +14,33 @@ export DEBIAN_FRONTEND=noninteractive
 export REPO="https://github.com/postgres/postgres.git"
 # Download directory
 export DOWNLOADDIR=$HOME/downloads
+mkdir -p "$DOWNLOADDIR"
+# Postgres env script location
+export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
+touch $POSTGRES_SCRIPT
 # Adds password accessible by psql
 # Variable has to be called PGPASSWORD for psql to use it
 export PGPASSWORD="${PASSWORD:-"postgres"}"
-# Postgres env script location
-export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
+echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
 # Location of starting directory
 WORKDIR=$(pwd)
 export WORKDIR
 
+# Postgres Base Directory
+export PGDIR="/opt/postgres"
+mkdir -p "$PGDIR"
+echo 'export PGDIR='"$PGDIR" >> $POSTGRES_SCRIPT
+# Postgres Bin Directory
+export PGBIN="$PGDIR/bin"
+echo 'export PGBIN='"$PGBIN" >> $POSTGRES_SCRIPT
+# Postgres Data Directory
+export PGDATA="$PGDIR/data"
+echo 'export PGDATA='"$PGDATA" >> $POSTGRES_SCRIPT
+# Add Postgres binaries to PATH
+export PATH=$PATH:$PGBIN
+# Ensure path isn't expanded, hence single quotes
+# shellcheck disable=SC2016
+echo 'export PATH=$PATH:'"$PGBIN" >> $POSTGRES_SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -46,9 +64,6 @@ else
     export POSTGRES_VERSION=${VERSION}
 fi
 
-# Create download directory
-mkdir -p "$DOWNLOADDIR"
-
 # Install wget to download postgres source code
 apt-get install -y wget
 
@@ -62,36 +77,29 @@ apt-get install -y build-essential libreadline-dev \
     zlib1g-dev flex bison libxml2-dev libxslt-dev \
     libssl-dev libxml2-utils xsltproc ccache
 cd "postgresql-${POSTGRES_VERSION}"
-./configure
-make
-make install
+./configure --prefix="$PGDIR" --with-openssl
+make world
+make install-world
 adduser postgres
-mkdir -p /usr/local/pgsql/data
-chown postgres /usr/local/pgsql/data
-su --login postgres --command "/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data"
-su --login postgres --command "/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start"
-su --login postgres --command "/usr/local/pgsql/bin/createdb test"
-su --login postgres --command "/usr/local/pgsql/bin/psql test"
+mkdir -p "$PGDATA"
+chown postgres "$PGDATA"
+su --login postgres --command "$PGBIN/initdb -D $PGDATA"
+su --login postgres --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
+su --login postgres --command "$PGBIN/createdb test"
+su --login postgres --command "$PGBIN/psql test"
 
-# Create Postgres Script
-touch $POSTGRES_SCRIPT
-# Add Postgres binaries to PATH
-export PATH=${PATH}:/usr/local/pgsql/bin
-# Ensure path isn't expanded, hence single quotes
-# shellcheck disable=SC2016
-echo 'export PATH=$PATH:/usr/local/pgsql/bin' >> $POSTGRES_SCRIPT
-# Default PGDATA directory from apt install
-export PGDATA=/usr/local/pgsql/data
-echo 'export PGDATA=/usr/local/pgsql/data' >> $POSTGRES_SCRIPT
-# Enable data checksums (Postgres needs to be stopped first)
-su --login postgres --command "pg_ctl -D $PGDATA stop"
-pg_checksums --enable
-# Start postgres
-su --login postgres --command "pg_ctl -D $PGDATA start"
-# Add Postgres password to script
-echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
 # Give postgres user a password to be able to connect to pgAdmin4
 cp "$WORKDIR/init.sql" /home/postgres
 su --login postgres --command "psql --echo-all -v pgpass=${PGPASSWORD} --file=init.sql"
+
+# Copy service file to sysinit
+cp "$WORKDIR/postgresql" /etc/init.d
+update-rc.d postgresql defaults
+
+# Enable data checksums (Postgres needs to be stopped first)
+su --login postgres --command "pg_ctl -D $PGDATA stop"
+pg_checksums --enable
+# Restart using service instead of direct command
+service postgresql start
 
 echo 'Done!'
