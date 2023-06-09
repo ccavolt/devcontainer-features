@@ -15,7 +15,7 @@ Scale fast. Survive disaster. Thrive everywhere.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Enter the version of CockroachDB to install | string | 22.2.8 |
+| version | Enter the version of CockroachDB to install | string | latest |
 
 
 

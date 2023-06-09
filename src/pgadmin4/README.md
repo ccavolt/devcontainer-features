@@ -1,7 +1,7 @@
 
 # pgAdmin4 (pgadmin4)
 
-pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
+pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world. Doesn't work on arm64 (Apple Silicon).
 
 ## Example Usage
 

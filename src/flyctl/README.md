@@ -15,7 +15,7 @@ Command line tools for fly.io services. This feature only works on Linux and mac
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Enter the version of flyctl to install | string | 0.1.27 |
+| version | Enter the version of flyctl to install | string | latest |
 
 
 
