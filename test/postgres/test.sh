@@ -7,10 +7,10 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Start Postgres
-service postgresql start
+su --login postgres --command "pg_ctl -D $PGDATA start"
 
 # Feature-specific tests
-check "PostgreSQL Version" postgres -V | grep 15
+check "PostgreSQL Version" postgres -V
 check "PGDATA Exists" cat /etc/profile.d/postgres.sh | grep PGDATA
 check "PGPASSWORD Exists" cat /etc/profile.d/postgres.sh | grep PGPASSWORD
 

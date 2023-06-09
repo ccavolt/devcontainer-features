@@ -11,7 +11,7 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"postgres": {
-        "version": "14"
+        "version": "14.8"
       }
 		}
 	}

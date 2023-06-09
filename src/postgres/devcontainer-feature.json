@@ -1,16 +1,17 @@
 {
   "id": "postgres",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "name": "PostgreSQL",
   "documentationURL": "https://github.com/ccavolt/devcontainers-features/tree/main/src/postgres",
   "description": "PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
   "options": {
     "version": {
-      "default": "15",
-      "description": "Select the version of PostgreSQL to install. Must be an integer.",
+      "default": "latest",
+      "description": "Select the version of PostgreSQL to install.",
       "proposals": [
-        "15",
-        "14"
+        "latest",
+        "15.3",
+        "16beta1"
       ],
       "type": "string"
     },
