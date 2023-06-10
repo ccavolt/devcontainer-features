@@ -17,6 +17,7 @@ PostgreSQL is a powerful, open source object-relational database system with ove
 |-----|-----|-----|-----|
 | version | Select the version of PostgreSQL to install. | string | latest |
 | password | Password for postgres account. | string | postgres |
+| user | Name of user devcontainer will run as. | string | postgres |
 
 
 
