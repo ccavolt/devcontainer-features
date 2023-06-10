@@ -13,7 +13,7 @@ su --login "$PGUSER" --command "pg_ctl -D $PGDATA start"
 check "PostgreSQL Version" postgres -V | grep 14.8
 check "PGDATA Exists" cat /etc/profile.d/postgres.sh | grep PGDATA
 check "PGPASSWORD Exists" cat /etc/profile.d/postgres.sh | grep PGPASSWORD
-check "Who owns postgres data" ls /opt/postgres/data | grep vscode
+check "Who owns postgres data" ls -la /opt/postgres/data | grep vscode
 
 # Report result
 reportResults

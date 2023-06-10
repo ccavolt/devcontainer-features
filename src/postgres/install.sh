@@ -84,18 +84,13 @@ make install-world
 adduser "$PGUSER"
 mkdir -p "$PGDATA"
 chown "$PGUSER" "$PGDATA"
-su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA"
+su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA --data-checksums --username=$PGUSER"
 su --login "$PGUSER" --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
 su --login "$PGUSER" --command "$PGBIN/createdb test"
 su --login "$PGUSER" --command "$PGBIN/psql test"
 
 # Give db user a password to be able to connect to pgAdmin4
 cp "$WORKDIR/init.sql" "/home/$PGUSER"
-su --login "$PGUSER" --command "psql --echo-all -v pguser=$PGUSER -v pgpass=$PGPASSWORD --file=init.sql"
-
-# Enable data checksums (Postgres needs to be stopped first)
-su --login "$PGUSER" --command "pg_ctl -D $PGDATA stop"
-pg_checksums --enable
-su --login "$PGUSER" --command "pg_ctl -D $PGDATA start"
+su --login "$PGUSER" --command "psql --echo-all --dbname=postgres -v pguser=$PGUSER -v pgpass=$PGPASSWORD --file=init.sql"
 
 echo 'Done!'
