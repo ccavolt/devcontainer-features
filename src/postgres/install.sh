@@ -18,6 +18,10 @@ mkdir -p "$DOWNLOADDIR"
 # Postgres env script location
 export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
 touch $POSTGRES_SCRIPT
+# Set Username
+export PGUSER="${USER:-"postgres"}"
+echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
+adduser "$PGUSER" || echo "User already exists."
 # Adds password accessible by psql
 # Variable has to be called PGPASSWORD for psql to use it
 export PGPASSWORD="${PASSWORD:-"postgres"}"
@@ -34,14 +38,13 @@ export PGBIN="$PGDIR/bin"
 # Postgres Data Directory
 export PGDATA="$PGDIR/data"
 echo 'export PGDATA='"$PGDATA" >> $POSTGRES_SCRIPT
+mkdir -p "$PGDATA"
+chown "$PGUSER" "$PGDATA"
 # Add Postgres binaries to PATH
 export PATH=$PATH:$PGBIN
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
 echo 'export PATH=$PATH:'"$PGBIN" >> $POSTGRES_SCRIPT
-# Set Username
-export PGUSER="${USER:-"postgres"}"
-echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -81,9 +84,6 @@ cd "postgresql-${POSTGRES_VERSION}"
 ./configure --prefix="$PGDIR"
 make world
 make install-world
-adduser "$PGUSER"
-mkdir -p "$PGDATA"
-chown "$PGUSER" "$PGDATA"
 su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA --data-checksums --username=$PGUSER"
 su --login "$PGUSER" --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
 su --login "$PGUSER" --command "$PGBIN/createdb test"
