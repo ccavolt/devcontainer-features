@@ -1,6 +1,6 @@
 {
   "id": "postgres",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "name": "PostgreSQL",
   "documentationURL": "https://github.com/ccavolt/devcontainers-features/tree/main/src/postgres",
   "description": "PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
@@ -33,5 +33,7 @@
       ],
       "type": "string"
     }
-  }
+  },
+  "postCreateCommand": "/bin/bash postCreateCommand.sh",
+  "postAttachCommand": "/bin/bash postAttachCommand.sh"
 }
