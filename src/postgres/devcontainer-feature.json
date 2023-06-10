@@ -34,6 +34,6 @@
       "type": "string"
     }
   },
-  "postCreateCommand": "/bin/bash postCreateCommand.sh",
-  "postAttachCommand": "/bin/bash postAttachCommand.sh"
+  "postCreateCommand": "/bin/bash .devcontainer/postgres/postCreateCommand.sh",
+  "postAttachCommand": "/bin/bash .devcontainer/postgres/postAttachCommand.sh"
 }

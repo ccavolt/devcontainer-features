@@ -6,8 +6,8 @@ set -euxo pipefail
 # shellcheck source=/dev/null
 source dev-container-features-test-lib
 
-# Start Postgres
-su --login "$PGUSER" --command "pg_ctl -D $PGDATA start"
+# Idempotently start postgres
+su --login "$PGUSER" --command "pg_ctl -D $PGDATA restart"
 
 # Feature-specific tests
 check "PostgreSQL Version" postgres -V | grep 14.8
