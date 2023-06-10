@@ -2,9 +2,7 @@
 	"test": {
 		"image": "ubuntu:jammy",
 		"features": {
-			"postgres": {
-				"password": "asdfasdf"
-			}
+			"postgres": {}
 		}
 	},
 	"version-specific": {
@@ -12,7 +10,8 @@
 		"features": {
 			"postgres": {
         "version": "14.8",
-				"user": "vscode"
+				"user": "vscode",
+				"password": "asdfasdf"
       }
 		}
 	}

@@ -1,2 +1,3 @@
+-- SELECT :'pguser';
 -- SELECT :'pgpass';
-ALTER USER postgres PASSWORD :'pgpass';
+ALTER USER :'pguser' PASSWORD :'pgpass';
