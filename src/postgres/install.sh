@@ -30,6 +30,12 @@ echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
 WORKDIR=$(pwd)
 export WORKDIR
 
+# Copy command scripts to container
+export CMDDIR=/devcontainer_features/postgres
+mkdir -p "$CMDDIR"
+cp "$WORKDIR/postAttachCommand.sh" "$CMDDIR"
+cp "$WORKDIR/postCreateCommand.sh" "$CMDDIR"
+
 # Postgres Base Directory
 export PGDIR="/opt/postgres"
 mkdir -p "$PGDIR"
