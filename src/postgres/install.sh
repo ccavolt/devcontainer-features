@@ -96,7 +96,13 @@ su --login "$PGUSER" --command "$PGBIN/createdb test"
 su --login "$PGUSER" --command "$PGBIN/psql test"
 
 # Give db user a password to be able to connect to pgAdmin4
-cp "$WORKDIR/init.sql" "/home/$PGUSER"
-su --login "$PGUSER" --command "psql --echo-all --dbname=postgres -v pguser=$PGUSER -v pgpass=$PGPASSWORD --file=init.sql"
+su --login "$PGUSER" --command "psql --echo-all --dbname=postgres --command \"alter user $PGUSER password '$PGPASSWORD'\"";
+
+# Create database with name of user so connection that doesn't specify a database doesn't fail
+# Skip if user is postgres because postgres database is created by default
+if [ "$PGUSER" != "postgres" ]
+then
+  su --login "$PGUSER" --command "psql --echo-all --dbname=postgres --command \"create database $PGUSER\"";
+fi
 
 echo 'Done!'

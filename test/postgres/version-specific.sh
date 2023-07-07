@@ -14,6 +14,7 @@ check "PostgreSQL Version" postgres -V | grep 14.8
 check "PGDATA Exists" cat /etc/profile.d/postgres.sh | grep PGDATA
 check "PGPASSWORD Exists" cat /etc/profile.d/postgres.sh | grep PGPASSWORD
 check "Who owns postgres data" ls -la /opt/postgres/data | grep vscode
+check "User Database Exists" su --login "$PGUSER" --command "psql -c \"select datname from pg_database;\"" | grep "$PGUSER"
 
 # Report result
 reportResults
