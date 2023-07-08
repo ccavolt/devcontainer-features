@@ -1,0 +1,19 @@
+{
+  "id": "pgcli",
+  "version": "0.1.0",
+  "name": "pgcli",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/crdb",
+  "description": "Pgcli is a command line interface for Postgres with auto-completion and syntax highlighting. This feature will always install the latest version",
+  "options": {
+    "user": {
+      "default": "root",
+      "description": "Name of user devcontainer will run as.",
+      "proposals": [
+        "root",
+        "vscode"
+
+      ],
+      "type": "string"
+    }
+  }
+}

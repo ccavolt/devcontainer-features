@@ -1,0 +1,16 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"pgcli": {}
+		}
+	},
+	"user-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"pgcli": {
+        "user": "vscode"
+      }
+		}
+	}
+}
