@@ -13,10 +13,13 @@ jobs:
     strategy:
       matrix:
         features:
-          - elixir-asdf
-          - pgadmin4
-          - postgres
           - cockroachdb
+          - elixir-asdf
+          - flyctl
+          - pgadmin4
+          - pgcli
+          - postgres
+
     steps:
       - uses: actions/checkout@v3
 
