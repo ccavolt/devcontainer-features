@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         features:
+          - bat
           - cockroachdb
           - elixir-asdf
           - flyctl

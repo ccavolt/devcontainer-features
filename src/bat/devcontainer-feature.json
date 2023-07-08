@@ -1,0 +1,8 @@
+{
+  "id": "bat",
+  "version": "0.1.0",
+  "name": "bat",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/bat",
+  "description": "A cat(1) clone with wings. This feature will always install the latest version",
+  "options": {}
+}
