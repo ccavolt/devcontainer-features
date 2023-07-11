@@ -87,7 +87,7 @@ apt-get install -y build-essential libreadline-dev \
     zlib1g-dev flex bison libxml2-dev libxslt-dev \
     libssl-dev libxml2-utils xsltproc ccache
 cd "postgresql-${POSTGRES_VERSION}"
-./configure --prefix="$PGDIR"
+./configure --prefix="$PGDIR" --with-openssl
 make world
 make install-world
 su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA --data-checksums --username=$PGUSER"
