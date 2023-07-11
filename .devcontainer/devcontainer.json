@@ -18,6 +18,10 @@
 			"nodeGypDependencies": true,
 			"version": "lts"
 		},
+    // https://github.com/ccavolt/devcontainer-features/tags
+    "ghcr.io/ccavolt/devcontainer-features/bat:0.1": {
+      // bat: Improved version of cat command
+    },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/common-utils:1": {},
     "ghcr.io/lukewiwa/features/shellcheck:0": {}

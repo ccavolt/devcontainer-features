@@ -2,6 +2,9 @@
 
 set -euxo pipefail
 
+# Copy zsh config to user dir
+cp .devcontainer/.zshrc "${HOME}"
+
 # Update NPM
 npm install -g npm@latest
 
