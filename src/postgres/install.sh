@@ -77,6 +77,9 @@ fi
 # Install wget to download postgres source code
 apt-get install -y wget
 
+# Postgres 16 fix for "ICU library not found"
+apt-get install -y pkgconf libicu-dev
+
 # Download postgres source code and unzip
 cd "$DOWNLOADDIR"
 wget "https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.gz"
