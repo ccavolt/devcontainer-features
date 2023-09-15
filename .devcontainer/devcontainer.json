@@ -14,17 +14,17 @@
     }
   },
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
+    "ghcr.io/devcontainers/features/node:1.3.0": {
 			"nodeGypDependencies": true,
 			"version": "lts"
 		},
     // https://github.com/ccavolt/devcontainer-features/tags
-    "ghcr.io/ccavolt/devcontainer-features/bat:0.1": {
+    "ghcr.io/ccavolt/devcontainer-features/bat:0.1.0": {
       // bat: Improved version of cat command
     },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/common-utils:1": {},
-    "ghcr.io/lukewiwa/features/shellcheck:0": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2.5.0": {},
+    "ghcr.io/devcontainers/features/common-utils:2.1.3": {},
+    "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {}
   },
   "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh > postCreateCommand.log"
 }
