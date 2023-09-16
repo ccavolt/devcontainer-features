@@ -1,6 +1,6 @@
 {
   "id": "flyctl",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "flyctl",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/flyctl",
   "description": "Command line tools for fly.io services. This feature only works on Linux and macOS.",

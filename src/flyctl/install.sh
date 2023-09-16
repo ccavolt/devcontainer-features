@@ -26,10 +26,11 @@ apt-get install -y git
 if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
 then
     FLYCTL_VERSION=$(git -c 'versionsort.suffix=-' \
-        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" 'v[0-9].*.*' | # Only use 1 digit major version since fly started using year names for some versions that messes up sort order
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+        grep -P "(/v)\d{1,3}(.)\d+(.)\d+$" | # Removes major version year (e.g. v2023) builds that have no downloads available
         tail --lines=1 | # Remove all but last line
         cut --delimiter='/' --fields=3 | # Remove refs and tags sections
-        sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods.
+        sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods
     export FLYCTL_VERSION
 else
     export FLYCTL_VERSION=$VERSION
