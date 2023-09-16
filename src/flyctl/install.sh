@@ -26,10 +26,10 @@ apt-get install -y git
 if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
 then
     FLYCTL_VERSION=$(git -c 'versionsort.suffix=-' \
-        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' \
-        | tail --lines=1 \
-        | cut --delimiter='/' --fields=3 \
-        | sed 's/[^0-9]*//')
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" 'v[0-9].*.*' | # Only use 1 digit major version since fly started using year names for some versions that messes up sort order
+        tail --lines=1 | # Remove all but last line
+        cut --delimiter='/' --fields=3 | # Remove refs and tags sections
+        sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods.
     export FLYCTL_VERSION
 else
     export FLYCTL_VERSION=$VERSION
