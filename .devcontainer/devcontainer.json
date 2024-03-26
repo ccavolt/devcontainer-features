@@ -20,6 +20,10 @@
     "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {}
   },
 
+  "containerEnv": {
+    "PROJECT_DIR": "${containerWorkspaceFolder}"
+  },
+
   "hostRequirements": {
     "cpus": 2,
     "memory": "4gb",
