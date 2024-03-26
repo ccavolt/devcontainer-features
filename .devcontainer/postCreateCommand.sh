@@ -9,7 +9,8 @@ cp .devcontainer/.zshrc "${HOME}"
 npm install -g npm@latest
 
 # Install devcontainer cli
-npm install -g @devcontainers/cli
+# https://github.com/devcontainers/cli/tags
+npm install -g @devcontainers/cli@0.58.0
 
 # this will add hover annotations in shell script files, assuming mads-hartmann.bash-ide-vscode is installed
 docker container run --name explainshell --restart always -p 5000:5000 -d spaceinvaderone/explainshell
