@@ -11,10 +11,10 @@ jobs:
       pull-requests: write
       packages: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.1
 
       - name: "Publish Features"
-        uses: devcontainers/action@v1
+        uses: devcontainers/action@v1.4.2
         with:
           publish-features: "true"
           base-path-to-features: "./src"
