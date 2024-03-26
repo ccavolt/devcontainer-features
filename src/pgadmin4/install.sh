@@ -57,6 +57,6 @@ cp config_local.py /usr/pgadmin4/web
 # Add local postgres server config to pgAdmin
 cp pgadmin-server.json /usr/pgadmin4/web
 # Activate venv and run setup.py
-sh -c ". /usr/pgadmin4/venv/bin/activate && exec python3 /usr/pgadmin4/web/setup.py --load-servers /usr/pgadmin4/web/pgadmin-server.json --replace --user $PGADMIN_SETUP_EMAIL"
+sh -c ". /usr/pgadmin4/venv/bin/activate && exec python3 /usr/pgadmin4/web/setup.py load-servers /usr/pgadmin4/web/pgadmin-server.json --replace --user $PGADMIN_SETUP_EMAIL"
 
 echo 'Done!'
