@@ -6,7 +6,7 @@
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
     "ghcr.io/devcontainers/features/node:1.3.0": {
 			"nodeGypDependencies": true,
-			"version": "lts"
+			"version": "20.12.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.0": {
