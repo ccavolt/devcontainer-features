@@ -13,7 +13,7 @@
       // bat: Improved version of cat command
     },
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.10.1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2.10.2": {},
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
     "ghcr.io/devcontainers/features/common-utils:2.4.2": {},
     // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
