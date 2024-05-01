@@ -1,0 +1,16 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox": {}
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox": {
+        "version": "0.4.1"
+      }
+		}
+	}
+}

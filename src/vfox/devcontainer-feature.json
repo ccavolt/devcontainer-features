@@ -1,0 +1,18 @@
+{
+  "id": "vfox",
+  "version": "0.0.1",
+  "name": "vfox",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox",
+  "description": "vfox is a cross-platform, extensible version manager. This feature will always install the latest version",
+  "options": {
+    "version": {
+      "default": "latest",
+      "description": "Select the version of vfox to install.",
+      "proposals": [
+        "latest",
+        "0.4.2"
+      ],
+      "type": "string"
+    }
+  }
+}
