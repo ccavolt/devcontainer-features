@@ -7,8 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "Deno version" deno --version | grep "1.42.4"
-check "Check for .tool-versions" cat /home/vscode/.version-fox/.tool-versions | grep "1.42.4"
+check "Node.js version" node --version
 
 # Report result
 reportResults
