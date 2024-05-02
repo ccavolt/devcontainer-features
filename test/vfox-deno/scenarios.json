@@ -1,0 +1,17 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox-deno": {}
+		}
+	},
+  "user-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox-deno": {
+        "user": "vscode",
+        "version": "1.42.4"
+      }
+		}
+	}
+}

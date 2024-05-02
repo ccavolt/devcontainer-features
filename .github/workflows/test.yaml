@@ -21,6 +21,7 @@ jobs:
           - pgcli
           - postgres
           - vfox
+          - vfox-deno
 
     steps:
       - uses: actions/checkout@v4.1.4
