@@ -12,5 +12,32 @@
         "version": "0.4.1"
       }
 		}
+	},
+	"vscode_bash": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox": {
+        "user": "vscode",
+				"shell": "bash"
+      }
+		}
+	},
+	"vscode_fish": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox": {
+        "user": "vscode",
+				"shell": "fish"
+      }
+		}
+	},
+	"vscode_zsh": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox": {
+        "user": "vscode",
+				"shell": "zsh"
+      }
+		}
 	}
 }

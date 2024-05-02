@@ -1,9 +1,9 @@
 {
   "id": "vfox",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "name": "vfox",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox",
-  "description": "vfox is a cross-platform, extensible version manager. This feature will always install the latest version",
+  "description": "vfox is a cross-platform, extensible version manager.",
   "options": {
     "version": {
       "default": "latest",
@@ -11,6 +11,25 @@
       "proposals": [
         "latest",
         "0.4.2"
+      ],
+      "type": "string"
+    },
+    "user": {
+      "default": "root",
+      "description": "Name of user devcontainer will run as.",
+      "proposals": [
+        "root",
+        "vscode"
+      ],
+      "type": "string"
+    },
+    "shell": {
+      "default": "bash",
+      "description": "Shell used.",
+      "proposals": [
+        "bash",
+        "fish",
+        "zsh"
       ],
       "type": "string"
     }

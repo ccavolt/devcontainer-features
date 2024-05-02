@@ -10,7 +10,7 @@ source dev-container-features-test-lib
 check "vfox Version" vfox --version
 # No expansion required
 # shellcheck disable=SC2016
-check "root user .bashrc vfox" cat /root/.bashrc | grep 'eval "$(vfox activate bash)"'
+check "vscode user .zshrc vfox" cat /home/vscode/.zshrc | grep 'eval "$(vfox activate zsh)"'
 
 # Report result
 reportResults

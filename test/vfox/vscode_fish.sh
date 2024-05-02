@@ -10,7 +10,7 @@ source dev-container-features-test-lib
 check "vfox Version" vfox --version
 # No expansion required
 # shellcheck disable=SC2016
-check "root user .bashrc vfox" cat /root/.bashrc | grep 'eval "$(vfox activate bash)"'
+check "vscode user fish.config vfox" cat /home/vscode/.config/fish/config.fish | grep 'vfox activate fish | source'
 
 # Report result
 reportResults
