@@ -1,3 +1,3 @@
 # devcontainer-features
 
-Somewhat ready for external use. Use at your own risk!
+A collection of features I use in my own projects; feel free to use them in yours!
