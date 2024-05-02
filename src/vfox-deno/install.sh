@@ -50,13 +50,13 @@ vfox install "deno@${DENO_VERSION}"
 # "Use" deno
 vfox use -g "deno@${DENO_VERSION}"
 
-# Copy vfox .tool-versions to user directory (if specified and not root) and set ownership to user
+# Copy vfox folder to user directory (if specified and not root) and set ownership to user
 if [ "${USERNAME}" != "root" ]; then
-    # Copy .tool-versions to user directory
+    # Copy .version-fox folder to user directory
     mkdir -p "/home/${USERNAME}/.version-fox"
-    cp "/root/.version-fox/.tool-versions" "/home/${USERNAME}/.version-fox/.tool-versions"
+    cp --recursive "/root/.version-fox" "/home/${USERNAME}/"
     # Set ownership to user
-    chmod 644 "/home/${USERNAME}/.version-fox/.tool-versions"
+    chown --recursive "${USERNAME}:" "/home/${USERNAME}/.version-fox"
 fi
 
 echo 'Deno installed!'
