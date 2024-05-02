@@ -1,7 +1,7 @@
 
 # bat (bat)
 
-A cat(1) clone with wings. This feature will always install the latest version
+A cat(1) clone with wings. This feature will always install the latest version.
 
 ## Example Usage
 
