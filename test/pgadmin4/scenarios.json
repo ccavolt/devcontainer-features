@@ -2,9 +2,7 @@
 	"test": {
 		"image": "ubuntu:jammy",
 		"features": {
-			"pgadmin4": {
-        "version": "latest"
-      }
+			"pgadmin4": {}
 		}
 	},
 	"version-specific": {

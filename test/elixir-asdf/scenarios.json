@@ -2,12 +2,7 @@
 	"test": {
 		"image": "ubuntu:jammy",
 		"features": {
-			"elixir-asdf": {
-        "asdfVersion": "latest",
-        "erlangVersion": "latest",
-        "elixirVersion": "latest",
-				"defaultMixCommands": "no"
-			}
+			"elixir-asdf": {}
 		}
 	},
 	"version-specific": {
