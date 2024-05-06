@@ -10,17 +10,10 @@ fi
 
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
-# Git Repo URL
-export REPO="https://github.com/nodejs/node.git"
-# Set Username
-export USERNAME="${USER:-"root"}"
-adduser "$USERNAME" || echo "User already exists."
-# Set user directory
-if [ "$USERNAME" != "root" ]
-then
-  mkdir -p "/home/${USERNAME}"
-  export USERDIR="/home/${USERNAME}"
-fi
+# Version is either specified or latest
+export VERSION="${VERSION:-"latest"}"
+# User is either specified or root
+export USER="${USER:-"root"}"
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -28,35 +21,37 @@ apt-get update && apt-get upgrade -y
 # Install git to determine latest version if necessary
 apt-get install -y git
 
-# https://github.com/denoland/deno/tags
-# Deno version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
+# Add node plugin to vfox
+vfox add nodejs
+
+# Install node
+vfox install "nodejs@${VERSION}"
+
+# If version is "latest", find version number
+if [ "$VERSION" == "latest" ]
 then
-    NODE_VERSION=$(git -c 'versionsort.suffix=-' \
-        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
-        grep -P "(/v)\d+(.)\d+(.)\d+$" | # Removes alpha/custombuild and non conforming tags
-        tail --lines=1 | # Remove all but last line
-        cut --delimiter='/' --fields=3 | # Remove refs and tags sections
-        sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods
-    export NODE_VERSION
-else
-    export NODE_VERSION=${VERSION}
+    VERSION=$(vfox list nodejs |
+        sed 's/[^0-9]*//' | # Remove everything before and including v
+        sed 's/\s.*$//') # Delete everything after the first space
+    export VERSION
 fi
 
-# Add node plugin
-vfox add nodejs
-# Install deno
-vfox install "nodejs@${NODE_VERSION}"
-# "Use" deno
-vfox use -g "nodejs@${NODE_VERSION}"
+# Activate installed node version and add to user .tool-versions file
+vfox use --global "nodejs@${VERSION}"
 
-# Copy vfox folder to user directory (if specified and not root) and set ownership to user
-if [ "${USERNAME}" != "root" ]; then
+# If not root, create user and home directory, copy vfox folder to user directory (if not root) and set ownership to user
+if [ "${USER}" != "root" ]
+then
+    # Add user if they don't exist
+    adduser "$USER" || echo "User already exists."
+    # Create home directory for user
+    mkdir -p "/home/${USER}"
+    export USERDIR="/home/${USER}"
     # Copy .version-fox folder to user directory
-    mkdir -p "/home/${USERNAME}/.version-fox"
-    cp --recursive "/root/.version-fox" "/home/${USERNAME}/"
+    mkdir -p "/home/${USER}/.version-fox"
+    cp --recursive "/root/.version-fox" "/home/${USER}/"
     # Set ownership to user
-    chown --recursive "${USERNAME}:" "/home/${USERNAME}/.version-fox"
+    chown --recursive "${USER}:" "/home/${USER}/.version-fox"
 fi
 
 echo 'Node.js installed!'
