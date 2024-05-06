@@ -2,7 +2,8 @@
 	"test": {
 		"image": "ubuntu:jammy",
 		"features": {
-			"vfox-nodejs": {}
+			"vfox-nodejs": {},
+			"vfox": {}
 		}
 	},
   "user-version-specific": {
@@ -11,7 +12,11 @@
 			"vfox-nodejs": {
         "user": "vscode",
         "version": "22.0.0"
-      }
+      },
+			"vfox": {
+				"user": "vscode",
+				"shell": "bash"
+			}
 		}
 	}
 }
