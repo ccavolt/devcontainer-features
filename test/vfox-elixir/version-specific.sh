@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "elixir" elixir --version | grep 1.14.4
+check "elixir" elixir --version | grep 1.16.1
 check "locale" locale | grep en_US.UTF-8
 check "hex" mix hex.info
 check "vfox elixir script" cat /etc/profile.d/vfox-elixir.sh | grep LANG

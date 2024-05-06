@@ -10,7 +10,7 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"vfox-erlang": {
-        "version": "25.3.2",
+        "version": "26.2.4",
 				"user": "vscode"
       },
 			"vfox": {

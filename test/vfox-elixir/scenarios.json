@@ -11,13 +11,13 @@
 		"image": "ubuntu:jammy",
 		"features": {
 			"vfox-elixir": {
-        "elixirVersion": "1.14.4-otp-25",
+        "elixirVersion": "1.16.1-otp-26",
 				"locale": "en_US.UTF-8",
 				"defaultMixCommands": "yes",
 				"user": "vscode"
       },
 			"vfox-erlang": {
-				"version": "25.3.2",
+				"version": "26.2.4",
 				"user": "vscode"
 			},
 			"vfox": {
