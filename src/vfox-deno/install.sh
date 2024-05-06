@@ -8,12 +8,12 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-# Prevent installers from trying to prompt for information
-export DEBIAN_FRONTEND=noninteractive
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
 # User is either specified or root
 export USER="${USER:-"root"}"
+# Prevent installers from trying to prompt for information
+export DEBIAN_FRONTEND=noninteractive
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -36,7 +36,7 @@ then
     export VERSION
 fi
 
-# Activate installed deno version and add to user .tool-versions file
+# Activate installed deno version and add to .tool-versions file
 vfox use --global "deno@${VERSION}"
 
 # If not root, create user and home directory, copy vfox folder to user directory (if not root) and set ownership to user
