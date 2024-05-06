@@ -1,0 +1,29 @@
+{
+	"test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox-elixir": {},
+			"vfox-erlang": {},
+			"vfox": {}
+		}
+	},
+	"version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"vfox-elixir": {
+        "elixirVersion": "1.14.4-otp-25",
+				"locale": "en_US.UTF-8",
+				"defaultMixCommands": "yes",
+				"user": "vscode"
+      },
+			"vfox-erlang": {
+				"version": "25.3.2",
+				"user": "vscode"
+			},
+			"vfox": {
+				"user": "vscode",
+				"shell": "bash"
+			}
+		}
+	}
+}
