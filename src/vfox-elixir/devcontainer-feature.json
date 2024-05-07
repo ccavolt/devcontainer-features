@@ -1,12 +1,12 @@
 {
   "id": "vfox-elixir",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "Elixir (via vfox)",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-elixir",
   "description": "Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.",
   "dependsOn": {
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fvfox-erlang
-    "ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0.1.0": {}
+    "ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0.1.1": {}
   },
   "options": {
     "version": {
