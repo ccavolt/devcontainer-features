@@ -1,0 +1,92 @@
+{
+	"vfox-deno-test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox-deno": {}
+		}
+	},
+  "vfox-deno-user-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"user": "vscode",
+				"shell": "bash"
+			},
+			"vfox-deno": {
+        "user": "vscode",
+        "version": "1.42.4"
+      }
+		}
+	},
+	"vfox-elixir-test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {},
+			"vfox-elixir": {}
+		}
+	},
+	"vfox-elixir-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"version": "0.4.2",
+				"user": "vscode",
+				"shell": "bash"
+			},
+			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {
+				"version": "26.2.4",
+				"user": "vscode"
+			},
+			"vfox-elixir": {
+				"version": "1.16.1",
+				"locale": "en_US.UTF-8",
+				"defaultMixCommands": "yes",
+				"user": "vscode"
+			}
+		}
+	},
+	"vfox-erlang-test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox-erlang": {}
+		}
+	},
+	"vfox-erlang-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"version": "0.4.2",
+				"user": "vscode",
+				"shell": "bash"
+			},
+			"vfox-erlang": {
+        "version": "26.2.4",
+				"user": "vscode"
+      }
+		}
+	},
+	"vfox-nodejs-test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox-nodejs": {}
+		}
+	},
+  "vfox-nodejs-user-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"version": "0.4.2",
+				"user": "vscode",
+				"shell": "bash"
+			},
+			"vfox-nodejs": {
+        "user": "vscode",
+        "version": "22.0.0"
+      }
+		}
+	}
+}
