@@ -22,6 +22,13 @@ export DEBIAN_FRONTEND=noninteractive
 export ELIXIR_SCRIPT=/etc/profile.d/vfox-elixir.sh
 touch $ELIXIR_SCRIPT
 
+# Check for vfox before proceeding
+if ! command -v vfox &> /dev/null
+then
+    echo "vfox could not be found! I need vfox!"
+    exit 1
+fi
+
 # Update packages
 apt-get update && apt-get upgrade -y
 
@@ -31,7 +38,7 @@ locale-gen "${LOCALE}"
 export LANG="${LOCALE}"
 echo "export LANG=${LOCALE}" >> $ELIXIR_SCRIPT
 
-# vfox elixir prereqs (Install filesystem watcher for live reloading to work)
+# vfox elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools
 # Install elixir vfox plugin
 vfox add elixir

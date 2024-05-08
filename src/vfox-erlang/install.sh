@@ -19,6 +19,13 @@ export KERL_BUILD_DOCS=yes
 # Git Repo URL
 export REPO="https://github.com/erlang/otp.git"
 
+# Check for vfox before proceeding
+if ! command -v vfox &> /dev/null
+then
+    echo "vfox could not be found! I need vfox!"
+    exit 1
+fi
+
 # Update packages
 apt-get update && apt-get upgrade -y
 

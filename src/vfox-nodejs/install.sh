@@ -15,6 +15,13 @@ export USER="${USER:-"root"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 
+# Check for vfox before proceeding
+if ! command -v vfox &> /dev/null
+then
+    echo "vfox could not be found! I need vfox!"
+    exit 1
+fi
+
 # Update packages
 apt-get update && apt-get upgrade -y
 
