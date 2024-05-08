@@ -18,6 +18,8 @@ export DEFAULTMIXCOMMANDS="${DEFAULTMIXCOMMANDS:-"no"}"
 export USER="${USER:-"root"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
+# Git Repo URL
+export REPO="https://github.com/elixir-lang/elixir.git"
 # Set script location and create file
 export ELIXIR_SCRIPT=/etc/profile.d/vfox-elixir.sh
 touch $ELIXIR_SCRIPT
@@ -40,23 +42,33 @@ echo "export LANG=${LOCALE}" >> $ELIXIR_SCRIPT
 
 # vfox elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools
+
+# https://github.com/elixir-lang/elixir/tags
+# Elixir version to install
+if [ "$VERSION" == "latest" ]
+then
+    VERSION=$(git -c 'versionsort.suffix=-' \
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+        grep -v "rc" | # Exclude release candidates
+        tail --lines=1 | # Only get the latest version
+        cut --delimiter='/' --fields=3 | # Remove everything before version number (refs, tags, sha etc.)
+        sed 's/[^0-9]*//') # Remove anything before start of first number
+    export VERSION
+fi
+
+# Activate vfox path helper for bash
+eval "$(vfox activate bash)"
 # Install elixir vfox plugin
 vfox add elixir
 # Install elixir
 vfox install "elixir@${VERSION}"
-# If version is "latest", find version number
-if [ "$VERSION" == "latest" ]
-then
-    VERSION=$(vfox list elixir |
-        sed 's/[^0-9]*//' | # Remove everything before and including v
-        sed 's/\s.*$//') # Delete everything after the first space
-    export VERSION
-fi
 # Activate installed elixir version and add to .tool-versions file
 vfox use --global "elixir@${VERSION}"
 
 # Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
+    # Refresh vfox path helper after installing elixir
+    eval "$(vfox activate bash)"
     # Install Hex Package Manager
     mix local.hex --force
     # Install rebar3 to build Erlang dependencies
