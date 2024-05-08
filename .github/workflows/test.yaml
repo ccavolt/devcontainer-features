@@ -35,6 +35,18 @@ jobs:
   test-global:
     runs-on: ubuntu-latest
     continue-on-error: true
+    strategy:
+      matrix:
+        tests:
+          - vfox-deno-test
+          - vfox-deno-user-version-specific
+          - vfox-elixir-test
+          - vfox-elixir-version-specific
+          - vfox-erlang-test
+          - vfox-erlang-version-specific
+          - vfox-nodejs-test
+          - vfox-nodejs-user-version-specific
+
     steps:
       - uses: actions/checkout@v4.1.4
 
@@ -42,4 +54,4 @@ jobs:
         run: npm install -g @devcontainers/cli
 
       - name: "Testing global scenarios"
-        run: devcontainer features test --global-scenarios-only .
+        run: devcontainer features test --filter ${{ matrix.tests }} --global-scenarios-only .
