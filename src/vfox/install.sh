@@ -55,7 +55,11 @@ echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | tee /etc/apt/source
 apt-get update
 apt-get install -y vfox="${VFOX_VERSION}"
 
-# Hook vfox into shell
+# Hook vfox into root bash shell for installing languages later
+# No expansion required
+# shellcheck disable=SC2016
+echo 'eval "$(vfox activate bash)"' >> ~/.bashrc
+# Hook vfox into user-selected user/shell combo
 if [ "$SHELL" == "bash" ]
 then
   touch "${USERDIR}/.bashrc"
