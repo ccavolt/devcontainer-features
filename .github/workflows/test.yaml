@@ -22,10 +22,6 @@ jobs:
           - pgcli
           - postgres
           - vfox
-          - vfox-deno
-          - vfox-nodejs
-          - vfox-elixir
-          - vfox-erlang
 
     steps:
       - uses: actions/checkout@v4.1.4
