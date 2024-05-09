@@ -8,23 +8,35 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+# Create vfox script
+export SCRIPT=/etc/profile.d/vfox.sh
+touch $SCRIPT
+# Version is either specified or latest
+export VERSION="${VERSION:-"latest"}"
+echo "export VFOX_VERSION=${VERSION}" >> $SCRIPT
+# User is either specified or root
+export USER="${USER:-"root"}"
+echo "export VFOX_USER=${USER}" >> $SCRIPT
+# Set Shell
+export SHELL="${SHELL:-"bash"}"
+echo "export VFOX_SHELL=${SHELL}" >> $SCRIPT
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/version-fox/vfox.git"
-# Set Username and add user if necessary
-export USERNAME="${USER:-"root"}"
-adduser "$USERNAME" || echo "User already exists."
+
+# Add user if necessary
+adduser "$USER" || echo "User already exists."
 # Set user directory
-if [ "$USERNAME" != "root" ]
+if [ "$USER" != "root" ]
 then
-  mkdir -p "/home/${USERNAME}"
-  export USERDIR="/home/${USERNAME}"
+  mkdir -p "/home/${USER}"
+  export USERDIR="/home/${USER}"
 else
   export USERDIR="/root"
 fi
-# Set Shell
-export SHELL="${SHELL:-"bash"}"
+# Add userdir to script
+echo "export VFOX_USERDIR=${USERDIR}" >> $SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -34,17 +46,15 @@ apt-get install -y git
 
 # https://github.com/version-fox/vfox/tags
 # vfox version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
+if [ "$VERSION" == "latest" ]
 then
-    VFOX_VERSION=$(git -c 'versionsort.suffix=-' \
+    VERSION=$(git -c 'versionsort.suffix=-' \
         ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
         grep -P "(/v)\d+(.)\d+(.)\d+$" | # Removes alpha/custombuild and non conforming tags
         tail --lines=1 | # Remove all but last line
         cut --delimiter='/' --fields=3 | # Remove refs and tags sections
         sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods
-    export VFOX_VERSION
-else
-    export VFOX_VERSION=${VERSION}
+    export VERSION
 fi
 
 # Install prereqs
@@ -53,14 +63,17 @@ apt-get install -y curl gpg lsb-release apt-utils
 echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | tee /etc/apt/sources.list.d/versionfox.list
 # Install vfox
 apt-get update
-apt-get install -y vfox="${VFOX_VERSION}"
+apt-get install -y vfox="${VERSION}"
 
 # Hook vfox into root bash shell for installing languages later
 # No expansion required
 # shellcheck disable=SC2016
-echo 'eval "$(vfox activate bash)"' >> ~/.bashrc
+echo 'eval "$(vfox activate bash)"' >> /root/.bashrc
 # Hook vfox into user-selected user/shell combo
-if [ "$SHELL" == "bash" ]
+if [ "$SHELL" == "bash" ] && [ "$USER" == "root" ]
+then
+  echo "vfox command already in place for root user bash"
+elif [ "$SHELL" == "bash" ]
 then
   touch "${USERDIR}/.bashrc"
   # No expansion required

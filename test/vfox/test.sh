@@ -7,7 +7,10 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "vfox Version" vfox --version
+check "vfox version" vfox --version
+check "vfox_version script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_VERSION='
+check "vfox_user script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_USER=root'
+check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_SHELL=bash'
 # No expansion required
 # shellcheck disable=SC2016
 check "root user .bashrc vfox" cat /root/.bashrc | grep 'eval "$(vfox activate bash)"'

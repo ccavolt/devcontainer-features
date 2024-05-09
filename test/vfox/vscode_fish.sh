@@ -8,6 +8,9 @@ source dev-container-features-test-lib
 
 # Feature-specific tests
 check "vfox Version" vfox --version
+check "vfox_version script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_VERSION='
+check "vfox_user script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_USER=vscode'
+check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFOX_SHELL=fish'
 # No expansion required
 # shellcheck disable=SC2016
 check "vscode user fish.config vfox" cat /home/vscode/.config/fish/config.fish | grep 'vfox activate fish | source'
