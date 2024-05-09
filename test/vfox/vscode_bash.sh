@@ -14,6 +14,8 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 # No expansion required
 # shellcheck disable=SC2016
 check "vscode user .bashrc vfox" cat /home/vscode/.bashrc | grep 'eval "$(vfox activate bash)"'
+check "vfox sdks install location" vfox config --list | grep 'storage.sdkPath = /home/vscode/.version-fox/cache'
+check "vfox directory contents" ls -la /home/vscode/.version-fox
 
 # Report result
 reportResults

@@ -35,8 +35,6 @@ then
 else
   export USERDIR="/root"
 fi
-# Add userdir to script
-echo "export VFOX_USERDIR=${USERDIR}" >> $SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -64,6 +62,15 @@ echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | tee /etc/apt/source
 # Install vfox
 apt-get update
 apt-get install -y vfox="${VERSION}"
+
+# Add userdir to script
+echo "export VFOX_USERDIR=${USERDIR}" >> $SCRIPT
+# Set vfox variables
+export VFOX_HOME=${USERDIR}/.version-fox
+echo "export VFOX_HOME=${USERDIR}/.version-fox" >> $SCRIPT
+# Install vfox sdks to user directory
+mkdir -p "${VFOX_HOME}/cache"
+vfox config storage.sdkPath "${VFOX_HOME}/cache"
 
 # Hook vfox into root bash shell for installing languages later
 # No expansion required
