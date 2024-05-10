@@ -75,8 +75,6 @@ vfox config storage.sdkPath "${VFOX_HOME}/cache"
 if [ "$USER" != "root" ]
 then
   cp /root/.version-fox/config.yaml "${VFOX_HOME}"
-  # Set ownership to user
-  chown "${USER}:" "${USERDIR}/.version-fox/config.yaml"
 fi
 
 # Hook vfox into root bash shell for installing languages later
@@ -107,6 +105,12 @@ then
 else
   printf '%s\n' "Not a valid shell" >&2
   exit 1
+fi
+
+# Ensure entire vfox directory is owned by user
+if [ "$VFOX_USER" != "root" ]
+then
+  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
 fi
 
 echo 'vfox installed!'

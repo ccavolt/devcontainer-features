@@ -1,6 +1,6 @@
 {
   "id": "vfox",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "name": "vfox",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox",
   "description": "vfox is a cross-platform, extensible version manager.",

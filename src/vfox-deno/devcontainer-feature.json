@@ -1,6 +1,6 @@
 {
   "id": "vfox-deno",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "name": "vfox-deno",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-deno",
   "description": "Deno is an open source JavaScript, TypeScript, and WebAssembly runtime with secure defaults and a great developer experience.",

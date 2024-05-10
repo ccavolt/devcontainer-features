@@ -69,22 +69,12 @@ vfox add elixir
 if [ "$VFOX_USER" != "root" ]
 then
   cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
-  # Set ownership to user
-  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/plugin"
 fi
 
 # Install elixir
 vfox install "elixir@${VERSION}"
 # Activate installed elixir version and add to .tool-versions file
 vfox use --global "elixir@${VERSION}"
-
-# Copy .tool-versions to user directory
-if [ "$VFOX_USER" != "root" ]
-then
-  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
-  # Set ownership to user
-  chown "${VFOX_USER}:" "${VFOX_HOME}/.tool-versions"
-fi
 
 # Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
@@ -98,10 +88,16 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix archive.install hex phx_new --force
 fi
 
-# Ensure cache is accessible by user
+# Copy .tool-versions to user directory
 if [ "$VFOX_USER" != "root" ]
 then
-  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/cache"
+  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
+fi
+
+# Ensure entire vfox directory is owned by user
+if [ "$VFOX_USER" != "root" ]
+then
+  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
 fi
 
 echo 'Elixir installed!'
