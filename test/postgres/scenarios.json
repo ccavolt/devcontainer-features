@@ -10,9 +10,9 @@
 		"features": {
 			"postgres": {
         "version": "14.8",
-				"user": "vscode",
-				"password": "asdfasdf",
-				"encoding": "SQL_ASCII"
+				"pguser": "vscode",
+				"pgpassword": "asdfasdf",
+				"pgencoding": "SQL_ASCII"
       }
 		}
 	}
