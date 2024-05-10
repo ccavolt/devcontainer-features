@@ -16,7 +16,6 @@ Erlang is a programming language used to build massively scalable soft real-time
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select the version of Erlang to install. | string | latest |
-| user | Name of user devcontainer will run as. | string | root |
 
 
 
