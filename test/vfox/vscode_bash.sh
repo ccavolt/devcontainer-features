@@ -16,6 +16,7 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 check "vscode user .bashrc vfox" cat /home/vscode/.bashrc | grep 'eval "$(vfox activate bash)"'
 check "vfox sdks install location" vfox config --list | grep 'storage.sdkPath = /home/vscode/.version-fox/cache'
 check "vfox directory contents" ls -la /home/vscode/.version-fox
+check "vfox config.yaml" cat /home/vscode/.version-fox/config.yaml | grep 'sdkPath: /home/vscode/.version-fox/cache'
 
 # Report result
 reportResults

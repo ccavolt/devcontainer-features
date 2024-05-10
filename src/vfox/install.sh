@@ -71,6 +71,11 @@ echo "export VFOX_HOME=${USERDIR}/.version-fox" >> $SCRIPT
 # Install vfox sdks to user directory
 mkdir -p "${VFOX_HOME}/cache"
 vfox config storage.sdkPath "${VFOX_HOME}/cache"
+# Copy config.yaml to user directory
+if [ "$USER" != "root" ]
+then
+  cp /root/.version-fox/config.yaml "${VFOX_HOME}"
+fi
 
 # Hook vfox into root bash shell for installing languages later
 # No expansion required
