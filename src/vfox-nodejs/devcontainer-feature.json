@@ -1,6 +1,6 @@
 {
   "id": "vfox-nodejs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "vfox-nodejs",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-nodejs",
   "description": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
@@ -14,15 +14,6 @@
       "proposals": [
         "latest",
         "20.12.2"
-      ],
-      "type": "string"
-    },
-    "user": {
-      "default": "root",
-      "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
       ],
       "type": "string"
     }

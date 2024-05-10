@@ -8,10 +8,12 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+# Get variables from initial vfox install
+# shellcheck disable=SC1091
+source /etc/profile.d/vfox.sh
+
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
-# User is either specified or root
-export USER="${USER:-"root"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Build Erlang Docs
@@ -35,6 +37,9 @@ apt-get install -y build-essential autoconf m4 libncurses5-dev \
    libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop \
    libxml2-utils libncurses-dev openjdk-11-jdk
 
+# Install git to determine latest version if necessary
+apt-get install -y git
+
 # https://github.com/erlang/otp/tags
 # Erlang version to install
 if [ "$VERSION" == "latest" ]
@@ -50,24 +55,25 @@ fi
 
 # Install erlang vfox plugin
 vfox add erlang
+# Copy plugin to user directory
+if [ "$VFOX_USER" != "root" ]
+then
+  cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
+  # Set ownership to user
+  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/plugin"
+fi
+
 # Install erlang
 vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
 vfox use --global "erlang@${VERSION}"
 
-# If not root, create user and home directory, copy vfox folder to user directory (if not root) and set ownership to user
-if [ "${USER}" != "root" ]
+# Copy .tool-versions to user directory
+if [ "$VFOX_USER" != "root" ]
 then
-    # Add user if they don't exist
-    adduser "$USER" || echo "User already exists."
-    # Create home directory for user
-    mkdir -p "/home/${USER}"
-    export USERDIR="/home/${USER}"
-    # Copy .version-fox folder to user directory
-    mkdir -p "/home/${USER}/.version-fox"
-    cp --recursive "/root/.version-fox" "/home/${USER}/"
-    # Set ownership to user
-    chown --recursive "${USER}:" "/home/${USER}/.version-fox"
+  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
+  # Set ownership to user
+  chown "${VFOX_USER}:" "${VFOX_HOME}/.tool-versions"
 fi
 
 echo 'Erlang installed!'

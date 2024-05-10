@@ -14,7 +14,6 @@
 				"shell": "bash"
 			},
 			"vfox-deno": {
-        "user": "vscode",
         "version": "1.42.4"
       }
 		}
@@ -36,14 +35,12 @@
 				"shell": "bash"
 			},
 			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {
-				"version": "26.2.4",
-				"user": "vscode"
+				"version": "26.2.4"
 			},
 			"vfox-elixir": {
 				"version": "1.16.1",
 				"locale": "en_US.UTF-8",
-				"defaultMixCommands": "yes",
-				"user": "vscode"
+				"defaultMixCommands": "yes"
 			}
 		}
 	},
@@ -63,8 +60,7 @@
 				"shell": "bash"
 			},
 			"vfox-erlang": {
-        "version": "26.2.4",
-				"user": "vscode"
+        "version": "26.2.4"
       }
 		}
 	},
@@ -84,7 +80,6 @@
 				"shell": "bash"
 			},
 			"vfox-nodejs": {
-        "user": "vscode",
         "version": "22.0.0"
       }
 		}

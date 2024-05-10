@@ -1,6 +1,6 @@
 {
   "id": "vfox-erlang",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "name": "Erlang (via vfox)",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-erlang",
   "description": "Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability.",
@@ -14,15 +14,6 @@
       "proposals": [
         "latest",
         "26.0"
-      ],
-      "type": "string"
-    },
-    "user": {
-      "default": "root",
-      "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
       ],
       "type": "string"
     }

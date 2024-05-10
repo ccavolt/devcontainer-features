@@ -8,21 +8,23 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+# Get variables from initial vfox install
+# shellcheck disable=SC1091
+source /etc/profile.d/vfox.sh
+
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
 # Locale is either specified or en_US.UTF-8
 export LOCALE="${LOCALE:-"en_US.UTF-8"}"
 # Default mix commands are either specified or no
 export DEFAULTMIXCOMMANDS="${DEFAULTMIXCOMMANDS:-"no"}"
-# User is either specified or root
-export USER="${USER:-"root"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/elixir-lang/elixir.git"
 # Set script location and create file
-export ELIXIR_SCRIPT=/etc/profile.d/vfox-elixir.sh
-touch $ELIXIR_SCRIPT
+export SCRIPT=/etc/profile.d/vfox-elixir.sh
+touch $SCRIPT
 
 # Check for vfox before proceeding
 if ! command -v vfox &> /dev/null
@@ -38,10 +40,13 @@ apt-get update && apt-get upgrade -y
 apt-get install -y locales
 locale-gen "${LOCALE}"
 export LANG="${LOCALE}"
-echo "export LANG=${LOCALE}" >> $ELIXIR_SCRIPT
+echo "export LANG=${LOCALE}" >> $SCRIPT
 
 # vfox elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools
+
+# Install git to determine latest version if necessary
+apt-get install -y git
 
 # https://github.com/elixir-lang/elixir/tags
 # Elixir version to install
@@ -60,10 +65,26 @@ fi
 eval "$(vfox activate bash)"
 # Install elixir vfox plugin
 vfox add elixir
+# Copy plugin to user directory
+if [ "$VFOX_USER" != "root" ]
+then
+  cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
+  # Set ownership to user
+  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/plugin"
+fi
+
 # Install elixir
 vfox install "elixir@${VERSION}"
 # Activate installed elixir version and add to .tool-versions file
 vfox use --global "elixir@${VERSION}"
+
+# Copy .tool-versions to user directory
+if [ "$VFOX_USER" != "root" ]
+then
+  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
+  # Set ownership to user
+  chown "${VFOX_USER}:" "${VFOX_HOME}/.tool-versions"
+fi
 
 # Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
@@ -75,21 +96,6 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix local.rebar --force
     # Install Phoenix Framework Application Generator
     mix archive.install hex phx_new --force
-fi
-
-# If not root, create user and home directory, copy vfox folder to user directory (if not root) and set ownership to user
-if [ "${USER}" != "root" ]
-then
-    # Add user if they don't exist
-    adduser "$USER" || echo "User already exists."
-    # Create home directory for user
-    mkdir -p "/home/${USER}"
-    export USERDIR="/home/${USER}"
-    # Copy .version-fox folder to user directory
-    mkdir -p "/home/${USER}/.version-fox"
-    cp --recursive "/root/.version-fox" "/home/${USER}/"
-    # Set ownership to user
-    chown --recursive "${USER}:" "/home/${USER}/.version-fox"
 fi
 
 echo 'Elixir installed!'
