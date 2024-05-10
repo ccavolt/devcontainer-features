@@ -108,9 +108,9 @@ else
 fi
 
 # Ensure entire vfox directory is owned by user
-if [ "$VFOX_USER" != "root" ]
+if [ "$USER" != "root" ]
 then
-  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
+  chown --recursive "${USER}:" "$VFOX_HOME"
 fi
 
 echo 'vfox installed!'
