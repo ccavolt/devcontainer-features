@@ -11,7 +11,8 @@
 			"postgres": {
         "version": "14.8",
 				"user": "vscode",
-				"password": "asdfasdf"
+				"password": "asdfasdf",
+				"encoding": "SQL_ASCII"
       }
 		}
 	}

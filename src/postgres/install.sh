@@ -19,13 +19,16 @@ mkdir -p "$DOWNLOADDIR"
 export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
 touch $POSTGRES_SCRIPT
 # Set Username
-export PGUSER="${USER:-"postgres"}"
+export PGUSER="${PGUSER:-"postgres"}"
 echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
 adduser "$PGUSER" || echo "User already exists."
 # Adds password accessible by psql
 # Variable has to be called PGPASSWORD for psql to use it
-export PGPASSWORD="${PASSWORD:-"postgres"}"
+export PGPASSWORD="${PGPASSWORD:-"postgres"}"
 echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
+# PG encoding is either specified or UTF8
+export PGENCODING="${PGENCODING:-"UTF8"}"
+echo "export PGENCODING=${PGENCODING}" >> $POSTGRES_SCRIPT
 # Location of starting directory
 WORKDIR=$(pwd)
 export WORKDIR
@@ -93,10 +96,10 @@ cd "postgresql-${POSTGRES_VERSION}"
 ./configure --prefix="$PGDIR" --with-openssl
 make world
 make install-world
-su --login "$PGUSER" --command "$PGBIN/initdb -D $PGDATA --data-checksums --username=$PGUSER"
-su --login "$PGUSER" --command "$PGBIN/pg_ctl -D $PGDATA -l logfile start"
-su --login "$PGUSER" --command "$PGBIN/createdb test"
-su --login "$PGUSER" --command "$PGBIN/psql test"
+su --login "$PGUSER" --command "${PGBIN}/initdb -D ${PGDATA} --data-checksums --username=${PGUSER} --encoding=${PGENCODING}"
+su --login "$PGUSER" --command "${PGBIN}/pg_ctl -D ${PGDATA} -l logfile start"
+su --login "$PGUSER" --command "${PGBIN}/createdb test"
+su --login "$PGUSER" --command "${PGBIN}/psql test"
 
 # Give db user a password to be able to connect to pgAdmin4
 su --login "$PGUSER" --command "psql --echo-all --dbname=postgres --command \"alter user $PGUSER password '$PGPASSWORD'\"";

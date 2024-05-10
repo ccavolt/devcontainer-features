@@ -13,6 +13,7 @@ su --login "$PGUSER" --command "pg_ctl -D $PGDATA restart"
 check "PostgreSQL Version" postgres -V
 check "PGDATA Exists" cat /etc/profile.d/postgres.sh | grep PGDATA
 check "PGPASSWORD Exists" cat /etc/profile.d/postgres.sh | grep PGPASSWORD
+check "Postgres encoding" su --login "$PGUSER" --command "psql -l" | grep "UTF8"
 
 # Report result
 reportResults

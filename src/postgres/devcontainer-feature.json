@@ -1,6 +1,6 @@
 {
   "id": "postgres",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "name": "PostgreSQL",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/postgres",
   "description": "PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.",
@@ -15,21 +15,30 @@
       ],
       "type": "string"
     },
-    "user": {
+    "pguser": {
       "default": "postgres",
-      "description": "Name of user devcontainer will run as.",
+      "description": "Name of postgres user.",
       "proposals": [
         "postgres",
         "vscode"
       ],
       "type": "string"
     },
-    "password": {
+    "pgpassword": {
       "default": "postgres",
       "description": "Password for postgres account.",
       "proposals": [
         "postgres",
         "whateveryouwant"
+      ],
+      "type": "string"
+    },
+    "pgencoding": {
+      "default": "UTF8",
+      "description": "Postgres encoding (character set)",
+      "proposals": [
+        "UTF8",
+        "SQL_ASCII"
       ],
       "type": "string"
     }
