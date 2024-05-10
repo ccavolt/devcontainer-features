@@ -16,7 +16,6 @@ Deno is an open source JavaScript, TypeScript, and WebAssembly runtime with secu
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select the version of deno to install. | string | latest |
-| user | Name of user devcontainer will run as. | string | root |
 
 
 
