@@ -7,7 +7,8 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "Node.js version" node --version
+check "node.js version" node --version
+check "npm version" npm --version
 
 # Report result
 reportResults

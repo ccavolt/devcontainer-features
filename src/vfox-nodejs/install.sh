@@ -53,6 +53,11 @@ fi
 # Activate installed node version and add to .tool-versions file
 vfox use --global "nodejs@${VERSION}"
 
+# Activate vfox path helper for bash
+eval "$(vfox activate bash)"
+# Update npm
+npm install --global npm@latest
+
 # Copy .tool-versions to user directory
 if [ "$VFOX_USER" != "root" ]
 then
