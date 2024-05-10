@@ -98,4 +98,10 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix archive.install hex phx_new --force
 fi
 
+# Ensure cache is accessible by user
+if [ "$VFOX_USER" != "root" ]
+then
+  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/cache"
+fi
+
 echo 'Elixir installed!'

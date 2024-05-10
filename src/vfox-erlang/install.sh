@@ -76,4 +76,10 @@ then
   chown "${VFOX_USER}:" "${VFOX_HOME}/.tool-versions"
 fi
 
+# Ensure cache is accessible by user
+if [ "$VFOX_USER" != "root" ]
+then
+  chown --recursive "${VFOX_USER}:" "${VFOX_HOME}/cache"
+fi
+
 echo 'Erlang installed!'
