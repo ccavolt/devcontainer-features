@@ -1,6 +1,6 @@
 {
   "id": "vfox",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "name": "vfox",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox",
   "description": "vfox is a cross-platform, extensible version manager.",
@@ -14,7 +14,7 @@
       ],
       "type": "string"
     },
-    "user": {
+    "username": {
       "default": "root",
       "description": "Name of user devcontainer will run as.",
       "proposals": [

@@ -26,18 +26,11 @@ fi
 
 # Update packages
 apt-get update && apt-get upgrade -y
-
 # Install git to determine latest version if necessary
 apt-get install -y git
 
 # Add node plugin to vfox
 vfox add nodejs
-# Copy plugin to user directory
-if [ "$VFOX_USER" != "root" ]
-then
-  cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
-fi
-
 # Install node
 vfox install "nodejs@${VERSION}"
 
@@ -50,25 +43,18 @@ then
     export VERSION
 fi
 
-# Activate installed node version and add to .tool-versions file
+# Activate installed node version which adds it to .tool-versions file
 vfox use --global "nodejs@${VERSION}"
-
-# Activate vfox path helper for bash
+# Activate vfox path helper for bash so that npm is accessible
 eval "$(vfox activate bash)"
 # Update npm
 npm install --global npm@latest
 
-# Copy .tool-versions and shims to user directory
-if [ "$VFOX_USER" != "root" ]
+# Copy and ensure entire vfox directory is owned by user
+if [ "$VFOX_USERNAME" != "root" ]
 then
-  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
-  cp --recursive /root/.version-fox/shims "$VFOX_HOME"
-fi
-
-# Ensure entire vfox directory is owned by user
-if [ "$VFOX_USER" != "root" ]
-then
-  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
+  cp --recursive /root/.version-fox "/home/${VFOX_USERNAME}"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_HOME"
 fi
 
 echo 'Node.js installed!'

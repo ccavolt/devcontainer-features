@@ -32,11 +32,6 @@ apt-get install -y git
 
 # Add deno plugin to vfox
 vfox add deno
-# Copy plugin to user directory
-if [ "$VFOX_USER" != "root" ]
-then
-  cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
-fi
 
 # Install deno
 vfox install "deno@${VERSION}"
@@ -53,17 +48,11 @@ fi
 # Activate installed deno version and add to .tool-versions file
 vfox use --global "deno@${VERSION}"
 
-# Copy .tool-versions and shims to user directory
-if [ "$VFOX_USER" != "root" ]
+# Copy and ensure entire vfox directory is owned by user
+if [ "$VFOX_USERNAME" != "root" ]
 then
-  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
-  cp --recursive /root/.version-fox/shims "$VFOX_HOME"
-fi
-
-# Ensure entire vfox directory is owned by user
-if [ "$VFOX_USER" != "root" ]
-then
-  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
+  cp --recursive /root/.version-fox "/home/${VFOX_USERNAME}"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_HOME"
 fi
 
 echo 'Deno installed!'

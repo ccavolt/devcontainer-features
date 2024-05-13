@@ -53,28 +53,16 @@ fi
 
 # Install erlang vfox plugin
 vfox add erlang
-# Copy plugin to user directory
-if [ "$VFOX_USER" != "root" ]
-then
-  cp --recursive /root/.version-fox/plugin "$VFOX_HOME"
-fi
-
 # Install erlang
 vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
 vfox use --global "erlang@${VERSION}"
 
-# Copy .tool-versions and shims to user directory
-if [ "$VFOX_USER" != "root" ]
+# Copy and ensure entire vfox directory is owned by user
+if [ "$VFOX_USERNAME" != "root" ]
 then
-  cp /root/.version-fox/.tool-versions "$VFOX_HOME"
-  cp --recursive /root/.version-fox/shims "$VFOX_HOME"
-fi
-
-# Ensure entire vfox directory is owned by user
-if [ "$VFOX_USER" != "root" ]
-then
-  chown --recursive "${VFOX_USER}:" "$VFOX_HOME"
+  cp --recursive /root/.version-fox "/home/${VFOX_USERNAME}"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_HOME"
 fi
 
 echo 'Erlang installed!'

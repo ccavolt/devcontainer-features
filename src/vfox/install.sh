@@ -14,9 +14,9 @@ touch $SCRIPT
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
 echo "export VFOX_VERSION=${VERSION}" >> $SCRIPT
-# User is either specified or root
-export USER="${USER:-"root"}"
-echo "export VFOX_USER=${USER}" >> $SCRIPT
+# Username is either specified or root
+export USERNAME="${USERNAME:-"root"}"
+echo "export VFOX_USERNAME=${USERNAME}" >> $SCRIPT
 # Set Shell
 export SHELL="${SHELL:-"bash"}"
 echo "export VFOX_SHELL=${SHELL}" >> $SCRIPT
@@ -25,15 +25,16 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/version-fox/vfox.git"
 
-# Add user if necessary
-adduser "$USER" || echo "User already exists."
-# Set user directory
-if [ "$USER" != "root" ]
+# Setup non-root user
+if [ "$USERNAME" != "root" ]
 then
-  mkdir -p "/home/${USER}"
-  export USERDIR="/home/${USER}"
+  # Add user if necessary
+  adduser "$USERNAME" || echo "User already exists."
+  # Create home folder
+  export USERHOMEDIR="/home/${USERNAME}"
+  mkdir -p "$USERHOMEDIR"
 else
-  export USERDIR="/root"
+  export USERHOMEDIR="/root"
 fi
 
 # Update packages
@@ -63,59 +64,44 @@ echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | tee /etc/apt/source
 apt-get update
 apt-get install -y vfox="${VERSION}"
 
-# Add userdir to script
-echo "export VFOX_USERDIR=${USERDIR}" >> $SCRIPT
 # Set vfox variables
-export VFOX_HOME=${USERDIR}/.version-fox
-echo "export VFOX_HOME=${USERDIR}/.version-fox" >> $SCRIPT
-# Install vfox sdks to user directory
-mkdir -p "${VFOX_HOME}/cache"
-vfox config storage.sdkpath "${VFOX_HOME}/cache"
-# Copy config.yaml to user directory
-if [ "$USER" != "root" ]
-then
-  cp /root/.version-fox/config.yaml "${VFOX_HOME}"
-fi
-
-# Hook vfox into root bash shell for installing languages later
-# No expansion required
-# shellcheck disable=SC2016
-echo 'eval "$(vfox activate bash)"' >> /root/.bashrc
-# Hook vfox into user-selected user/shell combo
-if [ "$SHELL" == "bash" ] && [ "$USER" == "root" ]
-then
-  echo "vfox command already in place for root user bash"
-elif [ "$SHELL" == "bash" ]
-then
-  touch "${USERDIR}/.bashrc"
-  # No expansion required
-  # shellcheck disable=SC2016
-  echo 'eval "$(vfox activate bash)"' >> "${USERDIR}/.bashrc"
-elif [ "$SHELL" == "fish" ]
-then
-  mkdir -p "${USERDIR}/.config/fish"
-  touch "${USERDIR}/.config/fish/config.fish"
-  echo 'vfox activate fish | source' >> "${USERDIR}/.config/fish/config.fish"
-elif [ "$SHELL" == "zsh" ]
-then
-  touch "${USERDIR}/.zshrc"
-  # No expansion required
-  # shellcheck disable=SC2016
-  echo 'eval "$(vfox activate zsh)"' >> "${USERDIR}/.zshrc"
-else
-  printf '%s\n' "Not a valid shell" >&2
-  exit 1
-fi
-
+export VFOX_HOME=${USERHOMEDIR}/.version-fox
+echo "export VFOX_HOME=${USERHOMEDIR}/.version-fox" >> $SCRIPT
 # Add shims directory to path
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
 echo 'export PATH=$PATH:'"${VFOX_HOME}/shims" >> $SCRIPT
 
-# Ensure entire vfox directory is owned by user
-if [ "$USER" != "root" ]
+# Hook vfox into user-selected user/shell combo
+if [ "$SHELL" == "bash" ]
 then
-  chown --recursive "${USER}:" "$VFOX_HOME"
+  touch "${USERHOMEDIR}/.bashrc"
+  # No expansion required
+  # shellcheck disable=SC2016
+  echo 'eval "$(vfox activate bash)"' >> "${USERHOMEDIR}/.bashrc"
+elif [ "$SHELL" == "fish" ]
+then
+  mkdir -p "${USERHOMEDIR}/.config/fish"
+  touch "${USERHOMEDIR}/.config/fish/config.fish"
+  echo 'vfox activate fish | source' >> "${USERHOMEDIR}/.config/fish/config.fish"
+elif [ "$SHELL" == "zsh" ]
+then
+  touch "${USERHOMEDIR}/.zshrc"
+  # No expansion required
+  # shellcheck disable=SC2016
+  echo 'eval "$(vfox activate zsh)"' >> "${USERHOMEDIR}/.zshrc"
+else
+  printf '%s\n' "Not a valid shell" >&2
+  exit 1
+fi
+
+# Create vfox directory for root user, otherwise copy below will fail
+mkdir /root/.version-fox
+# Copy and ensure entire vfox directory is owned by user
+if [ "$USERNAME" != "root" ]
+then
+  cp --recursive /root/.version-fox "${USERHOMEDIR}"
+  chown --recursive "${USERNAME}:" "$VFOX_HOME"
 fi
 
 echo 'vfox installed!'
