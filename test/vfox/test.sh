@@ -16,6 +16,7 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 check "root user .bashrc vfox" cat /root/.bashrc | grep 'eval "$(vfox activate bash)"'
 check "vfox sdks install location" vfox config --list | grep 'storage.sdkPath = /root/.version-fox/cache'
 check "vfox config.yaml" cat /root/.version-fox/config.yaml | grep 'sdkPath: /root/.version-fox/cache'
+check "vfox shims is on path" echo "$PATH" | grep '/root/.version-fox/shims'
 
 # Report result
 reportResults

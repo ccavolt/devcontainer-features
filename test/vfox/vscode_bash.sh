@@ -17,6 +17,7 @@ check "vscode user .bashrc vfox" cat /home/vscode/.bashrc | grep 'eval "$(vfox a
 check "vfox sdks install location" vfox config --list | grep 'storage.sdkPath = /home/vscode/.version-fox/cache'
 check "vfox directory contents" ls -la /home/vscode/.version-fox
 check "vfox config.yaml" cat /home/vscode/.version-fox/config.yaml | grep 'sdkPath: /home/vscode/.version-fox/cache'
+check "vfox shims is on path" echo "$PATH" | grep '/home/vscode/.version-fox/shims'
 
 # Report result
 reportResults

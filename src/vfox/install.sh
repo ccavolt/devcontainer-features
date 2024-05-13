@@ -107,6 +107,11 @@ else
   exit 1
 fi
 
+# Add shims directory to path
+# Ensure path isn't expanded, hence single quotes
+# shellcheck disable=SC2016
+echo 'export PATH=$PATH:'"${VFOX_HOME}/shims" >> $SCRIPT
+
 # Ensure entire vfox directory is owned by user
 if [ "$USER" != "root" ]
 then
