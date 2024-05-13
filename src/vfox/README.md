@@ -16,7 +16,7 @@ vfox is a cross-platform, extensible version manager.
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select the version of vfox to install. | string | latest |
-| user | Name of user devcontainer will run as. | string | root |
+| username | Name of user devcontainer will run as. | string | root |
 | shell | Shell used. | string | bash |
 
 
