@@ -12,30 +12,33 @@ fi
 export SCRIPT=/etc/profile.d/vfox.sh
 touch $SCRIPT
 # Version is either specified or latest
-export VERSION="${VERSION:-"latest"}"
-echo "export VFOX_VERSION=${VERSION}" >> $SCRIPT
+export VFOX_VERSION="${VERSION:-"latest"}"
+echo "export VFOX_VERSION=${VFOX_VERSION}" >> $SCRIPT
 # Username is either specified or root
-export USERNAME="${USERNAME:-"root"}"
-echo "export VFOX_USERNAME=${USERNAME}" >> $SCRIPT
+export VFOX_USERNAME="${USERNAME:-"root"}"
+echo "export VFOX_USERNAME=${VFOX_USERNAME}" >> $SCRIPT
 # Set Shell
-export SHELL="${SHELL:-"bash"}"
-echo "export VFOX_SHELL=${SHELL}" >> $SCRIPT
+export VFOX_SHELL="${SHELL:-"bash"}"
+echo "export VFOX_SHELL=${VFOX_SHELL}" >> $SCRIPT
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/version-fox/vfox.git"
 
 # Setup non-root user
-if [ "$USERNAME" != "root" ]
+if [ "$VFOX_USERNAME" != "root" ]
 then
   # Add user if necessary
-  adduser "$USERNAME" || echo "User already exists."
+  adduser "$VFOX_USERNAME" || echo "User already exists."
   # Create home folder
   export USERHOMEDIR="/home/${USERNAME}"
   mkdir -p "$USERHOMEDIR"
 else
   export USERHOMEDIR="/root"
 fi
+# Set vfox variables
+export VFOX_HOME=${USERHOMEDIR}/.version-fox
+echo "export VFOX_HOME=${USERHOMEDIR}/.version-fox" >> $SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -45,15 +48,15 @@ apt-get install -y git
 
 # https://github.com/version-fox/vfox/tags
 # vfox version to install
-if [ "$VERSION" == "latest" ]
+if [ "$VFOX_VERSION" == "latest" ]
 then
-    VERSION=$(git -c 'versionsort.suffix=-' \
+    VFOX_VERSION=$(git -c 'versionsort.suffix=-' \
         ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
         grep -P "(/v)\d+(.)\d+(.)\d+$" | # Removes alpha/custombuild and non conforming tags
         tail --lines=1 | # Remove all but last line
         cut --delimiter='/' --fields=3 | # Remove refs and tags sections
         sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods
-    export VERSION
+    export VFOX_VERSION
 fi
 
 # Install prereqs
@@ -62,11 +65,8 @@ apt-get install -y curl gpg lsb-release apt-utils
 echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | tee /etc/apt/sources.list.d/versionfox.list
 # Install vfox
 apt-get update
-apt-get install -y vfox="${VERSION}"
+apt-get install -y vfox="${VFOX_VERSION}"
 
-# Set vfox variables
-export VFOX_HOME=${USERHOMEDIR}/.version-fox
-echo "export VFOX_HOME=${USERHOMEDIR}/.version-fox" >> $SCRIPT
 # Add shims directory to path
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
@@ -97,11 +97,21 @@ fi
 
 # Create vfox directory for root user, otherwise copy below will fail
 mkdir /root/.version-fox
-# Copy and ensure entire vfox directory is owned by user
-if [ "$USERNAME" != "root" ]
+# Create vfox cache directory
+export VFOX_CACHE=/opt/vfox
+echo "export VFOX_CACHE=${VFOX_CACHE}" >> $SCRIPT
+mkdir -p $VFOX_CACHE
+# # Set vfox cache directory
+# vfox config storage.sdkPath "$VFOX_CACHE"
+# Copy config to user directory
+cp "$(pwd)/config.yaml" "/root/.version-fox"
+
+# Copy vfox stuff and ensure entire vfox home and cache directories are owned by user
+if [ "$VFOX_USERNAME" != "root" ]
 then
-  cp --recursive /root/.version-fox "${USERHOMEDIR}"
-  chown --recursive "${USERNAME}:" "$VFOX_HOME"
+  cp --recursive /root/.version-fox "/home/${VFOX_USERNAME}"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_HOME"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_CACHE"
 fi
 
 echo 'vfox installed!'

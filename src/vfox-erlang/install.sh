@@ -58,11 +58,12 @@ vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
 vfox use --global "erlang@${VERSION}"
 
-# Copy and ensure entire vfox directory is owned by user
+# Copy vfox stuff and ensure entire vfox home and cache directories are owned by user
 if [ "$VFOX_USERNAME" != "root" ]
 then
   cp --recursive /root/.version-fox "/home/${VFOX_USERNAME}"
   chown --recursive "${VFOX_USERNAME}:" "$VFOX_HOME"
+  chown --recursive "${VFOX_USERNAME}:" "$VFOX_CACHE"
 fi
 
 echo 'Erlang installed!'

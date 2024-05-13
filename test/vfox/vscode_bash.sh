@@ -16,6 +16,7 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 check "vscode user .bashrc vfox" cat /home/vscode/.bashrc | grep 'eval "$(vfox activate bash)"'
 check "vfox directory contents" ls -la /home/vscode/.version-fox
 check "vfox shims is on path" echo "$PATH" | grep '/home/vscode/.version-fox/shims'
+check "vfox sdks install location" vfox config --list | grep 'storage.sdkPath = /opt/vfox'
 
 # Report result
 reportResults
