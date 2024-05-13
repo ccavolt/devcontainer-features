@@ -70,7 +70,7 @@ export VFOX_HOME=${USERDIR}/.version-fox
 echo "export VFOX_HOME=${USERDIR}/.version-fox" >> $SCRIPT
 # Install vfox sdks to user directory
 mkdir -p "${VFOX_HOME}/cache"
-vfox config storage.sdkPath "${VFOX_HOME}/cache"
+vfox config storage.sdkpath "${VFOX_HOME}/cache"
 # Copy config.yaml to user directory
 if [ "$USER" != "root" ]
 then
