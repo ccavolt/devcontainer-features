@@ -6,11 +6,11 @@
 			"vfox-deno": {}
 		}
 	},
-  "vfox-deno-user-version-specific": {
+  "vfox-deno-username-version-specific": {
 		"image": "ubuntu:jammy",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
-				"user": "vscode",
+				"username": "vscode",
 				"shell": "bash"
 			},
 			"vfox-deno": {
@@ -31,7 +31,7 @@
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
-				"user": "vscode",
+				"username": "vscode",
 				"shell": "bash"
 			},
 			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {
@@ -56,7 +56,7 @@
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
-				"user": "vscode",
+				"username": "vscode",
 				"shell": "bash"
 			},
 			"vfox-erlang": {
@@ -71,12 +71,12 @@
 			"vfox-nodejs": {}
 		}
 	},
-  "vfox-nodejs-user-version-specific": {
+  "vfox-nodejs-username-version-specific": {
 		"image": "ubuntu:jammy",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
-				"user": "vscode",
+				"username": "vscode",
 				"shell": "bash"
 			},
 			"vfox-nodejs": {

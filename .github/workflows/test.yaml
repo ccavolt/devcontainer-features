@@ -39,13 +39,13 @@ jobs:
       matrix:
         tests:
           - vfox-deno-test
-          - vfox-deno-user-version-specific
+          - vfox-deno-username-version-specific
           - vfox-elixir-test
           - vfox-elixir-version-specific
           - vfox-erlang-test
           - vfox-erlang-version-specific
           - vfox-nodejs-test
-          - vfox-nodejs-user-version-specific
+          - vfox-nodejs-username-version-specific
 
     steps:
       - uses: actions/checkout@v4.1.4
