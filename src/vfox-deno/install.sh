@@ -53,10 +53,11 @@ fi
 # Activate installed deno version and add to .tool-versions file
 vfox use --global "deno@${VERSION}"
 
-# Copy .tool-versions to user directory
+# Copy .tool-versions and shims to user directory
 if [ "$VFOX_USER" != "root" ]
 then
   cp /root/.version-fox/.tool-versions "$VFOX_HOME"
+  cp --recursive /root/.version-fox/shims "$VFOX_HOME"
 fi
 
 # Ensure entire vfox directory is owned by user

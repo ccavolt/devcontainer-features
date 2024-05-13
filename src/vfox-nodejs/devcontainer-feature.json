@@ -1,6 +1,6 @@
 {
   "id": "vfox-nodejs",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "name": "vfox-nodejs",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-nodejs",
   "description": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",

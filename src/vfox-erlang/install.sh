@@ -18,6 +18,8 @@ export VERSION="${VERSION:-"latest"}"
 export DEBIAN_FRONTEND=noninteractive
 # Build Erlang Docs
 export KERL_BUILD_DOCS=yes
+export KERL_INSTALL_MANPAGES=yes
+export KERL_INSTALL_HTMLDOCS=yes
 # Git Repo URL
 export REPO="https://github.com/erlang/otp.git"
 
@@ -66,10 +68,11 @@ vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
 vfox use --global "erlang@${VERSION}"
 
-# Copy .tool-versions to user directory
+# Copy .tool-versions and shims to user directory
 if [ "$VFOX_USER" != "root" ]
 then
   cp /root/.version-fox/.tool-versions "$VFOX_HOME"
+  cp --recursive /root/.version-fox/shims "$VFOX_HOME"
 fi
 
 # Ensure entire vfox directory is owned by user
