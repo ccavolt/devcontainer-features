@@ -61,8 +61,6 @@ then
     export VERSION
 fi
 
-# Activate vfox path helper for bash
-eval "$(vfox activate bash)"
 # Install elixir vfox plugin
 vfox add elixir
 # Copy plugin to user directory
@@ -78,8 +76,6 @@ vfox use --global "elixir@${VERSION}"
 
 # Setup default mix commands (They are run after adding new Elixir version)
 if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
-    # Refresh vfox path helper after installing elixir
-    eval "$(vfox activate bash)"
     # Install Hex Package Manager
     mix local.hex --force
     # Install rebar3 to build Erlang dependencies
