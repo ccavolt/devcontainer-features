@@ -16,10 +16,6 @@ source /etc/profile.d/vfox.sh
 export VERSION="${VERSION:-"latest"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
-# Build Erlang Docs
-export KERL_BUILD_DOCS=yes
-export KERL_INSTALL_MANPAGES=yes
-export KERL_INSTALL_HTMLDOCS=yes
 # Git Repo URL
 export REPO="https://github.com/erlang/otp.git"
 
