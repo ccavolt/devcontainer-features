@@ -53,6 +53,8 @@ fi
 
 # Install erlang vfox plugin
 vfox add erlang
+# Increase make parallelism
+export MAKEFLAGS=-j8
 # Install erlang
 vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
