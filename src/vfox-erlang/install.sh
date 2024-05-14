@@ -59,9 +59,6 @@ export MAKEFLAGS=-j8
 vfox install "erlang@${VERSION}"
 # Activate installed erlang version and add to .tool-versions file
 vfox use --global "erlang@${VERSION}"
-# Build erlang docs
-cd "${VFOX_CACHE}/erlang/v-${VERSION}/erlang-${VERSION}"
-make docs DOC_TARGETS=chunks
 
 # Copy vfox stuff and ensure entire vfox home and cache directories are owned by user
 if [ "$VFOX_USERNAME" != "root" ]
