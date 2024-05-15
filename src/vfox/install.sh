@@ -101,10 +101,8 @@ mkdir /root/.version-fox
 export VFOX_CACHE=/opt/vfox
 echo "export VFOX_CACHE=${VFOX_CACHE}" >> $SCRIPT
 mkdir -p $VFOX_CACHE
-# # Set vfox cache directory
-# vfox config storage.sdkPath "$VFOX_CACHE"
-# Copy config to user directory
-cp "$(pwd)/config.yaml" "/root/.version-fox"
+# Set vfox cache directory
+vfox config storage.sdkPath "$VFOX_CACHE"
 
 # Copy vfox stuff and ensure entire vfox home and cache directories are owned by user
 if [ "$VFOX_USERNAME" != "root" ]
