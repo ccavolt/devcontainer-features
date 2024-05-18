@@ -80,6 +80,14 @@ if [ "${DEFAULTMIXCOMMANDS}" == "yes" ]; then
     mix archive.install hex phx_new --force
 fi
 
+
+# Copy mix stuff and ensure it's owned by user
+if [ "$VFOX_USERNAME" != "root" ]
+then
+  cp --recursive /root/.mix "/home/${VFOX_USERNAME}"
+  chown --recursive "${VFOX_USERNAME}:" "/home/${VFOX_USERNAME}/.mix"
+fi
+
 # Copy vfox stuff and ensure entire vfox home and cache directories are owned by user
 if [ "$VFOX_USERNAME" != "root" ]
 then
