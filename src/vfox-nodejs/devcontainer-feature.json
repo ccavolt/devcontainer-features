@@ -10,7 +10,7 @@
   "options": {
     "version": {
       "default": "latest",
-      "description": "Select the version of deno to install.",
+      "description": "Select the version of nodejs to install.",
       "proposals": [
         "latest",
         "20.12.2"

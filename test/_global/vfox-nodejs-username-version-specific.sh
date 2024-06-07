@@ -10,7 +10,7 @@ source dev-container-features-test-lib
 check "node.js version" node --version | grep "22.0.0"
 check "npm version" npm --version
 check "list vfox stuff" ls -la /home/vscode/.version-fox
-# check "Check for .tool-versions" cat /home/vscode/.version-fox/.tool-versions | grep "22.0.0"
+check "Check for .tool-versions" cat /home/vscode/.version-fox/.tool-versions | grep "22.0.0"
 
 # Report result
 reportResults
