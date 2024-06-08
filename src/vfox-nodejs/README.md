@@ -15,7 +15,7 @@ Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Select the version of deno to install. | string | latest |
+| version | Select the version of nodejs to install. | string | latest |
 
 
 
