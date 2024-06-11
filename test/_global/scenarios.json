@@ -83,5 +83,25 @@
         "version": "22.0.0"
       }
 		}
+	},
+	"vfox-ruby-test": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox-ruby": {}
+		}
+	},
+  "vfox-ruby-username-version-specific": {
+		"image": "ubuntu:jammy",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"version": "0.4.2",
+				"username": "vscode",
+				"shell": "bash"
+			},
+			"vfox-ruby": {
+        "version": "3.2.2"
+      }
+		}
 	}
 }

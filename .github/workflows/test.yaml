@@ -1,9 +1,9 @@
 name: "CI - Test Features"
 on:
+  pull_request:
   push:
     branches:
       - main
-  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -46,6 +46,8 @@ jobs:
           - vfox-erlang-version-specific
           - vfox-nodejs-test
           - vfox-nodejs-username-version-specific
+          - vfox-ruby-test
+          - vfox-ruby-username-version-specific
 
     steps:
       - uses: actions/checkout@v4.1.6
