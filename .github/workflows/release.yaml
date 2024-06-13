@@ -24,7 +24,6 @@ jobs:
           publish-features: "true"
           base-path-to-features: "./src"
           generate-docs: "true"
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -50,9 +49,15 @@ jobs:
 
       - name: "Create PR for documentation"
         if: ${{ steps.commit.outputs.commit != null }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Push
           branch=automated-documentation-update-$GITHUB_RUN_ID
           message='Automated documentation update'
           git push origin "$branch"
           gh pr create --title "$message" --body "$message"
+
+      - run: |
+          echo "Check 'should_run'"
+          echo "${{ steps.commit.outputs.commit }}"
