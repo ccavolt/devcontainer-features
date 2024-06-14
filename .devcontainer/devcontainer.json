@@ -2,14 +2,14 @@
   "name": "devcontainer-features",
 
   // https://github.com/devcontainers/images/tree/main/src/base-ubuntu
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
 
   "features": {
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
     "ghcr.io/devcontainers/features/node:1.4.1": {
 			"nodeGypDependencies": true,
-      // https://github.com/nodejs/node/releases
-			"version": "20.12.2"
+      // https://github.com/nodejs/node/tags
+			"version": "20.14.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.0": {
@@ -22,6 +22,8 @@
     // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
     "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {}
   },
+
+  "remoteUser": "ubuntu",
 
   "containerEnv": {
     "PROJECT_DIR": "${containerWorkspaceFolder}"
