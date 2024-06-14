@@ -14,6 +14,7 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 # No expansion required
 # shellcheck disable=SC2016
 check "vscode user .zshrc vfox" cat /home/vscode/.zshrc | grep 'eval "$(vfox activate zsh)"'
+check "vscode user owns .zshrc" ls -la /home/vscode/.zshrc | grep 'vscode vscode'
 
 # Report result
 reportResults

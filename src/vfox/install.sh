@@ -79,17 +79,20 @@ then
   # No expansion required
   # shellcheck disable=SC2016
   echo 'eval "$(vfox activate bash)"' >> "${USERHOMEDIR}/.bashrc"
+  chown "${VFOX_USERNAME}:" "${USERHOMEDIR}/.bashrc"
 elif [ "$SHELL" == "fish" ]
 then
   mkdir -p "${USERHOMEDIR}/.config/fish"
   touch "${USERHOMEDIR}/.config/fish/config.fish"
   echo 'vfox activate fish | source' >> "${USERHOMEDIR}/.config/fish/config.fish"
+  chown --recursive "${VFOX_USERNAME}:" "${USERHOMEDIR}/.config"
 elif [ "$SHELL" == "zsh" ]
 then
   touch "${USERHOMEDIR}/.zshrc"
   # No expansion required
   # shellcheck disable=SC2016
   echo 'eval "$(vfox activate zsh)"' >> "${USERHOMEDIR}/.zshrc"
+  chown "${VFOX_USERNAME}:" "${USERHOMEDIR}/.zshrc"
 else
   printf '%s\n' "Not a valid shell" >&2
   exit 1

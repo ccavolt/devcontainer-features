@@ -14,6 +14,7 @@ check "vfox_shell script variable" cat /etc/profile.d/vfox.sh | grep 'export VFO
 # No expansion required
 # shellcheck disable=SC2016
 check "vscode user fish.config vfox" cat /home/vscode/.config/fish/config.fish | grep 'vfox activate fish | source'
+check "vscode user owns fish.config" ls -la /home/vscode/.config/fish/config.fish | grep 'vscode vscode'
 
 # Report result
 reportResults
