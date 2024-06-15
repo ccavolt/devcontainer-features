@@ -23,9 +23,9 @@ apt-get install -y python3-pip
 # Install pgcli
 if [ "$PGUSER" == "root" ]
 then
-  pip3 install "psycopg[binary,pool]" pgcli
+  pip3 install "psycopg[binary,pool]" pgcli --break-system-packages
 else
-  su --login "$PGUSER" --command "pip3 install \"psycopg[binary,pool]\" pgcli"
+  su --login "$PGUSER" --command "pip3 install \"psycopg[binary,pool]\" pgcli --break-system-packages"
 fi
 
 echo 'Done!'

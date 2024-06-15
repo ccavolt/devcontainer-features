@@ -1,6 +1,6 @@
 {
   "id": "pgcli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "pgcli",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/pgcli",
   "description": "Pgcli is a command line interface for Postgres with auto-completion and syntax highlighting. This feature will always install the latest version",
