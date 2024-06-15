@@ -1,13 +1,13 @@
 {
 	"vfox-deno-test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
 			"vfox-deno": {}
 		}
 	},
   "vfox-deno-username-version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"username": "vscode",
@@ -19,7 +19,7 @@
 		}
 	},
 	"vfox-elixir-test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
 			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {},
@@ -27,7 +27,7 @@
 		}
 	},
 	"vfox-elixir-version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
@@ -45,14 +45,14 @@
 		}
 	},
 	"vfox-erlang-test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
 			"vfox-erlang": {}
 		}
 	},
 	"vfox-erlang-version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
@@ -65,14 +65,14 @@
 		}
 	},
 	"vfox-nodejs-test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
 			"vfox-nodejs": {}
 		}
 	},
   "vfox-nodejs-username-version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",
@@ -85,14 +85,14 @@
 		}
 	},
 	"vfox-ruby-test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
 			"vfox-ruby": {}
 		}
 	},
   "vfox-ruby-username-version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
 				"version": "0.4.2",

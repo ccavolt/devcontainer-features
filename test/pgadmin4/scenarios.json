@@ -1,12 +1,12 @@
 {
 	"test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"pgadmin4": {}
 		}
 	},
 	"version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"pgadmin4": {
         "version": "8.5"

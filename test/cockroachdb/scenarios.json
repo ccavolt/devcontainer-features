@@ -1,12 +1,12 @@
 {
 	"test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"cockroachdb": {}
 		}
 	},
 	"version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"cockroachdb": {
         "version": "22.2.10"

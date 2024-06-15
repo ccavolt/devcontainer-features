@@ -1,12 +1,12 @@
 {
 	"test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"elixir-asdf": {}
 		}
 	},
 	"version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"elixir-asdf": {
         "asdfVersion": "0.11.2",

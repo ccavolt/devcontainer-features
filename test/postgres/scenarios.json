@@ -1,12 +1,12 @@
 {
 	"test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"postgres": {}
 		}
 	},
 	"version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"postgres": {
         "version": "14.8",

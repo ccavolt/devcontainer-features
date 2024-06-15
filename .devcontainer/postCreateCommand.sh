@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -eouvx pipefail
 
 # Copy zsh config to user dir
 cp .devcontainer/.zshrc "${HOME}"

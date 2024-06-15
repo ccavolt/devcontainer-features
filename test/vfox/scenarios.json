@@ -1,12 +1,12 @@
 {
 	"test": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"vfox": {}
 		}
 	},
 	"version-specific": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
         "version": "0.5.0"
@@ -14,7 +14,7 @@
 		}
 	},
 	"vscode_bash": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
         "username": "vscode",
@@ -23,7 +23,7 @@
 		}
 	},
 	"vscode_fish": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
         "username": "vscode",
@@ -32,7 +32,7 @@
 		}
 	},
 	"vscode_zsh": {
-		"image": "ubuntu:jammy",
+		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
         "username": "vscode",
