@@ -14,6 +14,8 @@ source /etc/profile.d/vfox.sh
 
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
+# Git Repo URL
+export REPO="https://github.com/ruby/ruby.git"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 
@@ -29,22 +31,30 @@ apt-get update && apt-get upgrade -y
 # Install git to determine latest version if necessary
 apt-get install -y git
 
-# Add node plugin to vfox
+# Install prereqs for building ruby
+apt-get install -y libffi-dev libyaml-dev
+# Add ruby plugin to vfox
 vfox add ruby
-# Install node
-vfox install "ruby@${VERSION}"
 
 # If version is "latest", find version number
+# https://github.com/ruby/ruby/tags
+# Ruby version to install
 if [ "$VERSION" == "latest" ]
 then
-    VERSION=$(vfox list ruby |
-        sed 's/[^0-9]*//' | # Remove everything before and including v
-        sed 's/\s.*$//' | # Delete everything after the first space
+    VERSION=$(git -c 'versionsort.suffix=-' \
+        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*_*_*' |
+        grep -P "(/v)\d+(_)\d+(_)\d+$" | # Removes alpha/custombuild and non conforming tags
+        tail --lines=1 | # Remove all but last line
+        cut --delimiter='/' --fields=3 | # Remove refs and tags sections
+        sed 's/[^0-9]*//' | # Remove v character so there's only numbers and underscores
         sed 's/_/\./g') # Replaces _ with .
     export VERSION
 fi
 
-# Activate installed node version which adds it to .tool-versions file
+# Install ruby
+vfox install "ruby@${VERSION}.rb"
+
+# Activate installed ruby version which adds it to .tool-versions file
 vfox use --global "ruby@${VERSION}"
 # Activate vfox path helper for bash so that npm is accessible
 eval "$(vfox activate bash)"
