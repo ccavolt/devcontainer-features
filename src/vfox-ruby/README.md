@@ -1,7 +1,7 @@
 
 # vfox-ruby (vfox-ruby)
 
-Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write. Note: This feature doesn't support all ruby versions, because the underlying vfox-ruby plugin doesn't support all versions. If you need a specific version, please open an issue on the [vfox-ruby repository](https://github.com/yanecc/vfox-ruby).
+Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 
 ## Example Usage
 
