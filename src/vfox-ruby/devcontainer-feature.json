@@ -1,6 +1,6 @@
 {
   "id": "vfox-ruby",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "vfox-ruby",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-ruby",
   "description": "Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.",

@@ -32,7 +32,7 @@ apt-get update && apt-get upgrade -y
 apt-get install -y git
 
 # Install prereqs for building ruby
-apt-get install -y libffi-dev libyaml-dev
+apt-get install -y autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 # Add ruby plugin to vfox
 vfox add ruby
 
