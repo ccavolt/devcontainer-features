@@ -31,9 +31,9 @@ apt-get update && apt-get upgrade -y
 
 # vfox erlang prereqs
 apt-get install -y build-essential autoconf m4 libncurses5-dev \
-   libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev \
+   libwxgtk3.2-dev libwxgtk-webview3.2-dev libgl1-mesa-dev \
    libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop \
-   libxml2-utils libncurses-dev openjdk-11-jdk
+   libxml2-utils libncurses-dev openjdk-17-jdk
 
 # Install git to determine latest version if necessary
 apt-get install -y git
