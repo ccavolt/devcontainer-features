@@ -16,6 +16,8 @@ export REPO="https://github.com/pgadmin-org/pgadmin4.git"
 export PGADMIN_SETUP_EMAIL="${EMAIL:-"john@smith.dev"}"
 # pgAdmin Setup Password
 export PGADMIN_SETUP_PASSWORD="${PASSWORD:-"asdfasdf"}"
+# pgAdmin Platform Type
+export PGADMIN_PLATFORM_TYPE=debian
 
 # Update packages
 apt-get update && apt-get upgrade -y
