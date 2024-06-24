@@ -6,7 +6,7 @@
 
   "features": {
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
-    "ghcr.io/devcontainers/features/node:1.4.1": {
+    "ghcr.io/devcontainers/features/node:1.5.0": {
 			"nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
 			"version": "20.14.0"
