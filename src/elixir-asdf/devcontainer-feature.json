@@ -1,6 +1,6 @@
 {
   "id": "elixir-asdf",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "Elixir (via asdf)",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/elixir-asdf",
   "description": "Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.",

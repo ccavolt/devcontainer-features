@@ -4,8 +4,8 @@ set -euxo pipefail
 
 # Ensure script is running as root
 if [ "$(id -u)" -ne 0 ]; then
-    echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
-    exit 1
+  echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
+  exit 1
 fi
 
 # Prevent installers from trying to prompt for information
@@ -27,17 +27,16 @@ apt-get install -y git
 
 # https://github.com/pgadmin-org/pgadmin4/tags
 # pgAdmin version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
-then
-    PGADMIN_VERSION=$(git -c 'versionsort.suffix=-' \
-        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*_*' \
-        | tail --lines=1 \
-        | cut --delimiter='/' --fields=3 \
-        | sed 's/[^0-9]*//' \
-        | sed 's/_/\./g')
-    export PGADMIN_VERSION
+if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+  PGADMIN_VERSION=$(git -c 'versionsort.suffix=-' \
+    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*_*' |
+    tail --lines=1 |
+    cut --delimiter='/' --fields=3 |
+    sed 's/[^0-9]*//' |
+    sed 's/_/\./g')
+  export PGADMIN_VERSION
 else
-    export PGADMIN_VERSION=${VERSION}
+  export PGADMIN_VERSION=${VERSION}
 fi
 
 # Install prereqs

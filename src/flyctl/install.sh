@@ -4,8 +4,8 @@ set -euxo pipefail
 
 # Ensure script is running as root
 if [ "$(id -u)" -ne 0 ]; then
-    echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
-    exit 1
+  echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
+  exit 1
 fi
 
 # Prevent installers from trying to prompt for information
@@ -23,17 +23,16 @@ apt-get install -y git
 
 # https://github.com/superfly/flyctl/tags
 # flyctl version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]
-then
-    FLYCTL_VERSION=$(git -c 'versionsort.suffix=-' \
-        ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
-        grep -P "(/v)\d{1,3}(.)\d+(.)\d+$" | # Removes major version year (e.g. v2023) builds that have no downloads available
-        tail --lines=1 | # Remove all but last line
-        cut --delimiter='/' --fields=3 | # Remove refs and tags sections
-        sed 's/[^0-9]*//') # Remove v character so there's only numbers and periods
-    export FLYCTL_VERSION
+if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+  FLYCTL_VERSION=$(git -c 'versionsort.suffix=-' \
+    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    grep -P "(/v)\d{1,3}(.)\d+(.)\d+$" | # Removes major version year (e.g. v2023) builds that have no downloads available
+    tail --lines=1 |                     # Remove all but last line
+    cut --delimiter='/' --fields=3 |     # Remove refs and tags sections
+    sed 's/[^0-9]*//')                   # Remove v character so there's only numbers and periods
+  export FLYCTL_VERSION
 else
-    export FLYCTL_VERSION=$VERSION
+  export FLYCTL_VERSION=$VERSION
 fi
 
 # Create download directory
@@ -41,24 +40,24 @@ mkdir -p "$DOWNLOADDIR"
 
 # Determine platform
 if [ "$(uname)" = "Linux" ]; then
-    export PLATFORM="Linux"
+  export PLATFORM="Linux"
 elif [ "$(uname)" = "Darwin" ]; then
-    export PLATFORM="macOS"
+  export PLATFORM="macOS"
 else
-    echo -e 'Unsupported platform.'
-    exit 1
+  echo -e 'Unsupported platform.'
+  exit 1
 fi
 
 # Determine architecture
 if [ "$(uname -m)" = "x86_64" ]; then
-    export ARCH="x86_64"
+  export ARCH="x86_64"
 elif [ "$(uname -m)" = "aarch64" ]; then
-    export ARCH="arm64"
+  export ARCH="arm64"
 elif [ "$(uname -m)" = "arm64" ]; then
-    export ARCH="arm64"
+  export ARCH="arm64"
 else
-    echo -e 'Unsupported architecture.'
-    exit 1
+  echo -e 'Unsupported architecture.'
+  exit 1
 fi
 
 # Install wget to download flyctl

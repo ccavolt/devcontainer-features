@@ -1,6 +1,6 @@
 {
   "id": "edgedb-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "edgedb-cli",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/edgedb-cli",
   "description": "The edgedb command-line tool rewritten in rust. This feature will always install the latest version.",
