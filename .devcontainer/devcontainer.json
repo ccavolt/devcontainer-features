@@ -20,7 +20,13 @@
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
     "ghcr.io/devcontainers/features/common-utils:2.4.3": {},
     // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
-    "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {}
+    "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {},
+    // https://github.com/devcontainers-contrib/features/pkgs/container/features%2Fshfmt
+    "ghcr.io/devcontainers-contrib/features/shfmt:1.0.0": {
+      // shfmt: Shell script formatter
+      // https://github.com/mvdan/sh/tags
+      "version": "3.8.0"
+    }
   },
 
   "containerEnv": {
