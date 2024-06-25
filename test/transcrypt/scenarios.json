@@ -1,0 +1,16 @@
+{
+	"test": {
+		"image": "debian:bookworm",
+		"features": {
+			"transcrypt": {}
+		}
+	},
+	"version-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"transcrypt": {
+        "version": "2.2.2"
+      }
+		}
+	}
+}

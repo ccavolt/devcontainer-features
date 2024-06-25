@@ -21,6 +21,7 @@ jobs:
           - pgadmin4
           - pgcli
           - postgres
+          - transcrypt
           - vfox
 
     steps:
