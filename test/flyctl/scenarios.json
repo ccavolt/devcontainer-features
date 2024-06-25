@@ -1,11 +1,11 @@
 {
-	"test": {
+	"flyctl-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"flyctl": {}
 		}
 	},
-	"version-specific": {
+	"flyctl-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"flyctl": {

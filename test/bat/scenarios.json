@@ -1,5 +1,5 @@
 {
-	"test": {
+	"bat-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"bat": {}

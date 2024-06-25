@@ -1,11 +1,11 @@
 {
-	"test": {
+	"cockroachdb-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"cockroachdb": {}
 		}
 	},
-	"version-specific": {
+	"cockroachdb-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"cockroachdb": {

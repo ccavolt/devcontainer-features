@@ -1,11 +1,11 @@
 {
-	"test": {
+	"pgcli-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"pgcli": {}
 		}
 	},
-	"user-specific": {
+	"pgcli-user-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"pgcli": {

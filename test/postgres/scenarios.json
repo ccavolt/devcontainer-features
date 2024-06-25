@@ -1,11 +1,11 @@
 {
-	"test": {
+	"postgres-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"postgres": {}
 		}
 	},
-	"version-specific": {
+	"postgres-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"postgres": {

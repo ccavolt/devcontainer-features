@@ -1,5 +1,5 @@
 {
-	"test": {
+	"edgedb-cli-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"edgedb-cli": {}

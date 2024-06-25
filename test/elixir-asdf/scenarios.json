@@ -1,11 +1,11 @@
 {
-	"test": {
+	"elixir-asdf-test": {
 		"image": "debian:bookworm",
 		"features": {
 			"elixir-asdf": {}
 		}
 	},
-	"version-specific": {
+	"elixir-asdf-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"elixir-asdf": {
