@@ -50,7 +50,7 @@ jobs:
           - vfox-ruby-username-version-specific
 
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
 
       - name: "Install latest devcontainer CLI"
         run: npm install -g @devcontainers/cli

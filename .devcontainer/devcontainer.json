@@ -6,10 +6,10 @@
 
   "features": {
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
-    "ghcr.io/devcontainers/features/node:1.4.1": {
+    "ghcr.io/devcontainers/features/node:1.5.0": {
 			"nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-			"version": "20.14.0"
+			"version": "20.15.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.0": {
