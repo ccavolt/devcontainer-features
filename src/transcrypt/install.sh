@@ -39,7 +39,7 @@ fi
 mkdir -p "$DOWNLOADDIR"
 
 # Install transcrypt dependencies
-apt-get install -y openssl bsdmainutils vim gnupg
+apt-get install -y openssl bsdmainutils xxd gnupg
 # Install wget to download transcrypt
 apt-get install -y wget
 # Create download directory
