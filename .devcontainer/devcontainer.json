@@ -12,7 +12,7 @@
 			"version": "20.15.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
-    "ghcr.io/ccavolt/devcontainer-features/bat:0.1.0": {
+    "ghcr.io/ccavolt/devcontainer-features/bat:0.1.1": {
       // bat: Improved version of cat command
     },
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
