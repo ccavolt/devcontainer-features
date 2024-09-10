@@ -39,20 +39,20 @@ jobs:
     strategy:
       matrix:
         tests:
-          - vfox-dart-test
-          - vfox-dart-username-version-specific
-          - vfox-deno-test
-          - vfox-deno-username-version-specific
-          - vfox-elixir-test
-          - vfox-elixir-username-version-specific
-          - vfox-erlang-test
-          - vfox-erlang-username-version-specific
-          - vfox-flutter-test
-          - vfox-flutter-username-version-specific
-          - vfox-nodejs-test
-          - vfox-nodejs-username-version-specific
-          - vfox-ruby-test
-          - vfox-ruby-username-version-specific
+          - vfox-dart-default
+          - vfox-dart-specific
+          - vfox-deno-default
+          - vfox-deno-specific
+          - vfox-elixir-default
+          - vfox-elixir-specific
+          - vfox-erlang-default
+          - vfox-erlang-specific
+          - vfox-flutter-default
+          - vfox-flutter-specific
+          - vfox-nodejs-default
+          - vfox-nodejs-specific
+          - vfox-ruby-default
+          - vfox-ruby-specific
 
     steps:
       - uses: actions/checkout@v4.1.7

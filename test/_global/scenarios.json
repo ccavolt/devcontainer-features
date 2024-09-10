@@ -1,12 +1,12 @@
 {
-	"vfox-dart-test": {
+	"vfox-dart-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
 			"vfox-dart": {}
 		}
 	},
-  "vfox-dart-username-version-specific": {
+  "vfox-dart-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -19,14 +19,14 @@
       }
 		}
 	},
-	"vfox-deno-test": {
+	"vfox-deno-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
 			"vfox-deno": {}
 		}
 	},
-  "vfox-deno-username-version-specific": {
+  "vfox-deno-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -39,7 +39,7 @@
       }
 		}
 	},
-	"vfox-elixir-test": {
+	"vfox-elixir-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
@@ -47,7 +47,7 @@
 			"vfox-elixir": {}
 		}
 	},
-	"vfox-elixir-username-version-specific": {
+	"vfox-elixir-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -65,14 +65,14 @@
 			}
 		}
 	},
-	"vfox-erlang-test": {
+	"vfox-erlang-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
 			"vfox-erlang": {}
 		}
 	},
-	"vfox-erlang-username-version-specific": {
+	"vfox-erlang-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -85,7 +85,7 @@
       }
 		}
 	},
-	"vfox-flutter-test": {
+	"vfox-flutter-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
@@ -93,7 +93,7 @@
 			"vfox-flutter": {}
 		}
 	},
-  "vfox-flutter-username-version-specific": {
+  "vfox-flutter-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -109,14 +109,14 @@
       }
 		}
 	},
-	"vfox-nodejs-test": {
+	"vfox-nodejs-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
 			"vfox-nodejs": {}
 		}
 	},
-  "vfox-nodejs-username-version-specific": {
+  "vfox-nodejs-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
@@ -129,14 +129,14 @@
       }
 		}
 	},
-	"vfox-ruby-test": {
+	"vfox-ruby-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
 			"vfox-ruby": {}
 		}
 	},
-  "vfox-ruby-username-version-specific": {
+  "vfox-ruby-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
