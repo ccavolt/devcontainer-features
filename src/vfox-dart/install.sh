@@ -36,7 +36,7 @@ apt-get install -y git
 if [ "$VERSION" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
     ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
-    grep -v "-" |                   # Exclude dev versions
+    grep -v "-" |                    # Exclude dev versions
     tail --lines=1 |                 # Only get the latest version
     cut --delimiter='/' --fields=3 | # Remove everything before version number (refs, tags, sha etc.)
     sed 's/[^0-9]*//')               # Remove anything before start of first number
