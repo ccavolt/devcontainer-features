@@ -47,6 +47,8 @@ jobs:
           - vfox-elixir-username-version-specific
           - vfox-erlang-test
           - vfox-erlang-username-version-specific
+          - vfox-flutter-test
+          - vfox-flutter-username-version-specific
           - vfox-nodejs-test
           - vfox-nodejs-username-version-specific
           - vfox-ruby-test

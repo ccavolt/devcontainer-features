@@ -85,6 +85,30 @@
       }
 		}
 	},
+	"vfox-flutter-test": {
+		"image": "debian:bookworm",
+		"features": {
+			"vfox": {},
+			"vfox-dart": {},
+			"vfox-flutter": {}
+		}
+	},
+  "vfox-flutter-username-version-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"vfox": {
+				"version": "0.5.3",
+				"username": "vscode",
+				"shell": "bash"
+			},
+			"vfox-dart": {
+        "version": "3.5.1"
+      },
+			"vfox-flutter": {
+        "version": "3.24.1"
+      }
+		}
+	},
 	"vfox-nodejs-test": {
 		"image": "debian:bookworm",
 		"features": {
