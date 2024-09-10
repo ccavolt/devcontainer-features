@@ -39,6 +39,8 @@ jobs:
     strategy:
       matrix:
         tests:
+          - vfox-dart-test
+          - vfox-dart-username-version-specific
           - vfox-deno-test
           - vfox-deno-username-version-specific
           - vfox-elixir-test
