@@ -1,4 +1,23 @@
 {
+	"vfox-dart-test": {
+		"image": "debian:bookworm",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox-dart": {}
+		}
+	},
+  "vfox-dart-username-version-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+				"username": "vscode",
+				"shell": "bash"
+			},
+			"vfox-dart": {
+        "version": "3.5.1"
+      }
+		}
+	},
 	"vfox-deno-test": {
 		"image": "debian:bookworm",
 		"features": {
