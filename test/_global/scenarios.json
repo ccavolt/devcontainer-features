@@ -45,7 +45,7 @@
 			"vfox-elixir": {}
 		}
 	},
-	"vfox-elixir-version-specific": {
+	"vfox-elixir-username-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
@@ -70,7 +70,7 @@
 			"vfox-erlang": {}
 		}
 	},
-	"vfox-erlang-version-specific": {
+	"vfox-erlang-username-version-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {

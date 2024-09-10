@@ -44,9 +44,9 @@ jobs:
           - vfox-deno-test
           - vfox-deno-username-version-specific
           - vfox-elixir-test
-          - vfox-elixir-version-specific
+          - vfox-elixir-username-version-specific
           - vfox-erlang-test
-          - vfox-erlang-version-specific
+          - vfox-erlang-username-version-specific
           - vfox-nodejs-test
           - vfox-nodejs-username-version-specific
           - vfox-ruby-test
