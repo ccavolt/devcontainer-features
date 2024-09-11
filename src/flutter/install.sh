@@ -22,6 +22,8 @@ export DOWNLOAD_DIR=$HOME/downloads
 export INSTALL_DIR=/opt
 # Flutter directory
 export FLUTTER_DIR="${INSTALL_DIR}/flutter"
+# Flutter bin directory
+export FLUTTER_BIN_DIR="${FLUTTER_DIR}/bin"
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/flutter.sh
 touch $STARTUP_SCRIPT
@@ -48,16 +50,32 @@ fi
 # Install prereqs
 apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa
 
-# Download
-wget --directory-prefix="$DOWNLOAD_DIR" "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz"
-# Extract
-tar -xf "${DOWNLOAD_DIR}/flutter_linux_${VERSION}-stable.tar.xz" -C $INSTALL_DIR
+# # Download
+# wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/flutter/flutter/archive/refs/tags/${VERSION}.tar.gz"
+# # Extract
+# tar --extract --file "${DOWNLOAD_DIR}/${VERSION}.tar.gz" -C $INSTALL_DIR
+# # Rename folder
+# mv "${INSTALL_DIR}/flutter-${VERSION}" $FLUTTER_DIR
+# # Fix "dubious ownership" issue
+# git config --global --add safe.directory "${FLUTTER_DIR}"
+# # Build from source for linux/arm64 compatibility
+# ${FLUTTER_DIR}/bin/flutter
+# # cd $FLUTTER_DIR/bin
+# # exit 1
+# # ./flutter
+
+# Clone flutter instead of downloading tarball to compile on Linux/arm64
+# The flutter tool requires Git in order to operate properly
+git clone --depth 1 --branch $VERSION $REPO $FLUTTER_DIR
 # Fix "dubious ownership" issue
 git config --global --add safe.directory "${FLUTTER_DIR}"
+# Run tool to download necessary packages for arm64
+${FLUTTER_BIN_DIR}/flutter
+
 # Add to PATH
 # Ensure $PATH isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo "export PATH=${FLUTTER_DIR}/bin:"'$PATH' >>$STARTUP_SCRIPT
+echo "export PATH=${FLUTTER_BIN_DIR}:"'$PATH' >>$STARTUP_SCRIPT
 
 # Ensure install directories are owned by user
 if [ "$USERNAME" != "root" ]; then
