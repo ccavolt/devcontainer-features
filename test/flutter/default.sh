@@ -8,6 +8,7 @@ source dev-container-features-test-lib
 
 # Feature-specific tests
 check "Flutter version" flutter --version
+check "Dart version" dart --version
 
 # Report result
 reportResults

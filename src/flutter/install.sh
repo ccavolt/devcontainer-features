@@ -20,6 +20,8 @@ export REPO="https://github.com/flutter/flutter.git"
 export DOWNLOAD_DIR=$HOME/downloads
 # Install directory
 export INSTALL_DIR=/opt
+# Flutter directory
+export FLUTTER_DIR="${INSTALL_DIR}/flutter"
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/flutter.sh
 touch $STARTUP_SCRIPT
@@ -44,20 +46,27 @@ if [ "$VERSION" == "latest" ]; then
 fi
 
 # Install prereqs
-apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa
 
 # Download
-curl "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz"
+wget --directory-prefix="$DOWNLOAD_DIR" "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${VERSION}-stable.tar.xz"
 # Extract
 tar -xf "${DOWNLOAD_DIR}/flutter_linux_${VERSION}-stable.tar.xz" -C $INSTALL_DIR
+# Fix "dubious ownership" issue
+git config --global --add safe.directory "${FLUTTER_DIR}"
 # Add to PATH
-# Ensure path isn't expanded, hence single quotes
+# Ensure $PATH isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo 'export PATH="${INSTALL_DIR}/flutter/bin:$PATH"' >>$STARTUP_SCRIPT
+echo "export PATH=${FLUTTER_DIR}/bin:"'$PATH' >>$STARTUP_SCRIPT
 
 # Ensure install directories are owned by user
 if [ "$USERNAME" != "root" ]; then
-  chown --recursive "${USERNAME}:" "${INSTALL_DIR}/flutter"
+  # Add user if necessary and create home folder
+  adduser "$USERNAME" || echo "User already exists."
+  mkdir -p "/home/${USERNAME}"
+
+  # Set ownership to user
+  chown --recursive "${USERNAME}:" "${FLUTTER_DIR}"
 fi
 
 echo 'Flutter installed!'

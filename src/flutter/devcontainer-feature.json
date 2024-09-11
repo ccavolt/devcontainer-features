@@ -7,7 +7,7 @@
   "options": {
     "version": {
       "default": "latest",
-      "description": "Select the version of flutter to install.",
+      "description": "Specify version to install.",
       "proposals": [
         "latest",
         "3.24.2"
@@ -23,5 +23,5 @@
       "vscode"
     ],
     "type": "string"
-  },
+  }
 }
