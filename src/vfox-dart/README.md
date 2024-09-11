@@ -1,7 +1,7 @@
 
 # vfox-dart (vfox-dart)
 
-Dart is an approachable, portable, and productive language for high-quality apps on any platform
+Dart is an approachable, portable, and productive language for high-quality apps on any platform.
 
 ## Example Usage
 

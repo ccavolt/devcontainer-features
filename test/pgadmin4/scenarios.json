@@ -1,11 +1,11 @@
 {
-	"pgadmin4-test": {
+	"pgadmin4-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"pgadmin4": {}
 		}
 	},
-	"pgadmin4-version-specific": {
+	"pgadmin4-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"pgadmin4": {

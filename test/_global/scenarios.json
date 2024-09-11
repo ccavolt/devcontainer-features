@@ -1,15 +1,16 @@
 {
-	"vfox-dart-test": {
+	"vfox-dart-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox": {},
 			"vfox-dart": {}
 		}
 	},
-  "vfox-dart-username-version-specific": {
+  "vfox-dart-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},
@@ -18,17 +19,18 @@
       }
 		}
 	},
-	"vfox-deno-test": {
+	"vfox-deno-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox": {},
 			"vfox-deno": {}
 		}
 	},
-  "vfox-deno-username-version-specific": {
+  "vfox-deno-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},
@@ -37,23 +39,23 @@
       }
 		}
 	},
-	"vfox-elixir-test": {
+	"vfox-elixir-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
-			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {},
+			"vfox": {},
+			"vfox-erlang": {},
 			"vfox-elixir": {}
 		}
 	},
-	"vfox-elixir-version-specific": {
+	"vfox-elixir-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
-				"version": "0.4.2",
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},
-			"ghcr.io/ccavolt/devcontainer-features/vfox-erlang:0": {
+			"vfox-erlang": {
 				"version": "26.2.4"
 			},
 			"vfox-elixir": {
@@ -63,18 +65,18 @@
 			}
 		}
 	},
-	"vfox-erlang-test": {
+	"vfox-erlang-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox": {},
 			"vfox-erlang": {}
 		}
 	},
-	"vfox-erlang-version-specific": {
+	"vfox-erlang-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
-				"version": "0.4.2",
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},
@@ -83,18 +85,42 @@
       }
 		}
 	},
-	"vfox-nodejs-test": {
+	"vfox-flutter-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox": {},
+			"vfox-dart": {},
+			"vfox-flutter": {}
+		}
+	},
+  "vfox-flutter-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"vfox": {
+				"version": "0.5.3",
+				"username": "vscode",
+				"shell": "bash"
+			},
+			"vfox-dart": {
+        "version": "3.5.1"
+      },
+			"vfox-flutter": {
+        "version": "3.24.1"
+      }
+		}
+	},
+	"vfox-nodejs-default": {
+		"image": "debian:bookworm",
+		"features": {
+			"vfox": {},
 			"vfox-nodejs": {}
 		}
 	},
-  "vfox-nodejs-username-version-specific": {
+  "vfox-nodejs-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
-				"version": "0.4.2",
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},
@@ -103,18 +129,18 @@
       }
 		}
 	},
-	"vfox-ruby-test": {
+	"vfox-ruby-default": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {},
+			"vfox": {},
 			"vfox-ruby": {}
 		}
 	},
-  "vfox-ruby-username-version-specific": {
+  "vfox-ruby-specific": {
 		"image": "debian:bookworm",
 		"features": {
-			"ghcr.io/ccavolt/devcontainer-features/vfox:0": {
-				"version": "0.4.2",
+			"vfox": {
+				"version": "0.5.3",
 				"username": "vscode",
 				"shell": "bash"
 			},

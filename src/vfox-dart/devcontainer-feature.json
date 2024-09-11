@@ -1,11 +1,11 @@
 {
   "id": "vfox-dart",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "vfox-dart",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-dart",
-  "description": "Dart is an approachable, portable, and productive language for high-quality apps on any platform",
+  "description": "Dart is an approachable, portable, and productive language for high-quality apps on any platform.",
   "installsAfter": [
-    "ghcr.io/ccavolt/devcontainer-features/vfox"
+    "./vfox"
   ],
   "options": {
     "version": {

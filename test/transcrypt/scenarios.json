@@ -1,11 +1,11 @@
 {
-	"transcrypt-test": {
+	"transcrypt-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"transcrypt": {}
 		}
 	},
-	"transcrypt-version-specific": {
+	"transcrypt-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"transcrypt": {

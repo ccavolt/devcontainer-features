@@ -1,11 +1,11 @@
 {
-	"vfox-test": {
+	"vfox-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {}
 		}
 	},
-	"vfox-version-specific": {
+	"vfox-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {
