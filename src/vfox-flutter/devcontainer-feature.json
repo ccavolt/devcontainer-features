@@ -1,12 +1,12 @@
 {
   "id": "vfox-flutter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "vfox-flutter",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/vfox-flutter",
   "description": "Flutter is Google's SDK for crafting beautiful, fast user experiences for mobile, web, and desktop from a single codebase.",
   "installsAfter": [
-    "ghcr.io/ccavolt/devcontainer-features/vfox",
-    "ghcr.io/ccavolt/devcontainer-features/vfox-dart"
+    "./vfox",
+    "./vfox-dart"
   ],
   "options": {
     "version": {
