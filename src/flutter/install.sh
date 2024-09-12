@@ -8,10 +8,10 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-# Version is either specified or latest
-export VERSION="${VERSION:-"latest"}"
 # Username is either specified or root
 export USERNAME="${USERNAME:-"root"}"
+# Version is either specified or latest
+export VERSION="${VERSION:-"latest"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
