@@ -8,15 +8,6 @@
     "./erlang"
   ],
   "options": {
-    "username": {
-      "default": "root",
-      "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
-      ],
-      "type": "string"
-    },
     "version": {
       "default": "latest",
       "description": "Specify version to install. Has to be compatible with erlang version.",

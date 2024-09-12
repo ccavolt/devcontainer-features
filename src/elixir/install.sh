@@ -8,14 +8,26 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-# Username is either specified or root
-export USERNAME="${USERNAME:-"root"}"
+# Check for devcontainer feature erlang installation
+# shellcheck disable=SC1091
+if [ -f /etc/profile.d/erlang.sh ] && erl -s erlang halt; then
+  # Get variables from initial erlang install
+  source /etc/profile.d/erlang.sh
+else
+  echo -e "Erlang must be installed before elixir."
+  exit 1
+fi
+
+# Username inherited from erlang install
+export USERNAME=$ERLANG_USERNAME
+# Locale inherited from erlang install
+export LOCALE=$ERLANG_LOCALE
+# Erlang version inherited from erlang install
+export ERLANG_VERSION=$ERLANG_VERSION
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
-# Locale
-export LOCALE=en_US.UTF-8
 # Git Repo URL
 export REPO="https://github.com/elixir-lang/elixir.git"
 # Download directory
@@ -29,9 +41,6 @@ export ELIXIR_BIN_DIR="${ELIXIR_DIR}/bin"
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/elixir.sh
 touch $STARTUP_SCRIPT
-
-# Check for erlang before proceeding
-erl -s erlang halt
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -56,21 +65,10 @@ apt-get install -y locales
 echo "${LOCALE} UTF-8" >> /etc/locale.gen
 locale-gen
 export LANG="${LOCALE}"
-echo "export LANG=${LOCALE}" >> $STARTUP_SCRIPT
-
-# ## Install elixir
-# # elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
-# apt-get install -y unzip inotify-tools
-# # Download
-# wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/elixir-lang/elixir/releases/download/v${VERSION}/elixir-otp-27.zip"
-# # Extract
-# unzip "${DOWNLOAD_DIR}/elixir-otp-27.zip" -d $ELIXIR_DIR
-# ls -la $ELIXIR_BIN_DIR
-# $ELIXIR_BIN_DIR/elixir --version
-# $ELIXIR_BIN_DIR/iex
+# LANG is already in erlang startup script
 
 ## Install elixir
-# elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
+# Elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools
 # Download
 wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/elixir-lang/elixir/archive/refs/tags/v${VERSION}.zip"
@@ -78,11 +76,14 @@ wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/elixir-lang/elixir/a
 unzip "${DOWNLOAD_DIR}/v${VERSION}.zip" -d $INSTALL_DIR
 # Rename folder
 mv "${INSTALL_DIR}/elixir-${VERSION}" $ELIXIR_DIR
+# Navigate to directory
 cd $ELIXIR_DIR
+# Build
 make
+# Navigate back to home directory
 cd ~
 
-# Add to PATH
+# Add elixir to PATH
 export PATH=$ELIXIR_BIN_DIR:$PATH
 # Ensure $PATH isn't expanded, hence single quotes
 # shellcheck disable=SC2016
@@ -90,8 +91,12 @@ echo "export PATH=${ELIXIR_BIN_DIR}:"'$PATH' >> $STARTUP_SCRIPT
 
 ## Setup default mix commands
 # Ensure elixir and iex commands work
-elixir --version
-iex --version
+if elixir --version && iex --version; then
+  echo "Elixir is working!"
+else
+  echo "Elixir either not installed or not on PATH!"
+  exit 1
+fi
 # Install Hex Package Manager
 mix local.hex --force
 # Install rebar3 to build Erlang dependencies

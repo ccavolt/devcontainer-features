@@ -14,7 +14,6 @@
 				"version": "27.0"
 			},
 			"elixir": {
-				"username": "vscode",
 				"version": "1.17.1"
 			}
 		}
@@ -59,7 +58,7 @@
       }
 		}
 	},
-	"vfox-elixir-default": {
+	"vfox-elixir-defaul": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {},
@@ -67,7 +66,7 @@
 			"vfox-elixir": {}
 		}
 	},
-	"vfox-elixir-specific": {
+	"vfox-elixir-specifi": {
 		"image": "debian:bookworm",
 		"features": {
 			"vfox": {

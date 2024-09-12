@@ -100,4 +100,11 @@ if [ "$USERNAME" != "root" ]; then
   chown --recursive "${USERNAME}:" "${ERL_TOP}"
 fi
 
+## Add variables to startup script to use in elixir install
+{
+  echo "export ERLANG_LOCALE=${LOCALE}"
+  echo "export ERLANG_USERNAME=${USERNAME}"
+  echo "export ERLANG_VERSION=${VERSION}"
+} >> $STARTUP_SCRIPT
+
 echo 'Erlang installed!'
