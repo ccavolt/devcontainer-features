@@ -16,7 +16,6 @@ jobs:
           - bat
           - cockroachdb
           - edgedb-cli
-          - elixir-asdf
           - erlang
           - flutter
           - flyctl
@@ -24,7 +23,6 @@ jobs:
           - pgcli
           - postgres
           - transcrypt
-          - vfox
 
     steps:
       - uses: actions/checkout@v4.1.7
@@ -43,20 +41,6 @@ jobs:
         tests:
           - elixir-default
           - elixir-specific
-          - vfox-dart-default
-          - vfox-dart-specific
-          - vfox-deno-default
-          - vfox-deno-specific
-          - vfox-elixir-default
-          - vfox-elixir-specific
-          - vfox-erlang-default
-          - vfox-erlang-specific
-          - vfox-flutter-default
-          - vfox-flutter-specific
-          - vfox-nodejs-default
-          - vfox-nodejs-specific
-          - vfox-ruby-default
-          - vfox-ruby-specific
 
     steps:
       - uses: actions/checkout@v4.1.7
