@@ -17,6 +17,7 @@ jobs:
           - cockroachdb
           - edgedb-cli
           - elixir-asdf
+          - erlang
           - flutter
           - flyctl
           - pgadmin4
