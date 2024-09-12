@@ -74,7 +74,7 @@ apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa
 
 # Clone flutter instead of downloading tarball to compile on Linux/arm64
 # The flutter tool requires Git in order to operate properly
-git clone --depth 1 --branch $VERSION $REPO $FLUTTER_DIR
+git clone --depth 1 --branch "$VERSION $REPO $FLUTTER_DIR"
 # Fix "dubious ownership" issue
 git config --global --add safe.directory "${FLUTTER_DIR}"
 # Run tool to download necessary packages for arm64
