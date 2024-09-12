@@ -13,13 +13,13 @@ export SCRIPT=/etc/profile.d/vfox.sh
 touch $SCRIPT
 # Version is either specified or latest
 export VFOX_VERSION="${VERSION:-"latest"}"
-echo "export VFOX_VERSION=${VFOX_VERSION}" >>$SCRIPT
+echo "export VFOX_VERSION=${VFOX_VERSION}" >> $SCRIPT
 # Username is either specified or root
 export VFOX_USERNAME="${USERNAME:-"root"}"
-echo "export VFOX_USERNAME=${VFOX_USERNAME}" >>$SCRIPT
+echo "export VFOX_USERNAME=${VFOX_USERNAME}" >> $SCRIPT
 # Set Shell
 export VFOX_SHELL="${SHELL:-"bash"}"
-echo "export VFOX_SHELL=${VFOX_SHELL}" >>$SCRIPT
+echo "export VFOX_SHELL=${VFOX_SHELL}" >> $SCRIPT
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
@@ -37,7 +37,7 @@ else
 fi
 # Set vfox variables
 export VFOX_HOME=${USERHOMEDIR}/.version-fox
-echo "export VFOX_HOME=${USERHOMEDIR}/.version-fox" >>$SCRIPT
+echo "export VFOX_HOME=${USERHOMEDIR}/.version-fox" >> $SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -68,25 +68,25 @@ apt-get install -y vfox="${VFOX_VERSION}"
 # Add shims directory to path
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo 'export PATH=$PATH:'"${VFOX_HOME}/shims" >>$SCRIPT
+echo 'export PATH=$PATH:'"${VFOX_HOME}/shims" >> $SCRIPT
 
 # Hook vfox into user-selected user/shell combo
 if [ "$SHELL" == "bash" ]; then
   touch "${USERHOMEDIR}/.bashrc"
   # No expansion required
   # shellcheck disable=SC2016
-  echo 'eval "$(vfox activate bash)"' >>"${USERHOMEDIR}/.bashrc"
+  echo 'eval "$(vfox activate bash)"' >> "${USERHOMEDIR}/.bashrc"
   chown "${VFOX_USERNAME}:" "${USERHOMEDIR}/.bashrc"
 elif [ "$SHELL" == "fish" ]; then
   mkdir -p "${USERHOMEDIR}/.config/fish"
   touch "${USERHOMEDIR}/.config/fish/config.fish"
-  echo 'vfox activate fish | source' >>"${USERHOMEDIR}/.config/fish/config.fish"
+  echo 'vfox activate fish | source' >> "${USERHOMEDIR}/.config/fish/config.fish"
   chown --recursive "${VFOX_USERNAME}:" "${USERHOMEDIR}/.config"
 elif [ "$SHELL" == "zsh" ]; then
   touch "${USERHOMEDIR}/.zshrc"
   # No expansion required
   # shellcheck disable=SC2016
-  echo 'eval "$(vfox activate zsh)"' >>"${USERHOMEDIR}/.zshrc"
+  echo 'eval "$(vfox activate zsh)"' >> "${USERHOMEDIR}/.zshrc"
   chown "${VFOX_USERNAME}:" "${USERHOMEDIR}/.zshrc"
 else
   printf '%s\n' "Not a valid shell" >&2
@@ -97,7 +97,7 @@ fi
 mkdir /root/.version-fox
 # Create vfox cache directory
 export VFOX_CACHE=/opt/vfox
-echo "export VFOX_CACHE=${VFOX_CACHE}" >>$SCRIPT
+echo "export VFOX_CACHE=${VFOX_CACHE}" >> $SCRIPT
 mkdir -p $VFOX_CACHE
 # Set vfox cache directory
 vfox config storage.sdkPath "$VFOX_CACHE"

@@ -20,7 +20,7 @@ export REPO="https://github.com/ruby/ruby.git"
 export DEBIAN_FRONTEND=noninteractive
 
 # Check for vfox before proceeding
-if ! command -v vfox &>/dev/null; then
+if ! command -v vfox &> /dev/null; then
   echo "vfox could not be found! I need vfox!"
   exit 1
 fi

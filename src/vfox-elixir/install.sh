@@ -27,7 +27,7 @@ export SCRIPT=/etc/profile.d/vfox-elixir.sh
 touch $SCRIPT
 
 # Check for vfox before proceeding
-if ! command -v vfox &>/dev/null; then
+if ! command -v vfox &> /dev/null; then
   echo "vfox could not be found! I need vfox!"
   exit 1
 fi
@@ -39,7 +39,7 @@ apt-get update && apt-get upgrade -y
 apt-get install -y locales
 locale-gen "${LOCALE}"
 export LANG="${LOCALE}"
-echo "export LANG=${LOCALE}" >>$SCRIPT
+echo "export LANG=${LOCALE}" >> $SCRIPT
 
 # vfox elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools

@@ -55,25 +55,25 @@ touch $ELIXIR_ASDF_SCRIPT
 apt-get install -y locales
 locale-gen "${LCL}"
 export LANG="${LCL}"
-echo "export LANG=${LCL}" >>$ELIXIR_ASDF_SCRIPT
+echo "export LANG=${LCL}" >> $ELIXIR_ASDF_SCRIPT
 
 # Install ASDF
 apt-get install -y curl git
 mkdir -p /opt/asdf
 # Where ASDF will be installed
 export ASDF_DIR=/opt/asdf
-echo "export ASDF_DIR=/opt/asdf" >>$ELIXIR_ASDF_SCRIPT
+echo "export ASDF_DIR=/opt/asdf" >> $ELIXIR_ASDF_SCRIPT
 # Where ASDF will store plugins, versions, etc
 export ASDF_DATA_DIR=/opt/asdf
-echo "export ASDF_DATA_DIR=/opt/asdf" >>$ELIXIR_ASDF_SCRIPT
+echo "export ASDF_DATA_DIR=/opt/asdf" >> $ELIXIR_ASDF_SCRIPT
 # Clone ASDF repo
 git clone https://github.com/asdf-vm/asdf.git /opt/asdf --branch "v${ASDF_VERSION}"
 # Add ASDF to PATH
 export PATH=${PATH}:${ASDF_DIR}/shims:${ASDF_DIR}/bin
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo 'export PATH=$PATH:'"${ASDF_DIR}/shims:${ASDF_DIR}"'/bin' >>$ELIXIR_ASDF_SCRIPT
-echo ". ${ASDF_DIR}/asdf.sh" >>$ELIXIR_ASDF_SCRIPT
+echo 'export PATH=$PATH:'"${ASDF_DIR}/shims:${ASDF_DIR}"'/bin' >> $ELIXIR_ASDF_SCRIPT
+echo ". ${ASDF_DIR}/asdf.sh" >> $ELIXIR_ASDF_SCRIPT
 
 # Install Erlang & Elixir ASDF plugins
 asdf plugin-add erlang

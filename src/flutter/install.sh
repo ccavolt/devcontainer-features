@@ -75,7 +75,7 @@ ${FLUTTER_BIN_DIR}/flutter
 # Add to PATH
 # Ensure $PATH isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo "export PATH=${FLUTTER_BIN_DIR}:"'$PATH' >>$STARTUP_SCRIPT
+echo "export PATH=${FLUTTER_BIN_DIR}:"'$PATH' >> $STARTUP_SCRIPT
 
 # Ensure install directories are owned by user
 if [ "$USERNAME" != "root" ]; then

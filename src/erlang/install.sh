@@ -61,7 +61,7 @@ apt-get install -y locales
 echo "${LOCALE} UTF-8" >> /etc/locale.gen
 locale-gen
 export LANG="${LOCALE}"
-echo "export LANG=${LOCALE}" >>$STARTUP_SCRIPT
+echo "export LANG=${LOCALE}" >> $STARTUP_SCRIPT
 
 # Download
 wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/erlang/otp/releases/download/OTP-${VERSION}/otp_src_${VERSION}.tar.gz"
