@@ -38,6 +38,8 @@ export INSTALL_DIR=/opt
 export ELIXIR_DIR="${INSTALL_DIR}/elixir"
 # Elixir bin directory
 export ELIXIR_BIN_DIR="${ELIXIR_DIR}/bin"
+# Increase make parallelism
+export MAKEFLAGS=-j8
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/elixir.sh
 touch $STARTUP_SCRIPT
