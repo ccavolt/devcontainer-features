@@ -1,0 +1,36 @@
+{
+  "id": "erlang",
+  "version": "0.1.0",
+  "name": "erlang",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/erlang",
+  "description": "Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability.",
+  "options": {
+    "locale": {
+      "default": "en_US.UTF-8",
+      "description": "Specify locale to use. Prevents erlang warnings",
+      "proposals": [
+        "en_US.UTF-8",
+        "fr_FR.UTF-8"
+      ],
+      "type": "string"
+    },
+    "username": {
+      "default": "root",
+      "description": "Name of user devcontainer will run as.",
+      "proposals": [
+        "root",
+        "vscode"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "default": "latest",
+      "description": "Specify version to install.",
+      "proposals": [
+        "latest",
+        "27.0.1"
+      ],
+      "type": "string"
+    }
+  }
+}

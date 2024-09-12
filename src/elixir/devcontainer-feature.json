@@ -1,0 +1,55 @@
+{
+  "id": "elixir",
+  "version": "0.1.0",
+  "name": "elixir",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/elixir",
+  "description": "Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.",
+  "options": {
+    "defaultMixCommands": {
+      "default": "false",
+      "description": "Installs hex, rebar, and phx_new by default.",
+      "proposals": [
+        "false",
+        "true"
+
+      ],
+      "type": "string"
+    },
+    "elixirVersion": {
+      "default": "latest",
+      "description": "Specify version to install.",
+      "proposals": [
+        "latest",
+        "1.17.2-otp-27"
+      ],
+      "type": "string"
+    },
+    "erlangVersion": {
+      "default": "latest",
+      "description": "Specify version to install.",
+      "proposals": [
+        "latest",
+        "27.0.1"
+      ],
+      "type": "string"
+    },
+    "locale": {
+      "default": "en_US.UTF-8",
+      "description": "Specify locale to use. Prevents Elixir warnings",
+      "proposals": [
+        "en_US.UTF-8",
+        "fr_FR.UTF-8"
+      ],
+      "type": "string"
+    },
+    "username": {
+      "default": "root",
+      "description": "Name of user devcontainer will run as.",
+      "proposals": [
+        "root",
+        "vscode"
+      ],
+      "type": "string"
+    }
+  }
+}

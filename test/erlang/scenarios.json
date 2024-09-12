@@ -1,0 +1,18 @@
+{
+	"default": {
+		"image": "debian:bookworm",
+		"features": {
+			"erlang": {}
+		}
+	},
+	"specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"erlang": {
+				"locale": "en_US.UTF-8",
+				"username": "vscode",
+				"version": "27.0"
+			}
+		}
+	}
+}
