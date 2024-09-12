@@ -1,20 +1,16 @@
 {
-	"elixir-default": {
+	"default": {
 		"image": "debian:bookworm",
 		"features": {
-			"erlang": {},
-			"elixir": {}
+			"erlang": {}
 		}
 	},
-	"elixir-specific": {
+	"specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"erlang": {
 				"username": "vscode",
 				"version": "27.0"
-			},
-			"elixir": {
-				"version": "1.17.1"
 			}
 		}
 	}

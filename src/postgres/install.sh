@@ -20,15 +20,15 @@ export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
 touch $POSTGRES_SCRIPT
 # Set Username
 export PGUSER="${PGUSER:-"postgres"}"
-echo 'export PGUSER='"$PGUSER" >>$POSTGRES_SCRIPT
+echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
 adduser "$PGUSER" || echo "User already exists."
 # Adds password accessible by psql
 # Variable has to be called PGPASSWORD for psql to use it
 export PGPASSWORD="${PGPASSWORD:-"postgres"}"
-echo "export PGPASSWORD=${PGPASSWORD}" >>$POSTGRES_SCRIPT
+echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
 # PG encoding is either specified or UTF8
 export PGENCODING="${PGENCODING:-"UTF8"}"
-echo "export PGENCODING=${PGENCODING}" >>$POSTGRES_SCRIPT
+echo "export PGENCODING=${PGENCODING}" >> $POSTGRES_SCRIPT
 # Location of starting directory
 WORKDIR=$(pwd)
 export WORKDIR
@@ -46,14 +46,14 @@ mkdir -p "$PGDIR"
 export PGBIN="$PGDIR/bin"
 # Postgres Data Directory
 export PGDATA="$PGDIR/data"
-echo 'export PGDATA='"$PGDATA" >>$POSTGRES_SCRIPT
+echo 'export PGDATA='"$PGDATA" >> $POSTGRES_SCRIPT
 mkdir -p "$PGDATA"
 chown "$PGUSER" "$PGDATA"
 # Add Postgres binaries to PATH
 export PATH=$PATH:$PGBIN
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo 'export PATH=$PATH:'"$PGBIN" >>$POSTGRES_SCRIPT
+echo 'export PATH=$PATH:'"$PGBIN" >> $POSTGRES_SCRIPT
 
 # Update packages
 apt-get update && apt-get upgrade -y

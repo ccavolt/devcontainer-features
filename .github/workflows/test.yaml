@@ -16,13 +16,13 @@ jobs:
           - bat
           - cockroachdb
           - edgedb-cli
-          - elixir-asdf
+          - erlang
+          - flutter
           - flyctl
           - pgadmin4
           - pgcli
           - postgres
           - transcrypt
-          - vfox
 
     steps:
       - uses: actions/checkout@v4.1.7
@@ -39,20 +39,8 @@ jobs:
     strategy:
       matrix:
         tests:
-          - vfox-dart-default
-          - vfox-dart-specific
-          - vfox-deno-default
-          - vfox-deno-specific
-          - vfox-elixir-default
-          - vfox-elixir-specific
-          - vfox-erlang-default
-          - vfox-erlang-specific
-          - vfox-flutter-default
-          - vfox-flutter-specific
-          - vfox-nodejs-default
-          - vfox-nodejs-specific
-          - vfox-ruby-default
-          - vfox-ruby-specific
+          - elixir-default
+          - elixir-specific
 
     steps:
       - uses: actions/checkout@v4.1.7
@@ -62,6 +50,7 @@ jobs:
 
       - name: "Testing global scenarios"
         run: devcontainer features test --filter ${{ matrix.tests }} --global-scenarios-only .
+
   sh-checker:
     runs-on: ubuntu-latest
     steps:
@@ -70,6 +59,6 @@ jobs:
         uses: luizm/action-sh-checker@v0.8.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SHFMT_OPTS: --indent 2 --simplify # arguments to shfmt
+          SHFMT_OPTS: --indent 2 --simplify --space-redirects # arguments to shfmt
         with:
           sh_checker_exclude: ".zshrc" # exclude files from the check
