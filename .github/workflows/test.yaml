@@ -41,6 +41,8 @@ jobs:
     strategy:
       matrix:
         tests:
+          - elixir-default
+          - elixir-specific
           - vfox-dart-default
           - vfox-dart-specific
           - vfox-deno-default
