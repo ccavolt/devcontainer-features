@@ -1,11 +1,11 @@
 {
-	"default": {
+	"flutter-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"flutter": {}
 		}
 	},
-	"specific": {
+	"flutter-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"flutter": {

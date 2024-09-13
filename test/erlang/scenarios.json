@@ -1,11 +1,11 @@
 {
-	"default": {
+	"erlang-default": {
 		"image": "debian:bookworm",
 		"features": {
 			"erlang": {}
 		}
 	},
-	"specific": {
+	"erlang-specific": {
 		"image": "debian:bookworm",
 		"features": {
 			"erlang": {
