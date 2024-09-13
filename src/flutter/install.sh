@@ -48,7 +48,7 @@ if [ "$VERSION" == "latest" ]; then
 fi
 
 # Install prereqs
-apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa cmake
+apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa cmake ninja-build
 
 # Clone flutter instead of downloading tarball to compile on Linux/arm64
 # The flutter tool requires Git in order to operate properly
