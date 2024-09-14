@@ -1,6 +1,6 @@
 {
   "id": "flutter",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "name": "flutter",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/flutter",
   "description": "Flutter is Google's SDK for crafting beautiful, fast user experiences for mobile, web, and desktop from a single codebase.",
@@ -18,7 +18,10 @@
       "default": "latest",
       "description": "Specify version to install.",
       "proposals": [
-        "latest",
+        "stable",
+        "beta",
+        "main",
+        "master",
         "3.24.2"
       ],
       "type": "string"

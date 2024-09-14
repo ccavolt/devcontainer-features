@@ -47,12 +47,15 @@ if [ "$VERSION" == "latest" ]; then
   export VERSION
 fi
 
-# Install prereqs
-apt-get install -y wget curl git unzip xz-utils zip libglu1-mesa cmake ninja-build
+# Flutter prereqs
+apt-get install -y wget curl unzip xz-utils zip libglu1-mesa
+# Prereqs for developing linux apps
+apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev \
+  liblzma-dev libstdc++-12-dev gnome-core mesa-utils chromium
 
 # Clone flutter instead of downloading tarball to compile on Linux/arm64
 # The flutter tool requires Git in order to operate properly
-git clone --depth=1 --branch="$VERSION" $REPO $FLUTTER_DIR
+git clone --branch="$VERSION" $REPO $FLUTTER_DIR
 # Fix "dubious ownership" issue
 git config --global --add safe.directory "${FLUTTER_DIR}"
 # Run tool to download necessary packages for arm64
