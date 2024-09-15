@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "flyctl version" flyctl version | grep "0.1.30"
+check "flyctl version" flyctl version | grep "0.3.1"
 
 # Report result
 reportResults
