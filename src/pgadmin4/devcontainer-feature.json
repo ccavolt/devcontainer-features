@@ -1,19 +1,10 @@
 {
   "id": "pgadmin4",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "name": "pgAdmin4",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/pgadmin4",
   "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world. Doesn't work on arm64 (Apple Silicon).",
   "options": {
-    "version": {
-      "default": "latest",
-      "description": "Select the version of pgAdmin4 to install.",
-      "proposals": [
-        "latest",
-        "8.4"
-      ],
-      "type": "string"
-    },
     "email": {
       "default": "john@smith.dev",
       "description": "Email/username for pgAdmin web interface.",
@@ -27,6 +18,15 @@
       "description": "Password for pgAdmin web interface. Must be at least 6 characters.",
       "proposals": [
         "whateveryouwant"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "default": "latest",
+      "description": "Select the version of pgAdmin4 to install.",
+      "proposals": [
+        "latest",
+        "8.4"
       ],
       "type": "string"
     }

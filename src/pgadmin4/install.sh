@@ -8,6 +8,21 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
+## pgAdmin doesn't build for Linux/arm64, so error if on that platform
+# Determine architecture
+if [ "$(uname -m)" = "x86_64" ]; then
+  echo "Architecture is compatible with pgAdmin4."
+elif [ "$(uname -m)" = "aarch64" ]; then
+  echo -e 'Unsupported architecture.'
+  exit 1
+elif [ "$(uname -m)" = "arm64" ]; then
+  echo -e 'Unsupported architecture.'
+  exit 1
+else
+  echo -e 'Unsupported architecture.'
+  exit 1
+fi
+
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
