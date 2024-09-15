@@ -25,8 +25,8 @@ apt-get update && apt-get upgrade -y
 # Install git to determine latest version if necessary
 apt-get install -y git
 
-function validate_url(){
-  if wget -S --spider "$1"  2>&1 | grep -q 'HTTP/1.1 200 OK'; then
+function validate_url() {
+  if wget -S --spider "$1" 2>&1 | grep -q 'HTTP/1.1 200 OK'; then
     return 0
   else
     return 1
@@ -47,12 +47,12 @@ if [ "$VERSION" == "latest" ]; then
     export VERSION
   else
     VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
-    grep -P "(/v)\d{1,3}(.)\d+(.)\d+$" | # Removes major version year (e.g. v2023) builds that have no downloads available
-    tail --lines=2 |                     # Remove all but last 2 lines
-    head --lines=1 |                     # Remove all but first line
-    cut --delimiter='/' --fields=3 |     # Remove refs and tags sections
-    sed 's/[^0-9]*//')                   # Remove v character so there's only numbers and periods
+      ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+      grep -P "(/v)\d{1,3}(.)\d+(.)\d+$" | # Removes major version year (e.g. v2023) builds that have no downloads available
+      tail --lines=2 |                     # Remove all but last 2 lines
+      head --lines=1 |                     # Remove all but first line
+      cut --delimiter='/' --fields=3 |     # Remove refs and tags sections
+      sed 's/[^0-9]*//')                   # Remove v character so there's only numbers and periods
     export VERSION
   fi
 fi
