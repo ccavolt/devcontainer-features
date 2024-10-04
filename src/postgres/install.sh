@@ -91,6 +91,9 @@ tar -xf "postgresql-${POSTGRES_VERSION}.tar.gz"
 apt-get install -y build-essential libreadline-dev \
   zlib1g-dev flex bison libxml2-dev libxslt-dev \
   libssl-dev libxml2-utils xsltproc ccache
+# For building docs
+apt-get install -y docbook-xml docbook-xsl libxml2-utils xsltproc fop
+# Build postgres from source
 cd "postgresql-${POSTGRES_VERSION}"
 ./configure --prefix="$PGDIR" --with-openssl
 make world
