@@ -5,12 +5,12 @@ set -eouvx pipefail
 # Copy zsh config to user dir
 cp .devcontainer/.zshrc "${HOME}"
 
-# Update NPM
+# Update npm
 npm install -g npm@latest
 
 # Install devcontainer cli
 # https://github.com/devcontainers/cli/tags
-npm install -g @devcontainers/cli@0.65.0
+npm install -g @devcontainers/cli@0.71.0
 
 # Remove explainshell after rebuild to prevent errors
 docker rm --volumes --force "$(docker ps --all --quiet --filter ancestor=spaceinvaderone/explainshell)" || true

@@ -14,8 +14,8 @@ ZSH_THEME="codespaces"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # shellcheck disable=SC2034
-plugins=(docker git git-prompt vscode z)
-# Plugins I'm not using currently: asdf docker-compose dotenv flutter gcloud golang helm heroku kubectl npm rust zsh_reload
+plugins=(docker git git-prompt npm vscode z)
+# Plugins I'm not using currently: asdf docker-compose dotenv flutter gcloud golang helm heroku kubectl rust zsh_reload
 
 # shellcheck disable=SC1091
 source "${ZSH}/oh-my-zsh.sh"
