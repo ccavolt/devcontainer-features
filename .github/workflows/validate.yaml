@@ -10,10 +10,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.1
 
       - name: "Validate devcontainer-feature.json files"
-        uses: devcontainers/action@v1.4.2
+        uses: devcontainers/action@v1.4.3
         with:
           validate-only: "true"
           base-path-to-features: "./src"
