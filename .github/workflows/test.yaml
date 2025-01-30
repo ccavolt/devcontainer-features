@@ -15,6 +15,7 @@ jobs:
         features:
           - bat
           - cockroachdb
+          - deno
           - edgedb-cli
           - erlang
           - flutter

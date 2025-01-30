@@ -1,0 +1,16 @@
+{
+	"deno-default": {
+		"image": "debian:bookworm",
+		"features": {
+			"deno": {}
+		}
+	},
+	"deno-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"deno": {
+        "version": "2.1.6"
+      }
+		}
+	}
+}
