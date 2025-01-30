@@ -47,6 +47,6 @@ mkdir -p "$DOWNLOAD_DIR"
 cd "$DOWNLOAD_DIR"
 # Download deno and run script
 curl -fsSL https://deno.land/install.sh |
-DENO_INSTALL=/usr/local sh -s "v${VERSION}"
+  DENO_INSTALL=/usr/local sh -s "v${VERSION}"
 
 echo 'Done!'

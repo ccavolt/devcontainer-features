@@ -1,6 +1,6 @@
 {
   "id": "deno",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "deno",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/deno",
   "description": "The open-source runtime for TypeScript and JavaScript.",
