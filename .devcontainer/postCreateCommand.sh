@@ -10,7 +10,7 @@ npm install -g npm@latest
 
 # Install devcontainer cli
 # https://github.com/devcontainers/cli/tags
-npm install -g @devcontainers/cli@0.73.0
+npm install -g @devcontainers/cli@0.80.0
 
 # Remove explainshell after rebuild to prevent errors
 docker rm --volumes --force "$(docker ps --all --quiet --filter ancestor=spaceinvaderone/explainshell)" || true
