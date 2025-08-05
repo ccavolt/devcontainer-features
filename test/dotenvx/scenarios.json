@@ -1,0 +1,8 @@
+{
+	"dotenvx-default": {
+		"image": "debian:bookworm",
+		"features": {
+			"dotenvx": {}
+		}
+	}
+}
