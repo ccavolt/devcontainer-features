@@ -16,6 +16,7 @@ jobs:
           - bat
           - cockroachdb
           - deno
+          - dotenvx
           - edgedb-cli
           - erlang
           - flutter
