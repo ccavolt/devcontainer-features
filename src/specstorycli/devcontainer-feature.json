@@ -1,0 +1,18 @@
+{
+  "id": "specstorycli",
+  "version": "0.1.0",
+  "name": "SpecStory CLI",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/specstorycli",
+  "description": "Never lose another Claude Code session.",
+  "options": {
+    "version": {
+      "default": "latest",
+      "description": "Enter the version of SpecStory CLI to install",
+      "proposals": [
+        "latest",
+        "0.7.0"
+      ],
+      "type": "string"
+    }
+  }
+}

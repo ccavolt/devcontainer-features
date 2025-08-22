@@ -1,0 +1,16 @@
+{
+	"specstorycli-default": {
+		"image": "debian:bookworm",
+		"features": {
+			"specstorycli": {}
+		}
+	},
+	"specstorycli-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"specstorycli": {
+        "version": "0.7.0"
+      }
+		}
+	}
+}
