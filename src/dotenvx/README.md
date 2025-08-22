@@ -15,7 +15,7 @@ a secure dotenv–from the creator of dotenv.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-
+| version | Enter the version of dotenvx to install | string | latest |
 
 
 
