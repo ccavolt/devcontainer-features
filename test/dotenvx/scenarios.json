@@ -4,5 +4,13 @@
 		"features": {
 			"dotenvx": {}
 		}
+	},
+	"dotenvx-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"dotenvx": {
+				"version": "1.48.4"
+			}
+		}
 	}
 }

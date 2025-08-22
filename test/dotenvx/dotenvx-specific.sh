@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "dotenvx version" dotenvx --version
+check "dotenvx version" dotenvx --version | grep "1.48.4"
 check "dotenvx help" dotenvx --help
 
 # Report result
