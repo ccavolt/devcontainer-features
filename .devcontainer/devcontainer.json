@@ -9,7 +9,7 @@
     "ghcr.io/devcontainers/features/node:1.6.3": {
 			"nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-			"version": "22.17.1"
+			"version": "22.18.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.1": {
@@ -18,7 +18,7 @@
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
     "ghcr.io/devcontainers/features/docker-in-docker:2.12.2": {},
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
-    "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
+    "ghcr.io/devcontainers/features/common-utils:2.5.4": {},
     // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
     "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {},
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshfmt
