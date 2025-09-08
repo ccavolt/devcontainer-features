@@ -24,6 +24,7 @@ jobs:
           - pgadmin4
           - pgcli
           - postgres
+          - proto
           - specstorycli
           - transcrypt
 

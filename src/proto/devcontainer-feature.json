@@ -1,0 +1,28 @@
+{
+  "id": "proto",
+  "version": "0.1.0",
+  "name": "proto",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/proto",
+  "description": "A version manager for all your favorite languages and tools. A unified toolchain.",
+  "options": {
+    "username": {
+      "default": "root",
+      "description": "Name of user devcontainer will run as.",
+      "proposals": [
+        "root",
+        "vscode"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "default": "latest",
+      "description": "Enter the version of proto to install",
+      "proposals": [
+        "latest",
+        "0.52.4"
+      ],
+      "type": "string"
+    }
+  }
+}
+
