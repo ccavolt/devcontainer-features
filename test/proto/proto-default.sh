@@ -9,6 +9,7 @@ source dev-container-features-test-lib
 # Feature-specific tests
 check "proto version" proto --version
 check "PROTO_HOME variable exists" echo "$PROTO_HOME" | grep "/opt/proto"
+check "shims is on path" echo "$PATH" | grep "/opt/proto/shims"
 
 # Report result
 reportResults

@@ -58,10 +58,10 @@ mv proto proto-shim "${INSTALL_DIR}"
 # Enable execution permissions for binaries
 chmod +x "${INSTALL_DIR}"/proto "${INSTALL_DIR}"/proto-shim
 
-# Add to PATH and set PROTO_HOME
+# Add base and shims directories to PATH and set PROTO_HOME
 # Ensure $PATH isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo "export PATH=${INSTALL_DIR}:"'$PATH' >> $STARTUP_SCRIPT
+echo "export PATH=${INSTALL_DIR}:${INSTALL_DIR}/shims:"'$PATH' >> $STARTUP_SCRIPT
 echo "export PROTO_HOME=${INSTALL_DIR}" >> $STARTUP_SCRIPT
 
 # Ensure install directories are owned by user
