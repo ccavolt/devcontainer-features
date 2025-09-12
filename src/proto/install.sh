@@ -25,7 +25,7 @@ mkdir -p $INSTALL_DIR
 export STARTUP_SCRIPT=/etc/profile.d/proto.sh
 touch $STARTUP_SCRIPT
 # Architecture
-ARCH=$(uname -sm)
+ARCH=$(uname -m)
 export ARCH
 
 # Update packages
@@ -46,27 +46,17 @@ if [ "$VERSION" == "latest" ]; then
   export VERSION
 fi
 
-# Which architecture are we installing for
-case $ARCH in
-"Linux aarch64") TARGET="proto_cli-aarch64-unknown-linux" ;;
-"Linux x86_64") TARGET="proto_cli-x86_64-unknown-linux" ;;
-*)
-  echo "Unsupported system or architecture \"$ARCH\". Unable to install proto!"
-  exit 1
-  ;;
-esac
-
 # Create download directory
 mkdir -p "$DOWNLOAD_DIR"
 cd "$DOWNLOAD_DIR"
 # Install dependencies
 apt-get install -y wget unzip xz-utils
 # Download proto
-wget https://github.com/moonrepo/proto/releases/download/v"${VERSION}"/"${TARGET}-gnu".tar.xz
+wget https://github.com/moonrepo/proto/releases/download/v"$VERSION"/proto_cli-"$ARCH"-unknown-linux-gnu.tar.xz
 # Extract
-tar --extract --file $TARGET-gnu.tar.xz
+tar --extract --file proto_cli-"$ARCH"-unknown-linux-gnu.tar.xz
 # Move binaries to install location
-cd $TARGET-gnu
+cd proto_cli-"$ARCH"-unknown-linux-gnu
 mv proto proto-shim $INSTALL_DIR
 # Enable execution permissions for binaries
 chmod +x $INSTALL_DIR/proto $INSTALL_DIR/proto-shim
@@ -81,10 +71,10 @@ echo "export PROTO_HOME=${INSTALL_DIR}" >> $STARTUP_SCRIPT
 if [ "$USERNAME" != "root" ]; then
   # Add user if necessary and create home folder
   adduser "$USERNAME" || echo "User already exists."
-  mkdir -p "/home/${USERNAME}"
+  mkdir -p /home/"$USERNAME"
 
   # Set ownership to user
-  chown --recursive "${USERNAME}:" "${INSTALL_DIR}"
+  chown --recursive "$USERNAME": $INSTALL_DIR
 fi
 
 echo "proto installed!"
