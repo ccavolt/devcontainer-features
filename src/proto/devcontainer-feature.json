@@ -1,6 +1,6 @@
 {
   "id": "proto",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "name": "proto",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/proto",
   "description": "A version manager for all your favorite languages and tools. A unified toolchain.",

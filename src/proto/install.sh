@@ -9,21 +9,24 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Username is either specified or root
-export USERNAME="${USERNAME:-"root"}"
+export USERNAME=${USERNAME:-"root"}
 # Version is either specified or latest
-export VERSION="${VERSION:-"latest"}"
+export VERSION=${VERSION:-"latest"}
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
-export REPO="https://github.com/moonrepo/proto"
+export REPO=https://github.com/moonrepo/proto
 # Download directory
 export DOWNLOAD_DIR=$HOME/downloads
 # Install directory
 export INSTALL_DIR=/opt/proto
-mkdir -p "$INSTALL_DIR"
+mkdir -p $INSTALL_DIR
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/proto.sh
 touch $STARTUP_SCRIPT
+# Architecture
+ARCH=$(uname -sm)
+export ARCH
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -43,20 +46,30 @@ if [ "$VERSION" == "latest" ]; then
   export VERSION
 fi
 
+# Which architecture are we installing for
+case $ARCH in
+"Linux aarch64") TARGET="proto_cli-aarch64-unknown-linux" ;;
+"Linux x86_64") TARGET="proto_cli-x86_64-unknown-linux" ;;
+*)
+  echo "Unsupported system or architecture \"$ARCH\". Unable to install proto!"
+  exit 1
+  ;;
+esac
+
 # Create download directory
 mkdir -p "$DOWNLOAD_DIR"
 cd "$DOWNLOAD_DIR"
 # Install dependencies
 apt-get install -y wget unzip xz-utils
 # Download proto
-wget https://github.com/moonrepo/proto/releases/download/v"${VERSION}"/proto_cli-x86_64-unknown-linux-gnu.tar.xz
+wget https://github.com/moonrepo/proto/releases/download/v"${VERSION}"/"${TARGET}-gnu".tar.xz
 # Extract
-tar --extract --file proto_cli-x86_64-unknown-linux-gnu.tar.xz
+tar --extract --file $TARGET-gnu.tar.xz
 # Move binaries to install location
-cd proto_cli-x86_64-unknown-linux-gnu
-mv proto proto-shim "${INSTALL_DIR}"
+cd $TARGET-gnu
+mv proto proto-shim $INSTALL_DIR
 # Enable execution permissions for binaries
-chmod +x "${INSTALL_DIR}"/proto "${INSTALL_DIR}"/proto-shim
+chmod +x $INSTALL_DIR/proto $INSTALL_DIR/proto-shim
 
 # Add base and shims directories to PATH and set PROTO_HOME
 # Ensure $PATH isn't expanded, hence single quotes
@@ -74,4 +87,4 @@ if [ "$USERNAME" != "root" ]; then
   chown --recursive "${USERNAME}:" "${INSTALL_DIR}"
 fi
 
-echo 'proto installed!'
+echo "proto installed!"
