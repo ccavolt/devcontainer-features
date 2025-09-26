@@ -1,6 +1,6 @@
 {
   "id": "atlas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "atlas",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/atlas",
   "description": "manage your database schema as code with atlas",

@@ -16,6 +16,9 @@ export DEBIAN_FRONTEND=noninteractive
 export REPO="https://github.com/ariga/atlas"
 # Download directory
 export DOWNLOAD_DIR=$HOME/downloads
+# Architecture
+ARCH=$(uname -m)
+export ARCH
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -35,13 +38,22 @@ if [ "$VERSION" == "latest" ]; then
   export VERSION
 fi
 
+if [ "$ARCH" == "x86_64" ]; then
+  ARCH="amd64"
+elif [ "$ARCH" == "aarch64" ] || [ "$ARCH" == "arm64" ]; then
+  ARCH="arm64"
+else
+  echo "Unsupported architecture: $ARCH"
+  exit 1
+fi
+
 # Create download directory
 mkdir -p "$DOWNLOAD_DIR"
 cd "$DOWNLOAD_DIR"
 # Install dependencies to download atlas
 apt-get install -y wget
 # Download atlas
-wget https://release.ariga.io/atlas/atlas-linux-amd64-v"${VERSION}" --output-document=atlas
+wget https://release.ariga.io/atlas/atlas-linux-"${ARCH}"-v"${VERSION}" --output-document=atlas
 # Move binary to /usr/local/bin
 mv atlas /usr/local/bin/
 # Enable execution permissions
