@@ -9,14 +9,14 @@
     "ghcr.io/devcontainers/features/node:1.6.3": {
 			"nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-			"version": "22.19.0"
+			"version": "22.20.0"
 		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.1": {
       // bat: Improved version of cat command
     },
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.3": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {},
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
     "ghcr.io/devcontainers/features/common-utils:2.5.4": {},
     // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
