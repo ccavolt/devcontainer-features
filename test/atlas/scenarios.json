@@ -1,0 +1,16 @@
+{
+	"atlas-default": {
+		"image": "debian:bookworm",
+		"features": {
+			"atlas": {}
+		}
+	},
+	"atlas-specific": {
+		"image": "debian:bookworm",
+		"features": {
+			"atlas": {
+				"version": "0.36.0"
+			}
+		}
+	}
+}
