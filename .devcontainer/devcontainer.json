@@ -5,22 +5,31 @@
   "image": "mcr.microsoft.com/devcontainers/base:1.0.20-bookworm",
 
   "features": {
-    // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
-    "ghcr.io/devcontainers/features/node:1.6.3": {
-			"nodeGypDependencies": true,
-      // https://github.com/nodejs/node/tags
-			"version": "22.20.0"
-		},
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
     "ghcr.io/ccavolt/devcontainer-features/bat:0.1.1": {
       // bat: Improved version of cat command
     },
-    // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {},
+
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
     "ghcr.io/devcontainers/features/common-utils:2.5.4": {},
-    // https://github.com/lukewiwa/features/pkgs/container/features%2Fshellcheck
-    "ghcr.io/lukewiwa/features/shellcheck:0.2.3": {},
+
+    // Needed for Devcontainer CLI and explainshell
+    // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
+    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {},
+
+    // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
+    "ghcr.io/devcontainers/features/node:1.6.3": {
+      "nodeGypDependencies": true,
+      // https://github.com/nodejs/node/tags
+      "version": "22.20.0"
+    },
+
+    // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshellcheck
+    "ghcr.io/devcontainers-extra/features/shellcheck:1.0.0": {
+      // https://github.com/koalaman/shellcheck/tags
+      "version": "0.11.0"
+    },
+
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshfmt
     "ghcr.io/devcontainers-extra/features/shfmt:1.0.2": {
       // shfmt: Shell script formatter
@@ -47,9 +56,40 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "BdSoftware.format-on-auto-save",
+        "DavidAnson.vscode-markdownlint",
+        "esbenp.prettier-vscode",
         "mads-hartmann.bash-ide-vscode",
-        "DavidAnson.vscode-markdownlint"
-      ]
+        "mkhl.shfmt",
+        "timonwong.shellcheck"
+      ],
+
+      "settings": {
+        "editor": {
+          "codeActionsOnSave.source": {
+            "fixAll": "always",
+            "organizeImports": true
+          },
+          "defaultFormatter": "esbenp.prettier-vscode",
+          "formatOnPaste": true,
+          "formatOnSave": true
+        },
+        "files": {
+          "autoSave": "afterDelay"
+        },
+        "prettier.configPath": ".prettierrc.yml",
+        // Specific language overrides
+        "[json][jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[markdown]": {
+          "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+          "markdownlint.configFile": ".markdownlint-cli2.jsonc"
+        },
+        "[shellscript]": {
+          "editor.defaultFormatter": "mkhl.shfmt"
+        }
+      }
     }
   }
 }

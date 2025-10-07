@@ -1,4 +1,4 @@
-name: "Validate devcontainer-feature.json files"
+name: 'Validate devcontainer-feature.json files'
 on:
   pull_request:
   push:
@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5.0.0
 
-      - name: "Validate devcontainer-feature.json files"
+      - name: 'Validate devcontainer-feature.json files'
         uses: devcontainers/action@v1.4.3
         with:
-          validate-only: "true"
-          base-path-to-features: "./src"
+          validate-only: 'true'
+          base-path-to-features: './src'

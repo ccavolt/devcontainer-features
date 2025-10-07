@@ -1,17 +1,17 @@
 {
-	"proto-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"proto": {}
-		}
-	},
-	"proto-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"proto": {
-				"version": "0.52.4",
-				"username": "vscode"
-			}
-		}
-	}
+  "proto-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "proto": {}
+    }
+  },
+  "proto-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "proto": {
+        "version": "0.52.4",
+        "username": "vscode"
+      }
+    }
+  }
 }

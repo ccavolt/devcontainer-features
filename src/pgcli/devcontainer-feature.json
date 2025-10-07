@@ -8,10 +8,7 @@
     "user": {
       "default": "root",
       "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
-      ],
+      "proposals": ["root", "vscode"],
       "type": "string"
     }
   }

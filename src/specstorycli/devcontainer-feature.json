@@ -8,10 +8,7 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of SpecStory CLI to install",
-      "proposals": [
-        "latest",
-        "0.7.0"
-      ],
+      "proposals": ["latest", "0.7.0"],
       "type": "string"
     }
   }

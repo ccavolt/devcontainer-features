@@ -1,8 +1,8 @@
 {
-	"bat-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"bat": {}
-		}
-	}
+  "bat-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "bat": {}
+    }
+  }
 }

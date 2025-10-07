@@ -1,17 +1,17 @@
 {
-	"flutter-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"flutter": {}
-		}
-	},
-	"flutter-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"flutter": {
-				"version": "3.24.1",
-				"username": "vscode"
-			}
-		}
-	}
+  "flutter-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "flutter": {}
+    }
+  },
+  "flutter-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "flutter": {
+        "version": "3.24.1",
+        "username": "vscode"
+      }
+    }
+  }
 }

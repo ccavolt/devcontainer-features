@@ -1,16 +1,16 @@
 {
-	"cockroachdb-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"cockroachdb": {}
-		}
-	},
-	"cockroachdb-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"cockroachdb": {
+  "cockroachdb-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "cockroachdb": {}
+    }
+  },
+  "cockroachdb-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "cockroachdb": {
         "version": "22.2.10"
       }
-		}
-	}
+    }
+  }
 }

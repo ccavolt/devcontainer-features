@@ -8,38 +8,25 @@
     "version": {
       "default": "latest",
       "description": "Select the version of PostgreSQL to install.",
-      "proposals": [
-        "latest",
-        "15.3",
-        "16beta1"
-      ],
+      "proposals": ["latest", "15.3", "16beta1"],
       "type": "string"
     },
     "pguser": {
       "default": "postgres",
       "description": "Name of postgres user.",
-      "proposals": [
-        "postgres",
-        "vscode"
-      ],
+      "proposals": ["postgres", "vscode"],
       "type": "string"
     },
     "pgpassword": {
       "default": "postgres",
       "description": "Password for postgres account.",
-      "proposals": [
-        "postgres",
-        "whateveryouwant"
-      ],
+      "proposals": ["postgres", "whateveryouwant"],
       "type": "string"
     },
     "pgencoding": {
       "default": "UTF8",
       "description": "Postgres encoding (character set)",
-      "proposals": [
-        "UTF8",
-        "SQL_ASCII"
-      ],
+      "proposals": ["UTF8", "SQL_ASCII"],
       "type": "string"
     }
   },

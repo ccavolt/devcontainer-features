@@ -8,10 +8,7 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of CockroachDB to install",
-      "proposals": [
-        "latest",
-        "23.1.2"
-      ],
+      "proposals": ["latest", "23.1.2"],
       "type": "string"
     }
   }

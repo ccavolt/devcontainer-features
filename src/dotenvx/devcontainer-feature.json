@@ -8,12 +8,8 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of dotenvx to install",
-      "proposals": [
-        "latest",
-        "1.48.4"
-      ],
+      "proposals": ["latest", "1.48.4"],
       "type": "string"
     }
   }
 }
-

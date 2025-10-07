@@ -1,16 +1,16 @@
 {
-	"pgcli-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"pgcli": {}
-		}
-	},
-	"pgcli-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"pgcli": {
+  "pgcli-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "pgcli": {}
+    }
+  },
+  "pgcli-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "pgcli": {
         "user": "vscode"
       }
-		}
-	}
+    }
+  }
 }

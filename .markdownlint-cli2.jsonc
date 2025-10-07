@@ -1,0 +1,11 @@
+{
+  "gitignore": true,
+  "globs": ["**/*.md"],
+  "ignores": ["**/.specstory/**"],
+  "config": {
+    "no-duplicate-heading": {
+      "siblings_only": true
+    },
+    "MD013": false
+  }
+}

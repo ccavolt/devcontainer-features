@@ -1,16 +1,16 @@
 {
-	"transcrypt-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"transcrypt": {}
-		}
-	},
-	"transcrypt-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"transcrypt": {
+  "transcrypt-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "transcrypt": {}
+    }
+  },
+  "transcrypt-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "transcrypt": {
         "version": "2.2.2"
       }
-		}
-	}
+    }
+  }
 }

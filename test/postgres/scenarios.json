@@ -1,19 +1,19 @@
 {
-	"postgres-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"postgres": {}
-		}
-	},
-	"postgres-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"postgres": {
+  "postgres-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "postgres": {}
+    }
+  },
+  "postgres-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "postgres": {
         "version": "14.8",
-				"pguser": "vscode",
-				"pgpassword": "asdfasdf",
-				"pgencoding": "SQL_ASCII"
+        "pguser": "vscode",
+        "pgpassword": "asdfasdf",
+        "pgencoding": "SQL_ASCII"
       }
-		}
-	}
+    }
+  }
 }

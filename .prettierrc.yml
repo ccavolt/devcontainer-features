@@ -1,0 +1,7 @@
+singleQuote: true
+jsxSingleQuote: true
+
+overrides:
+  - files: '*.jsonc'
+    options:
+      trailingComma: 'none'

@@ -1,16 +1,16 @@
 {
-	"pgadmin4-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"pgadmin4": {}
-		}
-	},
-	"pgadmin4-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"pgadmin4": {
+  "pgadmin4-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "pgadmin4": {}
+    }
+  },
+  "pgadmin4-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "pgadmin4": {
         "version": "9.5"
       }
-		}
-	}
+    }
+  }
 }

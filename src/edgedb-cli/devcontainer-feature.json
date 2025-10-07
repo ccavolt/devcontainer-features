@@ -6,4 +6,3 @@
   "description": "The edgedb command-line tool rewritten in rust. This feature will always install the latest version.",
   "options": {}
 }
-

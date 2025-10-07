@@ -8,10 +8,7 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of transcrypt to install",
-      "proposals": [
-        "latest",
-        "2.2.3"
-      ],
+      "proposals": ["latest", "2.2.3"],
       "type": "string"
     }
   }

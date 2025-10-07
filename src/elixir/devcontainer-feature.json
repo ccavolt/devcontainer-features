@@ -4,17 +4,12 @@
   "name": "elixir",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/elixir",
   "description": "Elixir is a functional, concurrent, general-purpose programming language that runs on the BEAM virtual machine which is also used to implement the Erlang programming language.",
-  "installsAfter": [
-    "./erlang"
-  ],
+  "installsAfter": ["./erlang"],
   "options": {
     "version": {
       "default": "latest",
       "description": "Specify version to install. Has to be compatible with erlang version.",
-      "proposals": [
-        "latest",
-        "1.17.2-otp-27"
-      ],
+      "proposals": ["latest", "1.17.2-otp-27"],
       "type": "string"
     }
   }

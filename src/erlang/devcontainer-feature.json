@@ -8,19 +8,13 @@
     "username": {
       "default": "root",
       "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
-      ],
+      "proposals": ["root", "vscode"],
       "type": "string"
     },
     "version": {
       "default": "latest",
       "description": "Specify version to install.",
-      "proposals": [
-        "latest",
-        "27.0.1"
-      ],
+      "proposals": ["latest", "27.0.1"],
       "type": "string"
     }
   }

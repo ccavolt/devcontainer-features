@@ -8,10 +8,7 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of flyctl to install",
-      "proposals": [
-        "latest",
-        "0.1.31"
-      ],
+      "proposals": ["latest", "0.1.31"],
       "type": "string"
     }
   }

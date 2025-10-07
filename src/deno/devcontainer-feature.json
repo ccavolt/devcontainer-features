@@ -8,10 +8,7 @@
     "version": {
       "default": "latest",
       "description": "Enter the version of deno to install",
-      "proposals": [
-        "latest",
-        "2.1.7"
-      ],
+      "proposals": ["latest", "2.1.7"],
       "type": "string"
     }
   }

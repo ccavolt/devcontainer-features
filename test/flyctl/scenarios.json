@@ -1,16 +1,16 @@
 {
-	"flyctl-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"flyctl": {}
-		}
-	},
-	"flyctl-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"flyctl": {
+  "flyctl-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "flyctl": {}
+    }
+  },
+  "flyctl-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "flyctl": {
         "version": "0.3.1"
       }
-		}
-	}
+    }
+  }
 }

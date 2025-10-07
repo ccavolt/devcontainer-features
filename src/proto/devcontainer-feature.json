@@ -8,21 +8,14 @@
     "username": {
       "default": "root",
       "description": "Name of user devcontainer will run as.",
-      "proposals": [
-        "root",
-        "vscode"
-      ],
+      "proposals": ["root", "vscode"],
       "type": "string"
     },
     "version": {
       "default": "latest",
       "description": "Enter the version of proto to install",
-      "proposals": [
-        "latest",
-        "0.52.4"
-      ],
+      "proposals": ["latest", "0.52.4"],
       "type": "string"
     }
   }
 }
-

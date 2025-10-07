@@ -1,17 +1,17 @@
 {
-	"erlang-default": {
-		"image": "debian:bookworm",
-		"features": {
-			"erlang": {}
-		}
-	},
-	"erlang-specific": {
-		"image": "debian:bookworm",
-		"features": {
-			"erlang": {
-				"username": "vscode",
-				"version": "27.0"
-			}
-		}
-	}
+  "erlang-default": {
+    "image": "debian:bookworm",
+    "features": {
+      "erlang": {}
+    }
+  },
+  "erlang-specific": {
+    "image": "debian:bookworm",
+    "features": {
+      "erlang": {
+        "username": "vscode",
+        "version": "27.0"
+      }
+    }
+  }
 }
