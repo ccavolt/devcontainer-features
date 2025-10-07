@@ -27,13 +27,13 @@ alias bat="batcat"
 alias check='cd ${PROJECT_DIR} &&
   markdownlint-cli2 --config-file .markdownlint-cli2.jsonc &&
   prettier --check . &&
-  shfmt --apply-ignore --diff --indent=2 --list --simplify --space-redirects .'
+  shfmt --apply-ignore --case-indent --diff --indent=2 --simplify --space-redirects .'
 
 # Format shell files (uses single quotes to prevent expansion)
 alias format='cd ${PROJECT_DIR} &&
   markdownlint-cli2 --fix --config-file .markdownlint-cli2.jsonc &&
   prettier --write . &&
-  shfmt --apply-ignore --indent=2 --list --simplify --space-redirects --write .'
+  shfmt --apply-ignore --case-indent --indent=2 --simplify --space-redirects --write .'
 
 # Run global tests
 alias gtest="devcontainer features test --global-scenarios-only"

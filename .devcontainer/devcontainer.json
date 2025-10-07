@@ -58,6 +58,7 @@
       "extensions": [
         "BdSoftware.format-on-auto-save",
         "DavidAnson.vscode-markdownlint",
+        "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
         "mads-hartmann.bash-ide-vscode",
         "mkhl.shfmt",
@@ -78,6 +79,15 @@
           "autoSave": "afterDelay"
         },
         "prettier.configPath": ".prettierrc.yml",
+        "shfmt": {
+          "formatIgnored": true,
+          "executableArgs": [
+            "--case-indent",
+            "--indent=2",
+            "--simplify",
+            "--space-redirects"
+          ]
+        },
         // Specific language overrides
         "[json][jsonc]": {
           "editor.defaultFormatter": "esbenp.prettier-vscode"
