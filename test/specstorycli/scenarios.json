@@ -1,12 +1,12 @@
 {
   "specstorycli-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "specstorycli": {}
     }
   },
   "specstorycli-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "specstorycli": {
         "version": "0.7.0"

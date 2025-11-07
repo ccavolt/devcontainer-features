@@ -1,12 +1,12 @@
 {
   "atlas-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "atlas": {}
     }
   },
   "atlas-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "atlas": {
         "version": "0.36.0"

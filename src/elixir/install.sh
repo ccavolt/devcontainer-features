@@ -19,11 +19,11 @@ else
 fi
 
 # Username inherited from erlang install
-export USERNAME=$ERLANG_USERNAME
+export USERNAME=${ERLANG_USERNAME}
 # Locale inherited from erlang install
-export LOCALE=$ERLANG_LOCALE
+export LOCALE=${ERLANG_LOCALE}
 # Erlang version inherited from erlang install
-export ERLANG_VERSION=$ERLANG_VERSION
+export ERLANG_VERSION=${ERLANG_VERSION}
 # Version is either specified or latest
 export VERSION="${VERSION:-"latest"}"
 # Prevent installers from trying to prompt for information
@@ -31,7 +31,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/elixir-lang/elixir.git"
 # Download directory
-export DOWNLOAD_DIR=$HOME/downloads
+export DOWNLOAD_DIR=${HOME}/downloads
 # Install directory
 export INSTALL_DIR=/opt
 # Elixir directory
@@ -42,7 +42,7 @@ export ELIXIR_BIN_DIR="${ELIXIR_DIR}/bin"
 export MAKEFLAGS=-j8
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/elixir.sh
-touch $STARTUP_SCRIPT
+touch ${STARTUP_SCRIPT}
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -52,9 +52,9 @@ apt-get install -y git
 
 # https://github.com/elixir-lang/elixir/tags
 # Elixir version to install
-if [ "$VERSION" == "latest" ]; then
+if [ "${VERSION}" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep -v "rc" |                   # Exclude release candidates
     tail --lines=1 |                 # Only get the latest version
     cut --delimiter='/' --fields=3 | # Remove everything before version number (refs, tags, sha etc.)
@@ -73,23 +73,23 @@ export LANG="${LOCALE}"
 # Elixir prereqs (Install inotify-tools filesystem watcher for live reloading to work)
 apt-get install -y unzip inotify-tools
 # Download
-wget --directory-prefix="$DOWNLOAD_DIR" "https://github.com/elixir-lang/elixir/archive/refs/tags/v${VERSION}.zip"
+wget --directory-prefix="${DOWNLOAD_DIR}" "https://github.com/elixir-lang/elixir/archive/refs/tags/v${VERSION}.zip"
 # Extract
-unzip "${DOWNLOAD_DIR}/v${VERSION}.zip" -d $INSTALL_DIR
+unzip "${DOWNLOAD_DIR}/v${VERSION}.zip" -d ${INSTALL_DIR}
 # Rename folder
-mv "${INSTALL_DIR}/elixir-${VERSION}" $ELIXIR_DIR
+mv "${INSTALL_DIR}/elixir-${VERSION}" ${ELIXIR_DIR}
 # Navigate to directory
-cd $ELIXIR_DIR
+cd ${ELIXIR_DIR}
 # Build
 make
 # Navigate back to home directory
 cd ~
 
 # Add elixir to PATH
-export PATH=$ELIXIR_BIN_DIR:$PATH
-# Ensure $PATH isn't expanded, hence single quotes
+export PATH=${ELIXIR_BIN_DIR}:${PATH}
+# Ensure ${PATH} isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo "export PATH=${ELIXIR_BIN_DIR}:"'$PATH' >> $STARTUP_SCRIPT
+echo "export PATH=${ELIXIR_BIN_DIR}:"'${PATH}' >> ${STARTUP_SCRIPT}
 
 ## Setup default mix commands
 # Ensure elixir and iex commands work
@@ -107,17 +107,17 @@ mix local.rebar --force
 mix archive.install hex phx_new --force
 
 # Ensure install directories are owned by user
-if [ "$USERNAME" != "root" ]; then
+if [ "${USERNAME}" != "root" ]; then
   # Add user if necessary and create home folder
-  adduser "$USERNAME" || echo "User already exists."
-  mkdir -p "/home/${USERNAME}"
+  useradd "${USERNAME}" || echo "User already exists."
+  mkdir --parents "/home/${USERNAME}"
 
   # Copy mix stuff and ensure it's owned by user
   cp --recursive /root/.mix "/home/${USERNAME}"
-  chown --recursive "${USERNAME}:" "/home/${USERNAME}/.mix"
+  chown --recursive "${USERNAME}:${USERNAME}" "/home/${USERNAME}/.mix"
 
   # Set ownership to user
-  chown --recursive "${USERNAME}:" "${ELIXIR_DIR}"
+  chown --recursive "${USERNAME}:${USERNAME}" "${ELIXIR_DIR}"
 fi
 
 echo 'Elixir installed!'

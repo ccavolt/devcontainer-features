@@ -7,7 +7,7 @@ set -euxo pipefail
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "edgedb-cli version" edgedb --version
+check "gel-cli version" gel --version
 
 # Report result
 reportResults

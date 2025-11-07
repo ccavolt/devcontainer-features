@@ -15,7 +15,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/dotenvx/dotenvx"
 # Download directory
-export DOWNLOAD_DIR=$HOME/downloads
+export DOWNLOAD_DIR=${HOME}/downloads
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -25,9 +25,9 @@ apt-get install -y git
 
 # https://github.com/dotenvx/dotenvx/tags
 # dotenvx version to install
-if [ "$VERSION" == "latest" ]; then
+if [ "${VERSION}" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep --perl-regexp "(/v)\d+(.)\d+(.)\d+$" | # Removes any non-conforming tags
     tail --lines=1 |                            # Remove all but last line
     cut --delimiter='/' --fields=3 |            # Remove refs and tags sections
@@ -36,8 +36,8 @@ if [ "$VERSION" == "latest" ]; then
 fi
 
 # Create download directory
-mkdir -p "$DOWNLOAD_DIR"
-cd "$DOWNLOAD_DIR"
+mkdir --parents "${DOWNLOAD_DIR}"
+cd "${DOWNLOAD_DIR}"
 # Install dependencies to download dotenvx
 apt-get install -y wget
 # Download dotenvx

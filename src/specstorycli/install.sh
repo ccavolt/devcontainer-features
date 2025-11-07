@@ -15,7 +15,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/specstoryai/getspecstory"
 # Download directory
-export DOWNLOAD_DIR=$HOME/downloads
+export DOWNLOAD_DIR=${HOME}/downloads
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -25,9 +25,9 @@ apt-get install -y git
 
 # https://github.com/specstoryai/getspecstory/tags
 # SpecStory CLI version to install
-if [ "$VERSION" == "latest" ]; then
+if [ "${VERSION}" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep --invert-match "bbb5b6133eb15f0cf647581e54f265734d00f564" | # Removes erroneously named v1.0.0 by hash
     grep --perl-regexp "(/v)\d+(.)\d+(.)\d+$" |                      # Removes any non-conforming tags
     tail --lines=1 |                                                 # Remove all but last line
@@ -37,8 +37,8 @@ if [ "$VERSION" == "latest" ]; then
 fi
 
 # Create download directory
-mkdir -p "$DOWNLOAD_DIR"
-cd "$DOWNLOAD_DIR"
+mkdir --parents "${DOWNLOAD_DIR}"
+cd "${DOWNLOAD_DIR}"
 # Install dependencies to download and unzip SpecStory CLI
 apt-get install -y wget unzip
 # Download SpecStory CLI

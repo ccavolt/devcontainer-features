@@ -1,6 +1,6 @@
 {
   "id": "specstorycli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "name": "SpecStory CLI",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/specstorycli",
   "description": "Never lose another Claude Code session.",

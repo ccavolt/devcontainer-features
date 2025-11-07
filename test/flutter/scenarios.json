@@ -1,12 +1,12 @@
 {
   "flutter-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "flutter": {}
     }
   },
   "flutter-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "flutter": {
         "version": "3.24.1",

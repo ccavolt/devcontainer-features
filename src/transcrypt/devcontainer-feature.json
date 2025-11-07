@@ -1,6 +1,6 @@
 {
   "id": "transcrypt",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "name": "transcrypt",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/transcrypt",
   "description": "transparently encrypt files within a git repository.",

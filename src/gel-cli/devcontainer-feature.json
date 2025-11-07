@@ -1,0 +1,8 @@
+{
+  "id": "gel-cli",
+  "version": "0.1.0",
+  "name": "gel-cli",
+  "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/gel-cli",
+  "description": "The Gel (formerly EdgeDB) command-line tool. This feature will always install the latest version.",
+  "options": {}
+}

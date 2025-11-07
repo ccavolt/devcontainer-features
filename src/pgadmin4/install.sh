@@ -42,9 +42,9 @@ apt-get install -y git
 
 # https://github.com/pgadmin-org/pgadmin4/tags
 # pgAdmin version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+if [ -z "${VERSION}" ] || [ "${VERSION}" == "latest" ]; then
   PGADMIN_VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*_*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*_*' |
     tail --lines=1 |
     cut --delimiter='/' --fields=3 |
     sed 's/[^0-9]*//' |
@@ -73,6 +73,6 @@ cp config_local.py /usr/pgadmin4/web
 # Add local postgres server config to pgAdmin
 cp pgadmin-server.json /usr/pgadmin4/web
 # Activate venv and run setup.py
-sh -c ". /usr/pgadmin4/venv/bin/activate && exec python3 /usr/pgadmin4/web/setup.py load-servers /usr/pgadmin4/web/pgadmin-server.json --replace --user $PGADMIN_SETUP_EMAIL"
+sh -c ". /usr/pgadmin4/venv/bin/activate && exec python3 /usr/pgadmin4/web/setup.py load-servers /usr/pgadmin4/web/pgadmin-server.json --replace --user ${PGADMIN_SETUP_EMAIL}"
 
 echo 'Done!'

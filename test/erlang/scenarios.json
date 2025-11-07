@@ -1,12 +1,12 @@
 {
   "erlang-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "erlang": {}
     }
   },
   "erlang-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "erlang": {
         "username": "vscode",

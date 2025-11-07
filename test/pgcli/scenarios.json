@@ -1,12 +1,12 @@
 {
   "pgcli-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "pgcli": {}
     }
   },
   "pgcli-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "pgcli": {
         "user": "vscode"

@@ -1,8 +1,0 @@
-{
-  "edgedb-cli-default": {
-    "image": "debian:bookworm",
-    "features": {
-      "edgedb-cli": {}
-    }
-  }
-}

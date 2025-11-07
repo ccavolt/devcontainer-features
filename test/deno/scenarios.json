@@ -1,12 +1,12 @@
 {
   "deno-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "deno": {}
     }
   },
   "deno-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "deno": {
         "version": "2.1.6"

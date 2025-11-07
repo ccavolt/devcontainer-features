@@ -1,13 +1,13 @@
 {
   "elixir-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "erlang": {},
       "elixir": {}
     }
   },
   "elixir-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "erlang": {
         "username": "vscode",

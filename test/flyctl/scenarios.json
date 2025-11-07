@@ -1,12 +1,12 @@
 {
   "flyctl-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "flyctl": {}
     }
   },
   "flyctl-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "flyctl": {
         "version": "0.3.1"

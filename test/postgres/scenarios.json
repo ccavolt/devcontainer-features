@@ -1,12 +1,12 @@
 {
   "postgres-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "postgres": {}
     }
   },
   "postgres-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "postgres": {
         "version": "14.8",

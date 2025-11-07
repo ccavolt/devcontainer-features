@@ -17,7 +17,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/flutter/flutter.git"
 # Download directory
-export DOWNLOAD_DIR=$HOME/downloads
+export DOWNLOAD_DIR=${HOME}/downloads
 # Install directory
 export INSTALL_DIR=/opt
 # Flutter directory
@@ -26,7 +26,7 @@ export FLUTTER_DIR="${INSTALL_DIR}/flutter"
 export FLUTTER_BIN_DIR="${FLUTTER_DIR}/bin"
 # Startup script location
 export STARTUP_SCRIPT=/etc/profile.d/flutter.sh
-touch $STARTUP_SCRIPT
+touch ${STARTUP_SCRIPT}
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -36,9 +36,9 @@ apt-get install -y git
 
 # https://github.com/flutter/flutter/tags
 # Flutter version to install
-if [ "$VERSION" == "latest" ]; then
+if [ "${VERSION}" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep -v "v" |                    # Exclude old versions that start with v
     grep -v "-" |                    # Exclude dev versions
     tail --lines=1 |                 # Only get the latest version
@@ -55,25 +55,25 @@ apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev \
 
 # Clone flutter instead of downloading tarball to compile on Linux/arm64
 # The flutter tool requires Git in order to operate properly
-git clone --branch="$VERSION" $REPO $FLUTTER_DIR
+git clone --branch="${VERSION}" ${REPO} ${FLUTTER_DIR}
 # Fix "dubious ownership" issue
 git config --global --add safe.directory "${FLUTTER_DIR}"
 # Run tool to download necessary packages for arm64
 ${FLUTTER_BIN_DIR}/flutter
 
 # Add to PATH
-# Ensure $PATH isn't expanded, hence single quotes
+# Ensure ${PATH} isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo "export PATH=${FLUTTER_BIN_DIR}:"'$PATH' >> $STARTUP_SCRIPT
+echo "export PATH=${FLUTTER_BIN_DIR}:"'${PATH}' >> ${STARTUP_SCRIPT}
 
 # Ensure install directories are owned by user
-if [ "$USERNAME" != "root" ]; then
+if [ "${USERNAME}" != "root" ]; then
   # Add user if necessary and create home folder
-  adduser "$USERNAME" || echo "User already exists."
-  mkdir -p "/home/${USERNAME}"
+  useradd "${USERNAME}" || echo "User already exists."
+  mkdir --parents "/home/${USERNAME}"
 
   # Set ownership to user
-  chown --recursive "${USERNAME}:" "${FLUTTER_DIR}"
+  chown --recursive "${USERNAME}:${USERNAME}" "${FLUTTER_DIR}"
 fi
 
 echo 'Flutter installed!'

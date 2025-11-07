@@ -15,7 +15,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/denoland/deno.git"
 # Download directory
-export DOWNLOAD_DIR=$HOME/downloads
+export DOWNLOAD_DIR=${HOME}/downloads
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -25,9 +25,9 @@ apt-get install -y git
 
 # https://github.com/denoland/deno/tags
 # Deno version to install
-if [ "$VERSION" == "latest" ]; then
+if [ "${VERSION}" == "latest" ]; then
   VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep -P "(/v)\d+(.)\d+(.)\d+$" | # Removes any non-conforming tags
     tail --lines=1 |                 # Remove all but last line
     cut --delimiter='/' --fields=3 | # Remove refs and tags sections
@@ -36,15 +36,15 @@ if [ "$VERSION" == "latest" ]; then
 fi
 
 # Create download directory
-mkdir -p "$DOWNLOAD_DIR"
+mkdir --parents "${DOWNLOAD_DIR}"
 
 # Install deno dependencies
 apt-get install -y unzip
 # Install curl to download deno
 apt-get install -y curl
 # Create download directory
-mkdir -p "$DOWNLOAD_DIR"
-cd "$DOWNLOAD_DIR"
+mkdir --parents "${DOWNLOAD_DIR}"
+cd "${DOWNLOAD_DIR}"
 # Download deno and run script
 curl -fsSL https://deno.land/install.sh |
   DENO_INSTALL=/usr/local sh -s "v${VERSION}"

@@ -1,8 +1,8 @@
 {
-  "bat-default": {
+  "gel-cli-default": {
     "image": "debian:trixie",
     "features": {
-      "bat": {}
+      "gel-cli": {}
     }
   }
 }

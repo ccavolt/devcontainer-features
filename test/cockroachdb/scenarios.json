@@ -1,12 +1,12 @@
 {
   "cockroachdb-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "cockroachdb": {}
     }
   },
   "cockroachdb-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "cockroachdb": {
         "version": "22.2.10"

@@ -13,47 +13,52 @@ export DEBIAN_FRONTEND=noninteractive
 # Git Repo URL
 export REPO="https://github.com/postgres/postgres.git"
 # Download directory
-export DOWNLOADDIR=$HOME/downloads
-mkdir -p "$DOWNLOADDIR"
+export DOWNLOADDIR=${HOME}/downloads
+mkdir --parents "${DOWNLOADDIR}"
 # Postgres env script location
 export POSTGRES_SCRIPT=/etc/profile.d/postgres.sh
-touch $POSTGRES_SCRIPT
-# Set Username
+touch ${POSTGRES_SCRIPT}
+# Set username and create if it doesn't exist
 export PGUSER="${PGUSER:-"postgres"}"
-echo 'export PGUSER='"$PGUSER" >> $POSTGRES_SCRIPT
-adduser "$PGUSER" || echo "User already exists."
+echo 'export PGUSER='"${PGUSER}" >> ${POSTGRES_SCRIPT}
+if [ "${PGUSER}" != "root" ]; then
+  export HOME="/home/${PGUSER}"
+  useradd "${PGUSER}" || echo "User already exists."
+  mkdir --parents "${HOME}"
+  chown --recursive "${PGUSER}:${PGUSER}" "${HOME}"
+fi
 # Adds password accessible by psql
 # Variable has to be called PGPASSWORD for psql to use it
 export PGPASSWORD="${PGPASSWORD:-"postgres"}"
-echo "export PGPASSWORD=${PGPASSWORD}" >> $POSTGRES_SCRIPT
+echo "export PGPASSWORD=${PGPASSWORD}" >> ${POSTGRES_SCRIPT}
 # PG encoding is either specified or UTF8
 export PGENCODING="${PGENCODING:-"UTF8"}"
-echo "export PGENCODING=${PGENCODING}" >> $POSTGRES_SCRIPT
+echo "export PGENCODING=${PGENCODING}" >> ${POSTGRES_SCRIPT}
 # Location of starting directory
 WORKDIR=$(pwd)
 export WORKDIR
 
 # Copy command scripts to container
 export CMDDIR=/devcontainer_features/postgres
-mkdir -p "$CMDDIR"
-cp "$WORKDIR/postAttachCommand.sh" "$CMDDIR"
-cp "$WORKDIR/postCreateCommand.sh" "$CMDDIR"
+mkdir --parents "${CMDDIR}"
+cp "${WORKDIR}/postAttachCommand.sh" "${CMDDIR}"
+cp "${WORKDIR}/postCreateCommand.sh" "${CMDDIR}"
 
 # Postgres Base Directory
 export PGDIR="/opt/postgres"
-mkdir -p "$PGDIR"
+mkdir --parents "${PGDIR}"
 # Postgres Bin Directory
-export PGBIN="$PGDIR/bin"
+export PGBIN="${PGDIR}/bin"
 # Postgres Data Directory
-export PGDATA="$PGDIR/data"
-echo 'export PGDATA='"$PGDATA" >> $POSTGRES_SCRIPT
-mkdir -p "$PGDATA"
-chown "$PGUSER" "$PGDATA"
+export PGDATA="${PGDIR}/data"
+echo 'export PGDATA='"${PGDATA}" >> ${POSTGRES_SCRIPT}
+mkdir --parents "${PGDATA}"
+chown --recursive "${PGUSER}:${PGUSER}" "${PGDATA}"
 # Add Postgres binaries to PATH
-export PATH=$PATH:$PGBIN
+export PATH="${PATH}:${PGBIN}"
 # Ensure path isn't expanded, hence single quotes
 # shellcheck disable=SC2016
-echo 'export PATH=$PATH:'"$PGBIN" >> $POSTGRES_SCRIPT
+echo 'export PATH=${PATH}:'"${PGBIN}" >> ${POSTGRES_SCRIPT}
 
 # Update packages
 apt-get update && apt-get upgrade -y
@@ -63,9 +68,9 @@ apt-get install -y git
 
 # https://www.postgresql.org/ftp/source/
 # Postgres version to install
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+if [ -z "${VERSION}" ] || [ "${VERSION}" == "latest" ]; then
   POSTGRES_VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*_*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*_*' |
     grep -P "(REL_)\d\d(_)\d+" |     # Removes alpha/beta/rc and non conforming tags
     tail --lines=1 |                 # Removes all but the latest tag
     cut --delimiter='/' --fields=3 | # Separates refs/tags/REL_15_3 to REL_15_3
@@ -83,7 +88,7 @@ apt-get install -y wget
 apt-get install -y pkgconf libicu-dev
 
 # Download postgres source code and unzip
-cd "$DOWNLOADDIR"
+cd "${DOWNLOADDIR}"
 wget "https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.gz"
 tar -xf "postgresql-${POSTGRES_VERSION}.tar.gz"
 
@@ -92,24 +97,25 @@ apt-get install -y build-essential libreadline-dev \
   zlib1g-dev flex bison libxml2-dev libxslt-dev \
   libssl-dev libxml2-utils xsltproc ccache
 # For building docs
-apt-get install -y docbook-xml docbook-xsl libxml2-utils xsltproc fop
+apt-get install -y docbook-xml docbook-xsl \
+  libxml2-utils xsltproc fop
 # Build postgres from source
 cd "postgresql-${POSTGRES_VERSION}"
-./configure --prefix="$PGDIR" --with-openssl
+./configure --prefix="${PGDIR}" --with-openssl
 make world
 make install-world
-su --login "$PGUSER" --command "${PGBIN}/initdb -D ${PGDATA} --data-checksums --username=${PGUSER} --encoding=${PGENCODING}"
-su --login "$PGUSER" --command "${PGBIN}/pg_ctl -D ${PGDATA} -l logfile start"
-su --login "$PGUSER" --command "${PGBIN}/createdb test"
-su --login "$PGUSER" --command "${PGBIN}/psql test"
+su --login "${PGUSER}" --command "${PGBIN}/initdb --pgdata=${PGDATA} --data-checksums --username=${PGUSER} --encoding=${PGENCODING}"
+su --login "${PGUSER}" --command "${PGBIN}/pg_ctl --pgdata=${PGDATA} --log=${HOME}/pgstartlog start"
+su --login "${PGUSER}" --command "${PGBIN}/createdb test"
+su --login "${PGUSER}" --command "${PGBIN}/psql test"
 
 # Give db user a password to be able to connect to pgAdmin4
-su --login "$PGUSER" --command "psql --echo-all --dbname=postgres --command \"alter user $PGUSER password '$PGPASSWORD'\""
+su --login "${PGUSER}" --command "psql --echo-all --dbname=postgres --command \"alter user ${PGUSER} password '${PGPASSWORD}'\""
 
 # Create database with name of user so connection that doesn't specify a database doesn't fail
 # Skip if user is postgres because postgres database is created by default
-if [ "$PGUSER" != "postgres" ]; then
-  su --login "$PGUSER" --command "psql --echo-all --dbname=postgres --command \"create database $PGUSER\""
+if [ "${PGUSER}" != "postgres" ]; then
+  su --login "${PGUSER}" --command "psql --echo-all --dbname=postgres --command \"create database ${PGUSER}\""
 fi
 
 echo 'Done!'

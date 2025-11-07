@@ -1,6 +1,6 @@
 {
   "id": "cockroachdb",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "name": "CockroachDB",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/cockroachdb",
   "description": "Scale fast. Survive disaster. Thrive everywhere.",

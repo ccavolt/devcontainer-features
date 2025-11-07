@@ -1,6 +1,6 @@
 {
   "id": "erlang",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "name": "erlang",
   "documentationURL": "https://github.com/ccavolt/devcontainer-features/tree/main/src/erlang",
   "description": "Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability.",

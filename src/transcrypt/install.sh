@@ -13,7 +13,7 @@ export TRANSCRYPT_VERSION="${VERSION:-"latest"}"
 # Git Repo URL
 export REPO="https://github.com/elasticdog/transcrypt.git"
 # Download directory
-export DOWNLOADDIR=$HOME/downloads
+export DOWNLOADDIR=${HOME}/downloads
 # Prevent installers from trying to prompt for information
 export DEBIAN_FRONTEND=noninteractive
 
@@ -25,9 +25,9 @@ apt-get install -y git
 
 # https://github.com/elasticdog/transcrypt/tags
 # transcrypt version to install
-if [ "$TRANSCRYPT_VERSION" == "latest" ]; then
+if [ "${TRANSCRYPT_VERSION}" == "latest" ]; then
   TRANSCRYPT_VERSION=$(git -c 'versionsort.suffix=-' \
-    ls-remote --exit-code --refs --sort='version:refname' --tags "$REPO" '*.*.*' |
+    ls-remote --exit-code --refs --sort='version:refname' --tags "${REPO}" '*.*.*' |
     grep -P "(/v)\d+(.)\d+(.)\d+$" | # Removes any non-conforming tags
     tail --lines=1 |                 # Remove all but last line
     cut --delimiter='/' --fields=3 | # Remove refs and tags sections
@@ -36,15 +36,15 @@ if [ "$TRANSCRYPT_VERSION" == "latest" ]; then
 fi
 
 # Create download directory
-mkdir -p "$DOWNLOADDIR"
+mkdir --parents "${DOWNLOADDIR}"
 
 # Install transcrypt dependencies
 apt-get install -y openssl bsdmainutils xxd gnupg
 # Install wget to download transcrypt
 apt-get install -y wget
 # Create download directory
-mkdir -p "$DOWNLOADDIR"
-cd "$DOWNLOADDIR"
+mkdir --parents "${DOWNLOADDIR}"
+cd "${DOWNLOADDIR}"
 # Download transcrypt and unzip
 wget "https://github.com/elasticdog/transcrypt/archive/refs/tags/v${TRANSCRYPT_VERSION}.tar.gz"
 tar -xzvf "v${TRANSCRYPT_VERSION}.tar.gz"

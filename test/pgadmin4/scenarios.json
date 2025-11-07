@@ -1,15 +1,15 @@
 {
   "pgadmin4-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "pgadmin4": {}
     }
   },
   "pgadmin4-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "pgadmin4": {
-        "version": "9.5"
+        "version": "9.8"
       }
     }
   }

@@ -2,7 +2,7 @@
   "name": "devcontainer-features",
 
   // https://github.com/devcontainers/images/tree/main/src/base-debian/history
-  "image": "mcr.microsoft.com/devcontainers/base:1.0.20-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/base:2.0.2-trixie",
 
   "features": {
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
@@ -15,13 +15,15 @@
 
     // Needed for Devcontainer CLI and explainshell
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {
+      "moby": false
+    },
 
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
     "ghcr.io/devcontainers/features/node:1.6.3": {
       "nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-      "version": "22.20.0"
+      "version": "24.10.0"
     },
 
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshellcheck

@@ -1,12 +1,12 @@
 {
   "proto-default": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "proto": {}
     }
   },
   "proto-specific": {
-    "image": "debian:bookworm",
+    "image": "debian:trixie",
     "features": {
       "proto": {
         "version": "0.52.4",
