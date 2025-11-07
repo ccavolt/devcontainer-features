@@ -27,40 +27,7 @@ apt-get install -y curl
 # mkdir --parents /home/"${USERNAME}"/.local/bin/env
 # Install UV
 su --login "${USERNAME}" --command "curl -LsSf https://astral.sh/uv/install.sh | sh"
-# curl -LsSf https://astral.sh/uv/install.sh | sh
-# # Ensure all UV stuff is owned by specified user
-# chown --recursive "${USERNAME}:${USERNAME}" "${HOME}"
-# source "${HOME}"/.local/bin/env
-# tree "${HOME}"/.local
-# source "${HOME}"/.local/bin/env
-
-ls -la "${HOME}"/.local/bin
-
-# uv tool install pgcli --with psycopg-binary
+# Install pgcli
 su --login "${USERNAME}" --command "uv tool install pgcli --with psycopg-binary"
-
-# ls -la "${HOME}"/.local/bin
-# ls -la "${HOME}"/.local
-# # exit 1
-
-# cat /etc/passwd
-# cat /etc/group
-
-# chown --recursive "${USERNAME}:${USERNAME}:" "${HOME}"
-
-# # Install pgcli
-# if [ "${USERNAME}" != "root" ]; then
-#   # Add user if necessary and create home folder
-#   # tree /usr/sbin
-#   # exit 1
-#   # addgroup "${USERNAME}" --disabled-login || echo "User already exists."
-#   # mkdir --parents "/home/${USERNAME}"/.local/bin/env
-#   # tree /home/"${USERNAME}"/.local
-#   # source /home/"${USERNAME}"/.local/bin/env
-#   su --login "${USERNAME}" --command "uv tool install pgcli --with psycopg-binary"
-# else
-#   # source "${HOME}"/.local/bin/env
-#   uv tool install pgcli --with psycopg-binary
-# fi
 
 echo 'Done!'

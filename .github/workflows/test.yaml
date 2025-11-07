@@ -1,4 +1,4 @@
-name: "CI - Test Features"
+name: 'CI - Test Features'
 on:
   pull_request:
   push:
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5.0.0
 
-      - name: "Install latest devcontainer CLI"
+      - name: 'Install latest devcontainer CLI'
         run: npm install -g @devcontainers/cli
 
       - name: "Generating tests for '${{ matrix.features }}' scenarios"
@@ -50,10 +50,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5.0.0
 
-      - name: "Install latest devcontainer CLI"
+      - name: 'Install latest devcontainer CLI'
         run: npm install -g @devcontainers/cli
 
-      - name: "Testing global scenarios"
+      - name: 'Testing global scenarios'
         run: devcontainer features test --filter ${{ matrix.tests }} --global-scenarios-only .
 
   sh-checker:
@@ -66,4 +66,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SHFMT_OPTS: --indent 2 --simplify --space-redirects # arguments to shfmt
         with:
-          sh_checker_exclude: ".zshrc" # exclude files from the check
+          sh_checker_exclude: '.zshrc' # exclude files from the check
