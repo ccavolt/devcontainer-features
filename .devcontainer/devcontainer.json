@@ -6,7 +6,7 @@
 
   "features": {
     // https://github.com/ccavolt/devcontainer-features/pkgs/container/devcontainer-features%2Fbat
-    "ghcr.io/ccavolt/devcontainer-features/bat:0.1.1": {
+    "ghcr.io/ccavolt/devcontainer-features/bat:0.2.0": {
       // bat: Improved version of cat command
     },
 
@@ -23,7 +23,7 @@
     "ghcr.io/devcontainers/features/node:1.6.3": {
       "nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-      "version": "24.10.0"
+      "version": "24.11.0"
     },
 
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshellcheck
