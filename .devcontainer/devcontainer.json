@@ -11,7 +11,7 @@
     },
 
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
-    "ghcr.io/devcontainers/features/common-utils:2.5.4": {},
+    "ghcr.io/devcontainers/features/common-utils:2.5.5": {},
 
     // Needed for Devcontainer CLI and explainshell
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
