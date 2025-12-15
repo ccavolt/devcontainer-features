@@ -15,7 +15,7 @@
 
     // Needed for Devcontainer CLI and explainshell
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2.13.0": {
       "moby": false
     },
 
