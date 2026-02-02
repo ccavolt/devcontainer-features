@@ -20,7 +20,7 @@
     },
 
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
-    "ghcr.io/devcontainers/features/node:1.6.3": {
+    "ghcr.io/devcontainers/features/node:1.7.1": {
       "nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
       "version": "24.11.0"
