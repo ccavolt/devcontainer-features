@@ -10,7 +10,7 @@ npm install --global npm@latest
 
 # Install devcontainer cli
 # https://github.com/devcontainers/cli/tags
-npm install --global @devcontainers/cli@0.80.1 \
+npm install --global @devcontainers/cli@0.83.1 \
   markdownlint-cli2 \
   prettier
 

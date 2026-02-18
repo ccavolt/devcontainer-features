@@ -11,23 +11,23 @@
     },
 
     // https://github.com/devcontainers/features/pkgs/container/features%2Fcommon-utils
-    "ghcr.io/devcontainers/features/common-utils:2.5.4": {},
+    "ghcr.io/devcontainers/features/common-utils:2.5.6": {},
 
     // Needed for Devcontainer CLI and explainshell
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.12.4": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2.14.0": {
       "moby": false
     },
 
     // https://github.com/devcontainers/features/pkgs/container/features%2Fnode
-    "ghcr.io/devcontainers/features/node:1.6.3": {
+    "ghcr.io/devcontainers/features/node:1.7.1": {
       "nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-      "version": "24.11.0"
+      "version": "24.13.1"
     },
 
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshellcheck
-    "ghcr.io/devcontainers-extra/features/shellcheck:1.0.0": {
+    "ghcr.io/devcontainers-extra/features/shellcheck:1.1.0": {
       // https://github.com/koalaman/shellcheck/tags
       "version": "0.11.0"
     },
