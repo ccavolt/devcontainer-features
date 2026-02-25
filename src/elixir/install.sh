@@ -105,6 +105,8 @@ mix local.hex --force
 mix local.rebar --force
 # Install Phoenix Framework Application Generator
 mix archive.install hex phx_new --force
+# Install Igniter Application Generator
+mix archive.install hex igniter_new --force
 
 # Ensure install directories are owned by user
 if [ "${USERNAME}" != "root" ]; then
