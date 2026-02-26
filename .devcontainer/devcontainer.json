@@ -15,7 +15,7 @@
 
     // Needed for Devcontainer CLI and explainshell
     // https://github.com/devcontainers/features/pkgs/container/features%2Fdocker-in-docker
-    "ghcr.io/devcontainers/features/docker-in-docker:2.14.0": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2.16.0": {
       "moby": false
     },
 
@@ -23,7 +23,7 @@
     "ghcr.io/devcontainers/features/node:1.7.1": {
       "nodeGypDependencies": true,
       // https://github.com/nodejs/node/tags
-      "version": "24.13.1"
+      "version": "24.14.0"
     },
 
     // https://github.com/devcontainers-extra/features/pkgs/container/features%2Fshellcheck
