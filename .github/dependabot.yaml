@@ -3,7 +3,7 @@ version: 2
 multi-ecosystem-groups:
   project:
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
 
 updates:
   # Keep GitHub Actions up to date
