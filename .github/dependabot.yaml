@@ -1,13 +1,19 @@
 version: 2
-updates:
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+
+multi-ecosystem-groups:
+  project:
     schedule:
       interval: 'weekly'
+
+updates:
+  # Keep GitHub Actions up to date
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    patterns: ['*']
+    multi-ecosystem-group: 'project'
 
   # Keep devontainer features up to date
   - package-ecosystem: 'devcontainers'
     directory: '/'
-    schedule:
-      interval: 'weekly'
+    patterns: ['*']
+    multi-ecosystem-group: 'project'
